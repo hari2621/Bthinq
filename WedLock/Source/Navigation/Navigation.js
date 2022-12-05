@@ -1,24 +1,26 @@
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '../Screen/Login';
+
 import Forgot from '../Screen/Forgot';
 import SignUp from '../Screen/SignUp';
 import Home from '../Screen/Home';
 import { NavigationContainer } from '@react-navigation/native';
 
 import React from 'react';
+import { Login } from '../Screen/Login';
 
 export default function App() {
     const Stack = createStackNavigator();
     return (
-        <NavigationContainer>
-            <Stack.Navigator style={styles.container}>
+        <NavigationContainer style={styles.container} >
+            <Stack.Navigator>
                 <Stack.Screen
                     name="Login"
                     component={Login}
                     options={{
-                        title: "Login",
-                        headerTitleStyle: { color: "powderblue" }
+                        title: "",
+                        headerTitleStyle: { color: "powderblue" },
+                        headerTransparent:true,  
                     }} />
                 <Stack.Screen
                     name="Forgot"
@@ -41,8 +43,6 @@ export default function App() {
                         title: "Home",
                         headerTitleStyle: { color: "powderblue" }
                     }} />
-
-
             </Stack.Navigator>
         </NavigationContainer>
 
@@ -50,7 +50,7 @@ export default function App() {
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 2,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
