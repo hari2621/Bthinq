@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TextInput, View, Text, Pressable, Image, TouchableOpacity, ImageBackground,Dimensions } from "react-native";
+import { StyleSheet, TextInput, View, Text, Pressable, Image, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 const responseWidth = Dimensions.get('window').width;
 const responseHeight = Dimensions.get('window').height;
@@ -83,16 +83,15 @@ export function Login() {
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.image1} source={require('../Image/back.png')}>
-        <View style={styles.logo1}>
-          <Image 
-          style={styles.image} source={require('../Image/AppLogo.png')}/> 
-          <Text style={styles.headingclr}>Welcome To Wedringz</Text>   
-        </View>
-        <View style ={styles.backclr}>
-        
+      <View style={styles.logo}>
+      <Image
+          style={styles.image} source={require('../Image/AppLogo.png')} />
+      </View>
+        <View style={styles.topbox}>
+          <Text style={styles.headingclr}>Welcome To Wedringz</Text>
           <View style={styles.inputBox}>
             <TextInput style={styles.text} maxLength={15} value={username} onChangeText={text => CheckUsername(text)}
-              placeholder="UserName"  placeholderTextColor='white'/>
+              placeholder="UserName" placeholderTextColor='white' />
           </View>
           {checkvaildusername ? (
             <Text style={styles.fontsfield}>UserName is not valid</Text>
@@ -110,7 +109,7 @@ export function Login() {
             <Text style={styles.fontsfield}> </Text>
           )}
           <View style={styles.buttonContainer}>
-            {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword==true ? (
+            {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
               <TouchableOpacity disabled style={styles.buttondis} onPress={Login}  >
 
                 <Text style={styles.buttonLabel}>Login</Text>
@@ -131,12 +130,12 @@ export function Login() {
           </View>
           <View style={styles.footer}>
             <Text style={styles.text1}>Don't have an account?</Text>
-            <Pressable style={styles.button1} onPress={() => navigation.navigate("SignUp")}>
-              <Text style={styles.buttonLabel}>Create</Text>
+            <Pressable  onPress={() => navigation.navigate("SignUp")}>
+              <Text style={styles.buttonLabel1}>Signup</Text>
             </Pressable>
           </View>
+          <StatusBar style="auto" />
         </View>
-        <StatusBar style="auto" />
       </ImageBackground>
     </View>
   );
@@ -149,23 +148,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+
   },
-  backclr:{
-    backgroundColor: 'rgba(52,52, 52, 0.4)',
-    padding:30,
-    marginLeft:20,
-    marginRight:20,
-    marginBottom:20,
-    borderRadius:30
+  backclr: {
+    backgroundColor: 'rgba(52,52, 52, 0.1)',
+    padding: 30,
+    margin: 20,
+    borderRadius: 30
   },
 
   image: {
     width: 100,
     height: 150,
-    marginHorizontal:10,
-    marginLeft:150, 
-    marginTop:50,
-   
+    marginHorizontal: 10,
+    marginLeft: 150,
+    marginTop: 100,
   },
   image1: {
     flex: 1,
@@ -175,74 +172,68 @@ const styles = StyleSheet.create({
   },
 
   logo1: {
-    marginVertical:1
+    marginVertical: 1
   },
   headingclr: {
-    color: 'orangered',
+    color: '#000000',
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 60,
+    marginTop: 90
 
   },//heading
+  topbox: {
+    marginBottom:100,
+    
+
+  },
+  logo:{
+      marginBottom:150,
+  },
   inputBox: {
     width: 300,
-    borderBottomWidth: 1,
-    borderTopWidth:1,
-    borderStartWidth:1,
-    borderEndWidth:1,
-    borderBottomStartRadius:10,
-    borderBottomEndRadius:10,
-    borderTopEndRadius:10,
-    borderTopStartRadius:10,
-    padding: 10,
-    marginLeft:10,
-    marginRight:10,
-    marginBottom:5,
-    backgroundColor:'rgba(52,52, 52, 0.9)'
-     
-    
-  },//input type
+    borderWidth:1,
+    borderRadius: 30,
+    padding: 9,
+    marginTop: 10,
+    backgroundColor: 'rgba(52,52, 52, 0.6)',
+    marginLeft: 60
+  },
+
+  //input type
   ForgotText: {
-    color: '#fff',
-    fontSize: 20,
+    color: '#000',
+    fontSize: 19,
     textAlign: 'center',
-    marginTop: 20,
-  },//forget text
+    marginLeft:23,
+    marginRight:18,
+    paddingTop:5
+    },//forget text
 
   text: {
     textAlign: 'left',
     fontSize: 20,
     color: 'black',
-    
   },//username text
-  place:{
-    color:'white'
+  place: {
+    color: 'white'
 
   },
   text1: {
-    padding: 15,
-    color: '#fff'
+    color: '#000000',
+    marginLeft: 60,
+    fontSize:15
   },//don't text
   button1: {
-    borderRadius: 70,
-    width: '30%',
-    height:40,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',//create 
-    marginTop: 3,
   },
   buttonContainer: {
     width: 320,
     height: 58,
-    marginHorizontal: 20,
-    marginBottom: 34,
     alignItems: 'center',
     justifyContent: 'center',
-    padding:3,
-    marginTop: 20,
-
+    padding: 5
   },//login
   button: {
     width: '100%',
@@ -251,43 +242,50 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     backgroundColor: 'rgba(52,52, 52, 0.9)',
-    marginTop: 25,
-    marginRight:50,
-  },//login button view
+    borderRadius: 50,
+    marginRight: 50,
+    marginTop: 90
+  },
+  //login button view
 
   buttondis: {
     width: '100%',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: 'rgba(52,52, 52, 0.1)',
-    borderRadius: 5,
-    marginTop: 25,
-    marginRight:50,
+    backgroundColor: 'orangered',
+    borderRadius: 30,
+    marginLeft: 100,
   },
   buttonLabel: {
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginLeft: -10,
+    marginRight: 10,
+
+  },
+  buttonLabel1: {
+    color: 'blue',
+    fontSize: 15,
     marginLeft: 10,
     marginRight: 10,
+    padding:1,
+    fontWeight:'bold'
 
   },//login text
   footer: {
-    paddingTop: 50,
     flexDirection: "row",
-    marginLeft: 20,
-    marginRight: 20
+    marginLeft:50,
+    marginRight:50
 
   },//bottom view
+
   fontsfield: {
     alignSelf: 'flex-end',
-    color: 'orangered',
-    marginRight: 20,
-    fontSize:20,
-    marginBottom:10
+    color: 'red',
+    fontSize: 20,
+    marginRight:60,
   },
-
 });
