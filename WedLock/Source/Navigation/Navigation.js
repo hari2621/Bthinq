@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '../Screen/Login';
+
 import Forgot from '../Screen/Forgot';
 import SignUp from '../Screen/SignUp';
 
