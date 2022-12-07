@@ -1,36 +1,36 @@
 
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
-import { Login } from '../Screen/Login/Login';
-import Forgot from '../Screen/Forgot/Forgot';
-import Signup from '../Screen/Signup/SignUp';
-import Home from '../Screen/DashBoard/Home';
 
+import Forgot from '../Screen/Forgot';
+import SignUp from '../Screen/SignUp';
+import Home from '../Screen/Home';
+import { NavigationContainer } from '@react-navigation/native';
+
+import React from 'react';
+import { Login } from '../Screen/Login';
 
 export default function App() {
     const Stack = createStackNavigator();
     return (
-        <NavigationContainer  >
+        <NavigationContainer style={styles.container} >
             <Stack.Navigator>
                 <Stack.Screen
                     name="Login"
                     component={Login}
                     options={{
-                        headerShown: false
+                        title: "",
+                        headerTitleStyle: { color: "powderblue" },
+                        headerTransparent:true,  
                     }} />
                 <Stack.Screen
                     name="Forgot"
-                    component={Forgot}
-                    options={{
-                        title: "Login",
-                        headerTitleStyle: { color: "powderblue" }
-                    }} />
+                    component={Forgot}/>
                 <Stack.Screen
                     name="SignUp"
-                    component={Signup}
+                    component={SignUp}
                     options={{
-                        headerShown: false
+                        title: "SignUp",
+                        headerTitleStyle: { color: "powderblue" }
                     }} />
                 <Stack.Screen
                     name="Home"
@@ -44,5 +44,14 @@ export default function App() {
 
     );
 }
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 2,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    font1: {
+        color: 'blue'
+    }
 
