@@ -82,7 +82,7 @@ export default function Signup() {
   // };
   return (
     <View style={styles.signup}>
-      <ImageBackground style={styles.image1} source={require('../../../Image/Leaves.jpg')}>
+      <ImageBackground style={styles.image1} source={require('../../../Image/bc.png')}>
 
         <View style={styles.signup1} >
           <View style={styles.head} >
@@ -178,7 +178,6 @@ const styles = StyleSheet.create({
   image1: {
     width: '100%',
     height: '100%',
-
   },
   head: {
     marginBottom: 30

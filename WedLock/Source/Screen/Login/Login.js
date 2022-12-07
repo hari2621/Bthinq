@@ -87,7 +87,7 @@ export function Login() {
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
-        <ImageBackground style={styles.image1} source={require('../../../Image/back.png')} />
+        <ImageBackground style={styles.image1} source={require('../../../Image/back1.png')} />
       </View>
       <View style={styles.topbox}>
         <View style={styles.head}>
@@ -155,45 +155,13 @@ const styles = StyleSheet.create({
     backgroundColor:'white'
   },
   logo: {
-    flex: 3,
+    flex: 4,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'white'
   },
-
-  head:{
-    marginVertical:10
-  },
-  image1: {
-    width: '100%',
-    height: '100%'
-  },//backgroundimage
-  backclr: {
-    backgroundColor: 'rgba(52,52, 52, 0.1)',
-    padding: 30,
-    margin: 20,
-    borderRadius: 30
-  },
-
-  image: {
-    width: '50%',
-    height: '20%',
-    marginVertical: 80,
-    backgroundColor: 'black'
-  },
-
-
-  logo1: {
-    marginVertical: 1
-  },
-  headingclr: {
-    color: '#000000',
-    fontSize: 24,
-    fontWeight: 'bold',
-
-  },//heading
   topbox: {
     flex:4,
     width:'80%',
@@ -202,6 +170,20 @@ const styles = StyleSheet.create({
     alignItems:'center',
     backgroundColor:'white',
   },
+  image1: {
+    width: '100%',
+    height: '100%'
+  },//backgroundimage
+
+  head:{
+    marginVertical:10
+  },// tittle space
+  headingclr: {
+    color: '#000000',
+    fontSize: 24,
+    fontWeight: 'bold',
+
+  },//heading
 
   inputBox: {
     width:'100%',
@@ -212,7 +194,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginVertical:5
 
-  },
+  },//input field
+
+  text: {
+    fontSize: 20,
+    color: 'black',
+    marginHorizontal:10
+  
+  },//username text
   inputBox1: {
     width:'100%',
     height:'10%',
@@ -221,42 +210,32 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: 'white',
     marginVertical:5
-  },
-
-  //input type
-  ForgotText: {
-    color: '#000',
-    fontSize: 19,
-    textAlign: 'center',
-    paddingTop: 6
-  },//forget text
-
-  text: {
+  },//input field
+  fontsfield: {
+    alignSelf: 'flex-end',
+    color: 'red',
     fontSize: 20,
-    color: 'black',
-    marginHorizontal:10
-
-    
-  },//username text
-  place: {
-    color: 'white'
-
-  },
-  text1: {
-    color: '#000000',
-    fontSize: 15
-  },//don't text
-  button1: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  },//error message field
+  fontsfield1: {
+    alignSelf: 'flex-end',
+    color: 'red',
+    fontSize: 20,
+  },//error message field
   buttonContainer: {
     width:'100%',
     height:'10%',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical:10
-  },//login
+  },//login button
+  buttondis: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'orangered',//'rgba(52,52, 52, 0.9)'
+    borderRadius: 30,
+  },//button disable
   button: {
     width: '100%',
     height: '100%',
@@ -264,18 +243,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'orangered',
     borderRadius: 50,
-   
-  },
-  //login button view
+  },//login button view active
 
-  buttondis: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(52,52, 52, 0.9)',
-    borderRadius: 30,
-  },
   buttonLabel: {
     color: '#fff',
     fontSize: 20,
@@ -284,28 +253,52 @@ const styles = StyleSheet.create({
     marginLeft: -10,
     marginRight: 10,
 
-  },
+  },//text for login
+  ForgotText: {
+    color: '#000',
+    fontSize: 19,
+    textAlign: 'center',
+    paddingTop: 6
+  },//forget text
+  footer: {
+    flexDirection: "row",
+    marginTop:5
+  },//bottom view for forgot
+  text1: {
+    color: '#000000',
+    fontSize: 15
+  },//don't text
   buttonLabel1: {
     color: 'blue',
     fontSize: 15,
     fontWeight: 'bold',
     marginHorizontal:10
-
-
   },//login text
-  footer: {
-    flexDirection: "row",
-    marginTop:5
-  },//bottom view
 
-  fontsfield: {
-    alignSelf: 'flex-end',
-    color: 'red',
-    fontSize: 20,
-  },
-  fontsfield1: {
-    alignSelf: 'flex-end',
-    color: 'red',
-    fontSize: 20,
-  },
 });
+  // image: {
+  //   width: '50%',
+  //   height: '20%',
+  //   marginVertical: 80,
+  //   backgroundColor: 'black'
+  // },
+  // logo1: {
+  //   marginVertical: 1
+  // },
+  // place: {
+  //   color: 'white'
+  // },
+  // button1: {
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+ 
+  
+
+  
+  
+  
+  
+
+  
+

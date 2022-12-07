@@ -5,7 +5,8 @@ import React from 'react';
 import { Login } from '../Screen/Login/Login';
 import Forgot from '../Screen/Forgot/Forgot';
 import Signup from '../Screen/Signup/SignUp';
-import BottomNavigator from './BottomNavigation';
+import Home from '../Screen/DashBoard/Home';
+
 
 
 export default function App() {
@@ -34,7 +35,7 @@ export default function App() {
                     }} />
                 <Stack.Screen
                     name="BottomNavigator"
-                    component={BottomNavigator}
+                    component={Home}
                     options={{
                         title: "Home",
                         headerTitleStyle: { color: "powderblue" }
