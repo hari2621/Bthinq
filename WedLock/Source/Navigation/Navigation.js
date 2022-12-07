@@ -3,45 +3,36 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../Screen/Login';
 import Forgot from '../Screen/Forgot';
 import SignUp from '../Screen/SignUp';
-import Home from '../Screen/Home';
+
 import { NavigationContainer } from '@react-navigation/native';
-
 import React from 'react';
+import Profile from '../Screen/Profile';
+import Home from '../Screen/Home';
+import bottomNavigator from './bottomNavigation';
 
-export default function App() {
+export default function Navigation() {
     const Stack = createStackNavigator();
     return (
         <NavigationContainer>
             <Stack.Navigator style={styles.container}>
+            <Stack.Screen
+                    name="bottomNavigator"
+                    component={bottomNavigator}
+                    options={{
+                        title: "",
+                        headerTitleStyle: { }
+                    }}/>
+
                 <Stack.Screen
                     name="Login"
-                    component={Login}
-                    options={{
-                        title: "Login",
-                        headerTitleStyle: { color: "powderblue" }
-                    }} />
+                    component={Login} />
                 <Stack.Screen
                     name="Forgot"
-                    component={Forgot}
-                    options={{
-                        title: "Login",
-                        headerTitleStyle: { color: "powderblue" }
-                    }} />
+                    component={Forgot}/>
                 <Stack.Screen
                     name="SignUp"
-                    component={SignUp}
-                    options={{
-                        title: "SignUp",
-                        headerTitleStyle: { color: "powderblue" }
-                    }} />
-                <Stack.Screen
-                    name="Home"
-                    component={Home}
-                    options={{
-                        title: "Home",
-                        headerTitleStyle: { color: "powderblue" }
-                    }} />
-
+                    component={SignUp} />
+               
 
             </Stack.Navigator>
         </NavigationContainer>
@@ -51,7 +42,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
