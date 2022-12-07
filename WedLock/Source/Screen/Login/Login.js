@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TextInput, View, Text, Pressable, Image, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
+import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Remote debugger']);
+
+
 const responseWidth = Dimensions.get('window').width;
 const responseHeight = Dimensions.get('window').height;
 
@@ -82,74 +86,90 @@ export function Login() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.image1} source={require('../Image/back.png')}>
       <View style={styles.logo}>
-      <Image
-          style={styles.image} source={require('../Image/AppLogo.png')} />
+        <ImageBackground style={styles.image1} source={require('../../../Image/back.png')} />
       </View>
-        <View style={styles.topbox}>
-          <Text style={styles.headingclr}>Welcome To Wedringz</Text>
-          <View style={styles.inputBox}>
-            <TextInput style={styles.text} maxLength={15} value={username} onChangeText={text => CheckUsername(text)}
-              placeholder="UserName" placeholderTextColor='white' />
-          </View>
-          {checkvaildusername ? (
-            <Text style={styles.fontsfield}>UserName is not valid</Text>
-          ) : (
-            <Text style={styles.fontsfield}> </Text>
-          )}
-
-          <View style={styles.inputBox}>
-            <TextInput secureTextEntry={true} style={styles.text} maxLength={15}
-              placeholder="Password" value={Password} placeholderTextColor='white' onChangeText={text => CheckUserpassword(text)} />
-          </View>
-          {checkvaildpassword ? (
-            <Text style={styles.fontsfield}>Password is not valid</Text>
-          ) : (
-            <Text style={styles.fontsfield}> </Text>
-          )}
-          <View style={styles.buttonContainer}>
-            {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
-              <TouchableOpacity disabled style={styles.buttondis} onPress={Login}  >
-
-                <Text style={styles.buttonLabel}>Login</Text>
-
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity style={styles.button} onPress={Login}  >
-
-                <Text style={styles.buttonLabel} >Login</Text>
-
-              </TouchableOpacity>
-            )}
-          </View>
-          <View>
-            <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
-              <Text style={styles.ForgotText}>Forgot Password..?</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.footer}>
-            <Text style={styles.text1}>Don't have an account?</Text>
-            <Pressable  onPress={() => navigation.navigate("SignUp")}>
-              <Text style={styles.buttonLabel1}>Signup</Text>
-            </Pressable>
-          </View>
-          <StatusBar style="auto" />
+      <View style={styles.topbox}>
+        <View style={styles.head}>
+        <Text style={styles.headingclr}>Welcome To <Text style={{ color: 'red' }}>TOFO</Text> Events</Text>
         </View>
-      </ImageBackground>
+        
+         <View style={styles.inputBox}>
+          <TextInput style={styles.text} maxLength={15} value={username} onChangeText={text => CheckUsername(text)}
+            placeholder="UserName" placeholderTextColor='black' />
+        </View>
+        {checkvaildusername ? (
+          <Text style={styles.fontsfield}>UserName is not valid</Text>
+        ) : (
+          <Text style={styles.fontsfield}> </Text>
+        )}
+
+        <View style={styles.inputBox1}>
+          <TextInput secureTextEntry={true} style={styles.text} maxLength={15}
+            placeholder="Password" value={Password} placeholderTextColor='black' onChangeText={text => CheckUserpassword(text)} />
+        </View>
+        {checkvaildpassword ? (
+          <Text style={styles.fontsfield1}>Password is not valid</Text>
+        ) : (
+          <Text style={styles.fontsfield1}> </Text>
+        )}
+        <View style={styles.buttonContainer}>
+          {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
+            <TouchableOpacity disabled style={styles.buttondis} onPress={Login}  >
+
+              <Text style={styles.buttonLabel}>Login</Text>
+
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.button} onPress={Login}  >
+
+              <Text style={styles.buttonLabel} >Login</Text>
+
+            </TouchableOpacity>
+          )}
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
+            <Text style={styles.ForgotText}>Forgot Password..?</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.text1}>Don't have an account?</Text>
+          <Pressable onPress={() => navigation.navigate("SignUp")}>
+            <Text style={styles.buttonLabel1}>Signup</Text>
+          </Pressable>
+        </View>
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingBottom: 50,
-    backgroundColor: '#fff',
+   flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-
+    height: '100%',
+    width: '100%',
+    backgroundColor:'white'
   },
+  logo: {
+    flex: 3,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'white'
+  },
+
+  head:{
+    marginVertical:10
+  },
+  image1: {
+    width: '100%',
+    height: '100%'
+  },//backgroundimage
   backclr: {
     backgroundColor: 'rgba(52,52, 52, 0.1)',
     padding: 30,
@@ -158,46 +178,49 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 100,
-    height: 150,
-    marginHorizontal: 10,
-    marginLeft: 150,
-    marginTop: 100,
+    width: '50%',
+    height: '20%',
+    marginVertical: 80,
+    backgroundColor: 'black'
   },
-  image1: {
-    flex: 1,
-    justifyContent: "center",
-    height: "110%",
-    width: "100%",
-  },
+
 
   logo1: {
     marginVertical: 1
   },
   headingclr: {
     color: '#000000',
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 90
 
   },//heading
   topbox: {
-    marginBottom:100,
-    
+    flex:4,
+    width:'80%',
+    height:'100%',
+    justifyContent:'flex-start',
+    alignItems:'center',
+    backgroundColor:'white',
+  },
+
+  inputBox: {
+    width:'100%',
+    height:'10%',
+    justifyContent:'center',
+    borderWidth: 1,
+    borderRadius: 30,
+    backgroundColor: 'white',
+    marginVertical:5
 
   },
-  logo:{
-      marginBottom:150,
-  },
-  inputBox: {
-    width: 300,
-    borderWidth:1,
+  inputBox1: {
+    width:'100%',
+    height:'10%',
+    justifyContent:'center',
+    borderWidth: 1,
     borderRadius: 30,
-    padding: 9,
-    marginTop: 10,
-    backgroundColor: 'rgba(52,52, 52, 0.6)',
-    marginLeft: 60
+    backgroundColor: 'white',
+    marginVertical:5
   },
 
   //input type
@@ -205,15 +228,15 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 19,
     textAlign: 'center',
-    marginLeft:23,
-    marginRight:18,
-    paddingTop:5
-    },//forget text
+    paddingTop: 6
+  },//forget text
 
   text: {
-    textAlign: 'left',
     fontSize: 20,
     color: 'black',
+    marginHorizontal:10
+
+    
   },//username text
   place: {
     color: 'white'
@@ -221,30 +244,27 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: '#000000',
-    marginLeft: 60,
-    fontSize:15
+    fontSize: 15
   },//don't text
   button1: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonContainer: {
-    width: 320,
-    height: 58,
+    width:'100%',
+    height:'10%',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5
+    marginVertical:10
   },//login
   button: {
     width: '100%',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: 'rgba(52,52, 52, 0.9)',
+    backgroundColor: 'orangered',
     borderRadius: 50,
-    marginRight: 50,
-    marginTop: 90
+   
   },
   //login button view
 
@@ -253,9 +273,8 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orangered',
+    backgroundColor: 'rgba(52,52, 52, 0.9)',
     borderRadius: 30,
-    marginLeft: 100,
   },
   buttonLabel: {
     color: '#fff',
@@ -269,23 +288,24 @@ const styles = StyleSheet.create({
   buttonLabel1: {
     color: 'blue',
     fontSize: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    padding:1,
-    fontWeight:'bold'
+    fontWeight: 'bold',
+    marginHorizontal:10
+
 
   },//login text
   footer: {
     flexDirection: "row",
-    marginLeft:50,
-    marginRight:50
-
+    marginTop:5
   },//bottom view
 
   fontsfield: {
     alignSelf: 'flex-end',
     color: 'red',
     fontSize: 20,
-    marginRight:60,
+  },
+  fontsfield1: {
+    alignSelf: 'flex-end',
+    color: 'red',
+    fontSize: 20,
   },
 });
