@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TextInput, View, Text, Pressable, Image, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
+import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Remote debugger']);
+
+
 const responseWidth = Dimensions.get('window').width;
 const responseHeight = Dimensions.get('window').height;
 
@@ -82,66 +86,66 @@ export function Login() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.image1} source={require('../Image/back.png')}>
       <View style={styles.logo}>
-      <Image
-          style={styles.image} source={require('../Image/AppLogo.png')} />
+        <ImageBackground style={styles.image1} source={require('../../../Image/back.png')} />
       </View>
-        <View style={styles.topbox}>
-          <Text style={styles.headingclr}>Welcome To Wedringz</Text>
-          <View style={styles.inputBox}>
-            <TextInput style={styles.text} maxLength={15} value={username} onChangeText={text => CheckUsername(text)}
-              placeholder="UserName" placeholderTextColor='white' />
-          </View>
-          {checkvaildusername ? (
-            <Text style={styles.fontsfield}>UserName is not valid</Text>
-          ) : (
-            <Text style={styles.fontsfield}> </Text>
-          )}
-
-          <View style={styles.inputBox}>
-            <TextInput secureTextEntry={true} style={styles.text} maxLength={15}
-              placeholder="Password" value={Password} placeholderTextColor='white' onChangeText={text => CheckUserpassword(text)} />
-          </View>
-          {checkvaildpassword ? (
-            <Text style={styles.fontsfield}>Password is not valid</Text>
-          ) : (
-            <Text style={styles.fontsfield}> </Text>
-          )}
-          <View style={styles.buttonContainer}>
-            {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
-              <TouchableOpacity disabled style={styles.buttondis} onPress={Login}  >
-
-                <Text style={styles.buttonLabel}>Login</Text>
-
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity style={styles.button} onPress={Login}  >
-
-                <Text style={styles.buttonLabel} >Login</Text>
-
-              </TouchableOpacity>
-            )}
-          </View>
-          <View>
-            <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
-              <Text style={styles.ForgotText}>Forgot Password..?</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.footer}>
-            <Text style={styles.text1}>Don't have an account?</Text>
-            <Pressable  onPress={() => navigation.navigate("SignUp")}>
-              <Text style={styles.buttonLabel1}>Signup</Text>
-            </Pressable>
-          </View>
-          <StatusBar style="auto" />
+      <View style={styles.topbox}>
+        <View style={styles.head}>
+        <Text style={styles.headingclr}>Welcome To <Text style={{ color: 'red' }}>TOFO</Text> Events</Text>
         </View>
-      </ImageBackground>
+        
+         <View style={styles.inputBox}>
+          <TextInput style={styles.text} maxLength={15} value={username} onChangeText={text => CheckUsername(text)}
+            placeholder="UserName" placeholderTextColor='black' />
+        </View>
+        {checkvaildusername ? (
+          <Text style={styles.fontsfield}>UserName is not valid</Text>
+        ) : (
+          <Text style={styles.fontsfield}> </Text>
+        )}
+
+        <View style={styles.inputBox1}>
+          <TextInput secureTextEntry={true} style={styles.text} maxLength={15}
+            placeholder="Password" value={Password} placeholderTextColor='black' onChangeText={text => CheckUserpassword(text)} />
+        </View>
+        {checkvaildpassword ? (
+          <Text style={styles.fontsfield1}>Password is not valid</Text>
+        ) : (
+          <Text style={styles.fontsfield1}> </Text>
+        )}
+        <View style={styles.buttonContainer}>
+          {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
+            <TouchableOpacity disabled style={styles.buttondis} onPress={Login}  >
+
+              <Text style={styles.buttonLabel}>Login</Text>
+
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.button} onPress={Login}  >
+
+              <Text style={styles.buttonLabel} >Login</Text>
+
+            </TouchableOpacity>
+          )}
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
+            <Text style={styles.ForgotText}>Forgot Password..?</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.text1}>Don't have an account?</Text>
+          <Pressable onPress={() => navigation.navigate("SignUp")}>
+            <Text style={styles.buttonLabel1}>Signup</Text>
+          </Pressable>
+        </View>
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
    flex: 1,
     alignItems: 'center',
