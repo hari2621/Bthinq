@@ -77,7 +77,7 @@ export function Login() {
   const Login = () => {
     const checkPassword = checkPasswordValidity(Password);
     if (!checkPassword) {
-      navigation.navigate("Home")
+      navigation.navigate("BottomNavigator")
     } else {
       alert(checkPassword);
     }
