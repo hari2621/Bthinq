@@ -156,7 +156,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 24,
     fontWeight: 'bold',
+
   },//heading
+
   inputBox: {
     width:'100%',
     height:'10%',
@@ -165,11 +167,14 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: 'white',
     marginVertical:5
+
   },//input field
+
   text: {
     fontSize: 20,
     color: 'black',
     marginHorizontal:10
+  
   },//username text
   inputBox1: {
     width:'100%',
@@ -258,12 +263,13 @@ const styles = StyleSheet.create({
   //   alignItems: 'center',
   //   justifyContent: 'center',
   // },
+ 
+  
 
+  
+  
+  
+  
 
-
-
-
-
-
-
+  
 
