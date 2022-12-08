@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -8,10 +9,13 @@ import {
   Image,
   FlatList,
   ImageBackground,
+  StatusBar
 } from 'react-native';
+import Head from './Header';
 const ListItem = ({ item }) => {
   return (
     <View style={styles.container}>
+      
     <View style={styles.item}>
         <Image
         source={{
@@ -25,11 +29,14 @@ const ListItem = ({ item }) => {
     </View>
   );
 };
-export default () => {
+export default  () => {
   return (
     <View style={styles.container}>
-      <ImageBackground source={require("../Navigation/images/14.png")} resizeMode="cover" style={styles.image}>
+      <Head/>
+      <ImageBackground source={require("../../../Image/14.png")} resizeMode="cover" style={styles.image}>
+      <StatusBar translucent backgroundColor="white" barStyle="dark-content" />
       <SafeAreaView style={{ flex: 1 }}>
+        
         <SectionList
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
@@ -54,6 +61,7 @@ export default () => {
             return <ListItem item={item} />;
           }}
         />
+        
       </SafeAreaView>
       </ImageBackground>
 </View>

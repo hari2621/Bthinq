@@ -83,7 +83,6 @@ export default function Signup() {
   return (
     <View style={styles.signup}>
       <ImageBackground style={styles.image1} source={require('../../../Image/Leaves.jpg')}>
-
         <View style={styles.signup1} >
           <View style={styles.head} >
             <Text style={styles.header}>TOFO</Text>
@@ -100,7 +99,7 @@ export default function Signup() {
             <Text style={styles.textFailed}></Text>
           )}
           <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
+            <TextInput style={styles.textinput}   secureTextEntry={true}
               placeholder="Password" placeholderTextColor={"white"} value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}
@@ -114,7 +113,7 @@ export default function Signup() {
           )}
           <View style={styles.textbox}>
             <TextInput style={styles.textinput}
-              placeholder="Confirm Password" placeholderTextColor={"white"} onChangeText={(text) => setConfi(text)} value={Confirm}
+              placeholder="Confirm Password"   secureTextEntry={true} placeholderTextColor={"white"} onChangeText={(text) => setConfi(text)} value={Confirm}
               underlineColorAndroid={'transparent'} />
           </View>
           {password == Confirm ? (
@@ -146,18 +145,18 @@ export default function Signup() {
             <Text style={styles.textFailed}></Text>
           )}
           <View style={styles.fle}>
-            <View style={styles.button1}>
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate('Login')}>
+              <View >
                 <Text style={styles.backbtn}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />Back To Login</Text>
-              </TouchableOpacity>
-            </View>
+              </View>
+            </TouchableOpacity>
             <View style={styles.buttdis}>
               {Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName ? (
                 <TouchableOpacity disabled>
                   <Text style={styles.createbtn}>Create</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("Home")}>
+                <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("BottomNavigator")}>
                   <Text style={styles.createbtn} >Create</Text>
                 </TouchableOpacity>
               )}
@@ -174,11 +173,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   image1: {
     width: '100%',
     height: '100%',
-
   },
   head: {
     marginBottom: 30
@@ -189,12 +186,12 @@ const styles = StyleSheet.create({
   },
   textbox: {
     width: '80%',
-    height: '6%',
-    borderRadius: 20,
+    height: '5%',
+    borderRadius: 30,
     backgroundColor: 'rgba(52,52, 52, 0.9)',
     borderWidth: 1,
     justifyContent: 'center',
-    marginVertical: 5
+    marginVertical: 5,
   },
   textinput: {
     fontSize: 20,
@@ -202,7 +199,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 10,
+    textAlign: "center"
   },
   bg: {
     height: '100%'
@@ -217,40 +214,36 @@ const styles = StyleSheet.create({
   },
   button1: {
     alignItems: 'center',
-    backgroundColor: '#E12C2C',
+    backgroundColor: '#F2661B',
     width: '50%',
-    height: '50%',
+    height: '40%',
     borderRadius: 30,
     marginHorizontal: 10,
     justifyContent: 'center'
-
   },
   backbtn: {
     color: 'white',
     fontWeight: 'bold',
   },
-
   button2: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '45%',
-    height: '50%',
+    height: '40%',
     borderRadius: 30,
-
   },
   buttdis: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(52,52, 52, 0.5)',
+    backgroundColor: '#F0358C',
     width: '45%',
-    height: '50%',
+    height: '40%',
     borderRadius: 30,
-    borderWidth: 2,
+    borderWidth: 1,
   },
   createbtn: {
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
-
   },
   png: {
     height: 200,
@@ -258,7 +251,6 @@ const styles = StyleSheet.create({
     marginLeft: 150,
     marginTop: 20,
   },
-
   textFailed: {
     color: 'red',
     textAlign: 'center',
@@ -266,3 +258,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
+
+
+
+
+
+

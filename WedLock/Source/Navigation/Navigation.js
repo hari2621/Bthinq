@@ -6,6 +6,7 @@ import { Login } from '../Screen/Login/Login';
 import Forgot from '../Screen/Forgot/Forgot';
 import Signup from '../Screen/Signup/SignUp';
 import BottomNavigator from './BottomNavigation';
+import Change from '../Screen/Forgot/ChangePassword';
 
 
 export default function App() {
@@ -23,8 +24,13 @@ export default function App() {
                     name="Forgot"
                     component={Forgot}
                     options={{
-                        title: "Login",
-                        headerTitleStyle: { color: "powderblue" }
+                        headerShown: false
+                    }} />
+                    <Stack.Screen
+                    name="ChangePassword"
+                    component={Change}
+                    options={{
+                        headerShown: false
                     }} />
                 <Stack.Screen
                     name="SignUp"
@@ -32,13 +38,14 @@ export default function App() {
                     options={{
                         headerShown: false
                     }} />
+                    
                 <Stack.Screen
                     name="BottomNavigator"
                     component={BottomNavigator}
                     options={{
-                        title: "Home",
-                        headerTitleStyle: { color: "powderblue" }
+                        headerShown: false
                     }} />
+                   
             </Stack.Navigator>
         </NavigationContainer>
 

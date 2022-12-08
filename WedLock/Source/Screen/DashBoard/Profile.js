@@ -6,13 +6,16 @@ import {
     Image,
     ImageBackground
   } from 'react-native';
+  import { useNavigation } from '@react-navigation/native';
+ 
   export default function Profile() {
+    const navigation = useNavigation();
     return (
-      <ImageBackground style={styles.img} source={require('../Navigation/images/f1.png')}>
+      <ImageBackground style={styles.img} source={require('../../../Image/f1.png')}>
         <View style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}>
           <View>
           </View>
-          <Image style={styles.avatar} source={require('../Navigation/images/testing.png')} />
+          <Image style={styles.avatar} source={require('../../../Image/testing.png')} />
           <View style={styles.body}>
             <TouchableOpacity style={styles.buttonContainer}>
               <Text>Profile details</Text>
@@ -23,8 +26,8 @@ import {
             <TouchableOpacity style={styles.buttonContainer}>
               <Text>About us</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text onPress={() => navigation.replace("Login")}>Log out</Text>
+            <TouchableOpacity  onPress={() => navigation.navigate("Login")} style={styles.buttonContainer}>
+              <Text>Log out</Text>
             </TouchableOpacity>
           </View>
         </View>
