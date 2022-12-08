@@ -7,6 +7,7 @@ import Forgot from '../Screen/Forgot/Forgot';
 import Signup from '../Screen/Signup/SignUp';
 import BottomNavigator from './BottomNavigation';
 import Change from '../Screen/Forgot/ChangePassword';
+import Profile from '../Screen/DashBoard/Profile';
 
 
 export default function App() {
@@ -41,10 +42,11 @@ export default function App() {
                     
                 <Stack.Screen
                     name="BottomNavigator"
-                    component={Home}
+                    component={BottomNavigator}
                     options={{
                         headerShown: false
                     }} />
+        
                    
             </Stack.Navigator>
         </NavigationContainer>
