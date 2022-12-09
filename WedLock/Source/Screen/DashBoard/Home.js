@@ -11,62 +11,66 @@ import {
   StatusBar
 } from 'react-native';
 import Head from './Header';
+import { COLOR, HOME_SECTION_HEADER } from '../../../Utility/constant';
+
 const ListItem = ({ item }) => {
   return (
     <View style={styles.container}>
       <View style={styles.item}>
         <Image
-        source={{
-          uri: item.uri,
-        }}
-        style={styles.itemPhoto}
-        resizeMode="cover"
-      />
-      <Text style={styles.itemText}>{item.text}</Text>
-    </View>
+          source={{
+            uri: item.uri,
+          }}
+          style={styles.itemPhoto}
+          resizeMode="cover"
+        />
+        <Text style={styles.itemText}>{item.text}</Text>
+      </View>
     </View>
   );
 };
-export default function Home ()  {
+
+export default function Home() {
   return (
     <View style={styles.container}>
-      <Head/>
-      <ImageBackground source={require("../../../Image/14.png")} resizeMode="cover" style={styles.image}>
-      <StatusBar translucent backgroundColor="white" barStyle="dark-content" />
-      <SafeAreaView style={{ flex: 1 }}>
-        
-        <SectionList
-          contentContainerStyle={{ paddingHorizontal: 10 }}
-          stickySectionHeadersEnabled={false}
-          sections={SECTIONS}
-          renderSectionHeader={({ section }) => (
-            <>
-              <Text style={styles.sectionHeader}>{section.title}</Text>
-              {section.horizontal ? (
-                <FlatList
-                  horizontal
-                  data={section.data}
-                  renderItem={({ item }) => <ListItem item={item} />}
-                  showsHorizontalScrollIndicator={false}
-                />
-              ) : null}
-            </>
-          )}
-          renderItem={({ item, section }) => {
-            if (section.horizontal) {
-              return null;
-            }
-            return <ListItem item={item} />;
-          }}
-        />
+      <Head />
+      <ImageBackground source={require("../../../Image/14.png")} resizeMode="cover" style={styles.backgroundimage}>
+        <StatusBar translucent backgroundColor="white" barStyle="dark-content" />
+        <SafeAreaView style={{ flex: 1 }}>
+
+          <SectionList
+            contentContainerStyle={{ paddingHorizontal: 10 }}
+            stickySectionHeadersEnabled={false}
+            sections={SECTIONS}
+            renderSectionHeader={({ section }) => (
+              <>
+                <Text style={styles.sectionHeader}>{section.title}</Text>
+                {section.horizontal ? (
+                  <FlatList
+                    horizontal
+                    data={section.data}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                ) : null}
+              </>
+            )}
+            renderItem={({ item, section }) => {
+              if (section.horizontal) {
+                return null;
+              }
+              return <ListItem item={item} />;
+            }}
+          />
         </SafeAreaView>
       </ImageBackground>
-</View>
+    </View>
   );
 };
+
 const SECTIONS = [
   {
-    title: ' For Engagement Ceremony Decorations',
+    title: HOME_SECTION_HEADER.ENGAGEMENT,
     horizontal: true,
     data: [
       {
@@ -84,7 +88,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: ' For Sangeet Ceremony Decorations',
+    title: HOME_SECTION_HEADER.SANGEET,
     horizontal: true,
     data: [
       {
@@ -102,7 +106,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: ' For Haldi Ceremony Decorations',
+    title: HOME_SECTION_HEADER.HALDI,
     horizontal: true,
     data: [
       {
@@ -120,14 +124,14 @@ const SECTIONS = [
     ],
   },
   {
-    title: ' For Mehandi Ceremony Decorations',
+    title: HOME_SECTION_HEADER.MEHANDI,
     horizontal: true,
     data: [
       {
         key: '1',
         uri: 'https://i.pinimg.com/564x/98/e9/d8/98e9d80c0b6ee58829441b0b0726ed20.jpg',
       },
-        {
+      {
         key: '2',
         uri: 'https://1.bp.blogspot.com/-9vn9b497X2Y/YJhRpR0UJ0I/AAAAAAAAWqo/HuMrGXintz8hvzSr3CBeXq38G5Xh-t1iwCNcBGAsYHQ/s726/Homemade%2BMehndi%2BFunction%2BLatest%2BDecoration%2BIdeas%2Bat%2BHome%2B%25281%2529.jpg',
       },
@@ -138,7 +142,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: ' For Wedding Day Decorations',
+    title: HOME_SECTION_HEADER.WEDDING,
     horizontal: true,
     data: [
       {
@@ -156,12 +160,12 @@ const SECTIONS = [
     ],
   },
   {
-    title: ' Others',
+    title: HOME_SECTION_HEADER.OTHERS,
     horizontal: true,
     data: [
       {
         key: '1',
-        text:'Food Items',
+        text: 'Food Items',
         uri: 'https://secureservercdn.net/45.40.150.54/ihr.09f.myftpupload.com/wp-content/uploads/2018/01/best-south-indian-food-wedding-lunch.jpg?time=1659995476',
       },
       {
@@ -172,18 +176,19 @@ const SECTIONS = [
     ],
   },
 ];
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  image:{
-    flex:1,
-    justifyContent:'center',
+  backgroundimage: {
+    flex: 1,
+    justifyContent: 'center',
   },
   sectionHeader: {
     fontWeight: '800',
     fontSize: 20,
-    color: 'black',
+    color: COLOR.BLACK,
     marginTop: 20,
     marginBottom: 5,
   },
@@ -193,12 +198,12 @@ const styles = StyleSheet.create({
   itemPhoto: {
     width: 300,
     height: 300,
-    borderRadius:10
+    borderRadius: 10
   },
   itemText: {
-    color: '#DF6229',
+    color: COLOR.ORANGE,
     marginTop: 5,
-    fontSize:20,
-    fontWeight:'bold'
+    fontSize: 20,
+    fontWeight: 'bold'
   },
 });
