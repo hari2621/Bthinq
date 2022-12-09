@@ -230,11 +230,9 @@ const styles = StyleSheet.create({
   createButton: {
     alignItems: 'center',
     justifyContent: 'center',
-
     width: '45%',
     height: '40%',
     borderRadius: 30,
-
   },
   //Create button disabled
   buttondisabled: {
@@ -244,6 +242,7 @@ const styles = StyleSheet.create({
     width: '45%',
     height: '40%',
     borderRadius: 30,
+    borderWidth:1
   },
   //Create button text
   createButtonText: {
