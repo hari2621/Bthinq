@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   ImageBackground,
-  LogBox,
   StyleSheet,
   Text,
   TextInput,
@@ -9,7 +8,10 @@ import {
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-LogBox.ignoreLogs(['Remote debugger']);
+import {
+  BACKGROUND_COLORS, BUTTONS,
+  ERRORMESSAGE, PLACEHOLDER, TITLE
+} from "../../../Utility/constant";
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -21,7 +23,7 @@ export default function Signup({ navigation }) {
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setConfirmpass] = useState("");
   //User name Validation
-  const handlename = (text) => {
+  const userName = (text) => {
     let rule = /^[a-zA-Z]{3,16}$/;
     setname(text)
     if (rule.test(text) || rule == 0) {
@@ -31,7 +33,7 @@ export default function Signup({ navigation }) {
     }
   };
   //Email field
-  const handleCheckEmail = (text) => {
+  const checkEmail = (text) => {
     let re = /\S+@\S+\.\S+/;
     let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     setEmail(text)
@@ -53,7 +55,7 @@ export default function Signup({ navigation }) {
     };
   };
   //confirm password Validation
-  const setConfi = (text) => {
+  const setConfirm = (text) => {
     setConfirmpass(text)
   };
   //Number validation
@@ -67,84 +69,84 @@ export default function Signup({ navigation }) {
     }
   };
   return (
-    <View style={styles.signup}>
-      <ImageBackground style={styles.image1} source={require('../../../Image/Leaves.jpg')}>
-        <View style={styles.signup1} >
-          <View style={styles.head} >
-            <Text style={styles.header}>TOFO</Text>
+    <View style={styles.container}>
+      <ImageBackground style={styles.backgroundImage} source={require('../../../Image/Leaves.jpg')}>
+        <View style={styles.signupform} >
+          <View style={styles.title} >
+            <Text style={styles.titleText}>{TITLE.TITLETEXT}</Text>
           </View>
           <View style={styles.textbox}>
             <TextInput style={styles.textinput}
-              placeholder="User name" placeholderTextColor={"white"} value={Name} onChange={(e => setname(e.target.value))}
-              onChangeText={(text) => handlename(text)}
+              placeholder={PLACEHOLDER.USERNAME} placeholderTextColor={"white"} value={Name} onChange={(e => setname(e.target.value))}
+              onChangeText={(text) => userName(text)}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidName ? (
-            <Text style={styles.textFailed}>Name is required</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.USERNAME}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <View style={styles.textbox}>
             <TextInput style={styles.textinput} secureTextEntry={true}
-              placeholder="Password" placeholderTextColor={"white"} value={password}
+              placeholder={PLACEHOLDER.PASSWORD} placeholderTextColor={"white"} value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidpass ? (
-            <Text style={styles.textFailed}>Please enter the valid password(Eg:Aaa@12)</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.PASSWORD}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <View style={styles.textbox}>
             <TextInput style={styles.textinput}
-              placeholder="Confirm Password" secureTextEntry={true}
+              placeholder={PLACEHOLDER.CONFIRM_PASSWORD} secureTextEntry={true}
               placeholderTextColor={"white"}
-              onChangeText={(text) => setConfi(text)} value={Confirm}
+              onChangeText={(text) => setConfirm(text)} value={Confirm}
               underlineColorAndroid={'transparent'} />
           </View>
           {password == Confirm ? (
-            <Text style={styles.textFailed}></Text>
+            <Text style={styles.errorMessage}></Text>
           ) : (
-            <Text style={styles.textFailed}>Password doesn't match</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.CONFIRM_PASSWORD}</Text>
           )}
           <View style={styles.textbox}>
             <TextInput style={styles.textinput}
-              placeholder="Email" placeholderTextColor={"white"} value={email} onChangeText={(text) => handleCheckEmail(text)}
+              placeholder={PLACEHOLDER.EMAIL} placeholderTextColor={"white"} value={email} onChangeText={(text) => checkEmail(text)}
               underlineColorAndroid={'transparent'}
             />
           </View>
           {checkValidEmail ? (
-            <Text style={styles.textFailed}>Enter valid Email</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.EMAIL}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
           <View style={styles.textbox}>
             <TextInput style={styles.textinput}
-              placeholder="Mobile Number" placeholderTextColor={"white"} value={Number} onChangeText={(numeri) => num(numeri)}
+              placeholder={PLACEHOLDER.MOBILE_NUMBER} placeholderTextColor={"white"} value={Number} onChangeText={(numeri) => num(numeri)}
               keyboardType='numeric'
               maxLength={10}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidnum ? (
-            <Text style={styles.textFailed}>Enter valid number</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.MOBILE_NUMBER}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            null
           )}
-          <View style={styles.fle}>
-            <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate('Login')}>
+          <View style={styles.buttonflex}>
+            <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Login')}>
               <View >
-                <Text style={styles.backbtn}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />Back To Login</Text>
+                <Text style={styles.loginButtonText}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />{BUTTONS.BACK_TO_LOGIN}</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.buttdis}>
+            <View style={styles.disbut} >
               {Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName ? (
-                <TouchableOpacity disabled>
-                  <Text style={styles.createbtn}>Create</Text>
+                <TouchableOpacity disabled style={styles.buttondisabled}>
+                  <Text style={styles.createbtn}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("BottomNavigator")}>
-                  <Text style={styles.createbtn}>Create</Text>
+                <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate("BottomNavigator")}>
+                  <Text style={styles.createButtonText}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -157,22 +159,28 @@ export default function Signup({ navigation }) {
 //Stylesheet for signup screen
 const styles = StyleSheet.create({
   //Overall View style
-  signup1: {
+  container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   //Background Image
-  image1: {
+  backgroundImage: {
     width: '100%',
     height: '100%',
   },
+  //View for total form
+  signupform: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   //View for text TOFO
-  head: {
+  title: {
     marginBottom: 30
   },
   //Style for text TOFO
-  header: {
+  titleText: {
     fontSize: 30,
     color: '#000000',
   },
@@ -181,7 +189,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '5%',
     borderRadius: 30,
-    backgroundColor: 'rgba(52,52, 52, 0.9)',
+    backgroundColor: BACKGROUND_COLORS.GREY,
     borderWidth: 1,
     justifyContent: 'center',
     marginVertical: 5,
@@ -189,14 +197,14 @@ const styles = StyleSheet.create({
   //Textbox input style
   textinput: {
     fontSize: 20,
-    color: 'white',
+    color: BACKGROUND_COLORS.WHITE,
     fontWeight: 'bold',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: "center"
   },
   //flex for buttons
-  fle:{
+  buttonflex: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -204,9 +212,9 @@ const styles = StyleSheet.create({
     height: '15%',
   },
   //Back to Login Button
-  button1: {
+  loginButton: {
     alignItems: 'center',
-    backgroundColor: '#F2661B',
+    backgroundColor: BACKGROUND_COLORS.ORANGE,
     width: '50%',
     height: '40%',
     borderRadius: 30,
@@ -214,35 +222,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   //Back to Login Text
-  backbtn: {
-    color: 'white',
+  loginButtonText: {
+    color: BACKGROUND_COLORS.WHITE,
     fontWeight: 'bold',
   },
   //Create button enabled
-  button2: {
+  createButton: {
     alignItems: 'center',
     justifyContent: 'center',
+
     width: '45%',
     height: '40%',
     borderRadius: 30,
+
   },
   //Create button disabled
-  buttdis: {
+  buttondisabled: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F0358C',
+    backgroundColor: BACKGROUND_COLORS.GRAY,
     width: '45%',
     height: '40%',
     borderRadius: 30,
-    borderWidth: 1,
   },
   //Create button text
-  createbtn: {
+  createButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
   //Error msg style
-  textFailed: {
+  errorMessage: {
     color: 'red',
     textAlign: 'center',
     marginBottom: 15,
