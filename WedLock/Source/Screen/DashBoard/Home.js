@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   StyleSheet,
   Text,
@@ -15,8 +14,7 @@ import Head from './Header';
 const ListItem = ({ item }) => {
   return (
     <View style={styles.container}>
-      
-    <View style={styles.item}>
+      <View style={styles.item}>
         <Image
         source={{
           uri: item.uri,
@@ -29,7 +27,7 @@ const ListItem = ({ item }) => {
     </View>
   );
 };
-export default  () => {
+export default function Home ()  {
   return (
     <View style={styles.container}>
       <Head/>
@@ -61,8 +59,7 @@ export default  () => {
             return <ListItem item={item} />;
           }}
         />
-        
-      </SafeAreaView>
+        </SafeAreaView>
       </ImageBackground>
 </View>
   );

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
-import { useNavigation } from '@react-navigation/native';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Remote debugger']);
 const responseWidth = Dimensions.get('window').width;
 const responseHeight = Dimensions.get('window').height;
 console.log(responseWidth);
 console.log(responseHeight);
-export function Login() {
+export default function Login({navigation}) {
   const [username, setUsername] = useState("");
   const [checkvaildusername, setvaildusername] = useState(false);
   const [Password, setpassword] = useState("");
@@ -57,7 +56,7 @@ export function Login() {
     }
     return null;
   };
-  const Login = () => {
+  const nav = () => {
     const checkPassword = checkPasswordValidity(Password);
     if (!checkPassword) {
       navigation.navigate("BottomNavigator")
@@ -65,7 +64,6 @@ export function Login() {
       alert(checkPassword);
     }
   };
-  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -95,11 +93,11 @@ export function Login() {
         )}
         <View style={styles.buttonContainer}>
           {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
-            <TouchableOpacity disabled style={styles.buttondis} onPress={Login}  >
+            <TouchableOpacity disabled style={styles.buttondis} onPress={nav}  >
               <Text style={styles.buttonLabel}>Login</Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity style={styles.button} onPress={Login}  >
+            <TouchableOpacity style={styles.button} onPress={nav}  >
               <Text style={styles.buttonLabel} >Login</Text>
             </TouchableOpacity>
           )}
@@ -130,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor:'white'
   },
   logo: {
-    flex: 4,
+    flex:4,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
@@ -207,7 +205,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orangered',//'rgba(52,52, 52, 0.9)'
+    backgroundColor: 'orangered',
     borderRadius: 30,
   },//button disable
   button: {
@@ -247,27 +245,7 @@ const styles = StyleSheet.create({
     marginHorizontal:10
   },//login text
 });
-  // image: {
-  //   width: '50%',
-  //   height: '20%',
-  //   marginVertical: 80,
-  //   backgroundColor: 'black'
-  // },
-  // logo1: {
-  //   marginVertical: 1
-  // },
-  // place: {
-  //   color: 'white'
-  // },
-  // button1: {
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
  
-  
-
-  
-  
   
   
 

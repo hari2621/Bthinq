@@ -1,4 +1,7 @@
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Checklist from '../Screen/DashBoard/Checklist';
@@ -6,7 +9,7 @@ import Profile from '../Screen/DashBoard/Profile';
 import Home from "../Screen/DashBoard/Home";
 
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 export default function BottomNavigator() {
   return (
     
@@ -19,7 +22,7 @@ export default function BottomNavigator() {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: 'Home',
+         headerShown:false,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),

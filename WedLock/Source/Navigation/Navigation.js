@@ -1,13 +1,12 @@
 
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { Login } from '../Screen/Login/Login';
+import Change from '../Screen/Forgot/ChangePassword';
 import Forgot from '../Screen/Forgot/Forgot';
+import Login from '../Screen/Login/Login';
 import Signup from '../Screen/Signup/SignUp';
 import BottomNavigator from './BottomNavigation';
-import Change from '../Screen/Forgot/ChangePassword';
-import Profile from '../Screen/DashBoard/Profile';
 
 
 export default function App() {
@@ -27,7 +26,7 @@ export default function App() {
                     options={{
                         headerShown: false
                     }} />
-                    <Stack.Screen
+                <Stack.Screen
                     name="ChangePassword"
                     component={Change}
                     options={{
@@ -39,15 +38,15 @@ export default function App() {
                     options={{
                         headerShown: false
                     }} />
-                    
+
                 <Stack.Screen
                     name="BottomNavigator"
                     component={BottomNavigator}
                     options={{
                         headerShown: false
                     }} />
-        
-                   
+
+
             </Stack.Navigator>
         </NavigationContainer>
 

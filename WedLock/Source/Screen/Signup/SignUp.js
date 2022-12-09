@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import Icon from 'react-native-vector-icons/AntDesign';
-import { useNavigation } from '@react-navigation/native';
 import {
-  Image, ImageBackground, StyleSheet,
-  Text, TextInput, TouchableOpacity, View
+  ImageBackground,
+  LogBox,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import { LogBox } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 LogBox.ignoreLogs(['Remote debugger']);
-export default function Signup() {
-  const navigation = useNavigation();
+export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [checkValidEmail, setCheckValidateEmail] = useState(false);
@@ -18,6 +20,7 @@ export default function Signup() {
   const [checkValidnum, setnumcheck] = useState(false);
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setConfirmpass] = useState("");
+  //User name Validation
   const handlename = (text) => {
     let rule = /^[a-zA-Z]{3,16}$/;
     setname(text)
@@ -26,28 +29,6 @@ export default function Signup() {
     } else {
       setCheckValidateName(true);
     }
-  };
-  //number validation
-  const num = (numeri) => {
-    let rule = /^[0-9]{10}$/;
-    setnum(numeri)
-    if (rule.test(numeri) || rule == 0) {
-      setnumcheck(false);
-    } else {
-      setnumcheck(true);
-    }
-  };
-  //confirm password
-  const setConfi = (text) => {
-    setConfirmpass(text)
-    // let rule = password;
-    // setConfirmpass(text)
-    // if (rule == Confirm) {
-    //   setCheckValidpass(false);
-    // }
-    // else {
-    //   setCheckValidpass(true);
-    // }
   };
   //Email field
   const handleCheckEmail = (text) => {
@@ -69,17 +50,22 @@ export default function Signup() {
     }
     else {
       setCheckValidPass(true);
+    };
+  };
+  //confirm password Validation
+  const setConfi = (text) => {
+    setConfirmpass(text)
+  };
+  //Number validation
+  const num = (numeri) => {
+    let rule = /^[0-9]{10}$/;
+    setnum(numeri)
+    if (rule.test(numeri) || rule == 0) {
+      setnumcheck(false);
+    } else {
+      setnumcheck(true);
     }
   };
-  //signup button
-  // const handleregis = () => {
-  //   const checkPassword = checkPasswordValidity(password)
-  //   if (!checkPassword) {
-  //     navigation.replace("MainScreen");
-  //   } else {
-  //     alert(checkPassword)
-  //   }
-  // };
   return (
     <View style={styles.signup}>
       <ImageBackground style={styles.image1} source={require('../../../Image/Leaves.jpg')}>
@@ -99,11 +85,10 @@ export default function Signup() {
             <Text style={styles.textFailed}></Text>
           )}
           <View style={styles.textbox}>
-            <TextInput style={styles.textinput}   secureTextEntry={true}
+            <TextInput style={styles.textinput} secureTextEntry={true}
               placeholder="Password" placeholderTextColor={"white"} value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}
-              // onChangeText={(text) => setPassword(text)}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidpass ? (
@@ -113,7 +98,9 @@ export default function Signup() {
           )}
           <View style={styles.textbox}>
             <TextInput style={styles.textinput}
-              placeholder="Confirm Password"   secureTextEntry={true} placeholderTextColor={"white"} onChangeText={(text) => setConfi(text)} value={Confirm}
+              placeholder="Confirm Password" secureTextEntry={true}
+              placeholderTextColor={"white"}
+              onChangeText={(text) => setConfi(text)} value={Confirm}
               underlineColorAndroid={'transparent'} />
           </View>
           {password == Confirm ? (
@@ -157,7 +144,7 @@ export default function Signup() {
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("BottomNavigator")}>
-                  <Text style={styles.createbtn} >Create</Text>
+                  <Text style={styles.createbtn}>Create</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -166,24 +153,30 @@ export default function Signup() {
       </ImageBackground>
     </View>
   );
-}
+};
+//Stylesheet for signup screen
 const styles = StyleSheet.create({
+  //Overall View style
   signup1: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  //Background Image
   image1: {
     width: '100%',
     height: '100%',
   },
+  //View for text TOFO
   head: {
     marginBottom: 30
   },
+  //Style for text TOFO
   header: {
     fontSize: 30,
     color: '#000000',
   },
+  //Textbox View
   textbox: {
     width: '80%',
     height: '5%',
@@ -193,6 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 5,
   },
+  //Textbox input style
   textinput: {
     fontSize: 20,
     color: 'white',
@@ -201,17 +195,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: "center"
   },
-  bg: {
-    height: '100%'
-  },
-  fle:
-  {
+  //flex for buttons
+  fle:{
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     width: '80%',
     height: '15%',
   },
+  //Back to Login Button
   button1: {
     alignItems: 'center',
     backgroundColor: '#F2661B',
@@ -221,10 +213,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     justifyContent: 'center'
   },
+  //Back to Login Text
   backbtn: {
     color: 'white',
     fontWeight: 'bold',
   },
+  //Create button enabled
   button2: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -232,6 +226,7 @@ const styles = StyleSheet.create({
     height: '40%',
     borderRadius: 30,
   },
+  //Create button disabled
   buttdis: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -241,16 +236,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 1,
   },
+  //Create button text
   createbtn: {
     color: 'white',
     fontWeight: 'bold',
   },
-  png: {
-    height: 200,
-    width: 120,
-    marginLeft: 150,
-    marginTop: 20,
-  },
+  //Error msg style
   textFailed: {
     color: 'red',
     textAlign: 'center',
@@ -258,9 +249,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
-
-
-
-
-
-

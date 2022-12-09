@@ -1,5 +1,4 @@
-import { BottomNavigation } from "react-native-paper";
-import { AppNavigation } from "./Source/Navigation/Appmodule";
+import App from "./Source/Navigation/Navigation";
 
-export default AppNavigation;
 
+export default App
