@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   //input-box text
   text: {
     marginHorizontal: 30,
-    color: FORGOT_COLOR.WHITE,
+    color: FORGOT_COLOR.BLACK,
     fontWeight: 'bold',
     fontSize: 20
   },

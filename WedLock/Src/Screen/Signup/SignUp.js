@@ -14,7 +14,9 @@ import {
    BUTTONS,
    ERRORMESSAGE,
    BACKGROUND_COLORS,
-   REGEX
+   REGEX,
+   COLOR,
+   NAVIGATION_SCREENS
    } from "../../../Utility/Constant";
 import Regex from "../../../Utility/Validation";
  
@@ -23,15 +25,15 @@ export default function Signup({ navigation }) {
   const [password, setPassword] = useState("")
   const [checkValidEmail, setCheckValidateEmail] = useState(false);
   const [checkValidName, setCheckValidateName] = useState(false);
-  const [Name, setname] = useState("");
-  const [Number, setnum] = useState("");
-  const [checkValidnum, setnumcheck] = useState(false);
+  const [Name, setName] = useState("");
+  const [Number, setNum] = useState("");
+  const [checkValidnum, setNumCheck] = useState(false);
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setConfirmpass] = useState("");
   //User name Validation
   const userName = (text) => {
     let rule =REGEX.USERNAME;
-    setname(text)
+    setName(text)
     if (rule.test(text) || rule == 0) {
       setCheckValidateName(false);
     } else {
@@ -65,12 +67,12 @@ export default function Signup({ navigation }) {
   };
   //Number validation
   const num = (numeri) => {
-    let numbervalid=REGEX.NUMBER;
-    setnum(numeri)
-    if (numbervalid.test(numeri) || numbervalid == 0) {
-      setnumcheck(false);
+    let numberValid=REGEX.NUMBER;
+    setNum(numeri)
+    if (numberValid.test(numeri) || numberValid == 0) {
+      setNumCheck(false);
     } else {
-      setnumcheck(true);
+      setNumCheck(true);
     }
   };
   return (
@@ -82,7 +84,7 @@ export default function Signup({ navigation }) {
           </View>
         <View style={styles.inputTextBox}>
             <TextInput style={styles.inputText}
-              placeholder={PLACEHOLDER.USERNAME} placeholderTextColor={"white"} value={Name} onChange={(e => setname(e.target.value))}
+              placeholder={PLACEHOLDER.USERNAME} placeholderTextColor={COLOR.WHITE} value={Name} onChange={(e => setName(e.target.value))}
               onChangeText={(text) => userName(text)}
               underlineColorAndroid={'transparent'} />
           </View>
@@ -93,7 +95,7 @@ export default function Signup({ navigation }) {
           )}
           <View style={styles.inputTextBox}>
             <TextInput style={styles.inputText} secureTextEntry={true}
-              placeholder={PLACEHOLDER.PASSWORD} placeholderTextColor={"white"} value={password}
+              placeholder={PLACEHOLDER.PASSWORD} placeholderTextColor={COLOR.WHITE} value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}
               underlineColorAndroid={'transparent'} />
@@ -106,7 +108,7 @@ export default function Signup({ navigation }) {
           <View style={styles.inputTextBox}>
             <TextInput style={styles.inputText}
               placeholder={PLACEHOLDER.CONFIRM_PASSWORD} secureTextEntry={true}
-              placeholderTextColor={"white"}
+              placeholderTextColor={COLOR.WHITE}
               onChangeText={(text) => setConfirm(text)} value={Confirm}
               underlineColorAndroid={'transparent'} />
           </View>
@@ -117,7 +119,7 @@ export default function Signup({ navigation }) {
           )}
           <View style={styles.inputTextBox}>
             <TextInput style={styles.inputText}
-              placeholder={PLACEHOLDER.EMAIL} placeholderTextColor={"white"} value={email} onChangeText={(email) => checkEmail(email)}
+              placeholder={PLACEHOLDER.EMAIL} placeholderTextColor={COLOR.WHITE} value={email} onChangeText={(email) => checkEmail(email)}
               underlineColorAndroid={'transparent'}
             />
           </View>
@@ -128,7 +130,7 @@ export default function Signup({ navigation }) {
           )}
           <View style={styles.inputTextBox}>
             <TextInput style={styles.inputText}
-              placeholder={PLACEHOLDER.MOBILE_NUMBER} placeholderTextColor={"white"} value={Number} onChangeText={(numeri) => num(numeri)}
+              placeholder={PLACEHOLDER.MOBILE_NUMBER} placeholderTextColor={COLOR.WHITE} value={Number} onChangeText={(numeri) => num(numeri)}
               keyboardType='numeric'
               maxLength={10}
               underlineColorAndroid={'transparent'} />
@@ -139,9 +141,9 @@ export default function Signup({ navigation }) {
             <Text style={styles.errorMessage}></Text>
           )}
           <View style={styles.buttonFlex}>
-            <TouchableOpacity style={styles.backToLoginButton} onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity style={styles.backToLoginButton} onPress={() => navigation.navigate(NAVIGATION_SCREENS.LOGIN)}>
               <View >
-                <Text style={styles.backToLoginButtonText}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />{BUTTONS.BACK_TO_LOGIN}</Text>
+                <Text style={styles.backToLoginButtonText}><Icon name='doubleleft' size={20} color={COLOR.WHITE} alignItems={'center'} />{BUTTONS.BACK_TO_LOGIN}</Text>
               </View>
             </TouchableOpacity>
             <View style={styles.disabledButton}>
@@ -150,7 +152,7 @@ export default function Signup({ navigation }) {
                   <Text style={styles.createButtonText}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate("BottomNavigator")}>
+                <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
                   <Text style={styles.createButtonText}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               )}
@@ -190,7 +192,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '5%',
     borderRadius: 30,
-    backgroundColor: 'rgba(52,52, 52, 0.9)',
+    backgroundColor: BACKGROUND_COLORS.GREY,
     borderWidth: 1,
     justifyContent: 'center',
     marginVertical: 5,
@@ -224,7 +226,7 @@ inputText: {
   },
   //Back to Login Text
   backToLoginButtonText: {
-    color: 'white',
+    color: BACKGROUND_COLORS.ORANGE,
     fontWeight: 'bold',
   },
   //Create button enabled

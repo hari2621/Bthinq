@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     height: 130,
     borderRadius: 68,
     borderWidth: 3,
-    borderColor: BACKGROUND_COLOUR.BLACK,
+    borderColor: BACKGROUND_COLORS.BLACK,
     marginBottom: "20%",
   },
   buttonContainer: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor: "#F77D3B",
+    backgroundColor:BACKGROUND_COLORS.ORANGE_,
   }
 });
 
