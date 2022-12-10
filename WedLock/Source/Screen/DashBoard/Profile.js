@@ -7,23 +7,23 @@ import {
   ImageBackground
 } from 'react-native';
 import { BACKGROUND_COLOUR, PROFILE_FIELD } from '../../../Utility/constant';
-import { Style } from '../../Common/Style';
+
 export default function Profile({ navigation }) {
   return (
     <ImageBackground style={styles.img} source={require('../../../Image/f1.png')}>
       <View style={styles.container}>
         <Image style={styles.avatar} source={require('../../../Image/testing.png')} />
         <View style={styles.body}>
-          <TouchableOpacity style={Style.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
             <Text> {PROFILE_FIELD.PROFILE}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={Style.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
             <Text>{PROFILE_FIELD.FEEDBACK} </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={Style.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
             <Text>{PROFILE_FIELD.ABOUT_US}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={Style.buttonContainer} onPress={() => navigation.replace("Login")}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.replace("Login")}>
             <Text>{PROFILE_FIELD.LOG_OUT}</Text>
           </TouchableOpacity>
         </View>
@@ -47,6 +47,16 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: BACKGROUND_COLOUR.BLACK,
     marginBottom: "20%",
+  },
+  buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: "#F77D3B",
   }
 });
 

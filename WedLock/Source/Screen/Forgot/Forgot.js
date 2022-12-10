@@ -1,32 +1,29 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useNavigation } from "@react-navigation/native";
 import {
     StyleSheet,
     Text,
     View,
     TextInput,
-    Image,
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { back } from 'react-native/Libraries/Animated/Easing';
-export default function Forgot() {
-    const navigation = useNavigation();
+import { ERROR_MESSAGE, FORGOT_VALIDATION, FORGOT_COLOR,FORGOT_TITLE} from '../../../Utility/constant';
+
+export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState()
-    const handleCheckEmail = text1 => {
-        let re = /\S+@\S+\.\S+/;
-        let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-        setEmail(text1)
-        if (re.test(text1) || regex.test(text1)) {
+    const checkEmail = validEmail => {
+        let regex_Forgot = FORGOT_VALIDATION.EMAIL;
+        setEmail(validEmail)
+        if (regex_Forgot.test(validEmail)) {
             setCheckValidateEmail(false);
         } else {
             setCheckValidateEmail(true);
         }
     };
-    const handleregis = () => {
-        const checkPassword = handleCheckEmail(email);
+    const changePassword = () => {
+        const checkPassword = checkEmail(email);
         if (!checkPassword) {
             navigation.navigate("ChangePassword");
         } else {
@@ -34,21 +31,20 @@ export default function Forgot() {
         }
     };
     return (
-        <View style={{ width: "100%", height: "100%", justifyContent: "center", alignItems: "center",flex:1 }}>
-            <ImageBackground source={require('../../../Image/123.jpg')} style={{ width: "100%", height: "100%"}}>
-                <StatusBar translucent backgroundColor="white" barStyle="light-content" />
-            <View style={{alignItems:'center',justifyContent:'center',marginVertical:70,flex:4}}>
-               <Image style={styles.png} source={require('../../../Image/AppLogo.png')} />
-                    <Text style={styles.header}>TOFO</Text>
-                    <View style={styles.textinput}>
-                        <TextInput style={styles.tex}
-                            placeholder="Enter your Email id." placeholderTextColor={'black'} value={email}
-                            onChangeText={text1 => handleCheckEmail(text1)}
+        <View style={styles.forgot}>
+            <ImageBackground source={require('../../../Image/123.jpg')} style={styles.background}>
+                <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
+                <View style={styles.main}>
+                    <Text style={styles.Title}>{FORGOT_TITLE.TITLE_TEXT}</Text>
+                    <View style={styles.textInput}>
+                        <TextInput style={styles.text}
+                            placeholder={ERROR_MESSAGE.ENTER_EMAILID} placeholderTextColor={FORGOT_COLOR.BLACK} value={email}
+                            onChangeText={validEmail => checkEmail(validEmail)}
                             underlineColorAndroid={'transparent'} />
                     </View>
-                    <View style={styles.errormsg}>
+                    <View style={styles.errorMessage}>
                         {checkValidEmail ? (
-                            <Text style={styles.em}>Enter valid Email Id</Text>
+                            <Text style={styles.textFailed}>{ERROR_MESSAGE.EMAIL_INVALID}</Text>
                         ) : (
                             <Text></Text>
                         )}
@@ -60,12 +56,12 @@ export default function Forgot() {
                                 <TouchableOpacity
                                     disabled
                                     style={styles.button}
-                                    onPress={handleregis}
+                                    onPress={changePassword}
                                 >
                                     <Text style={styles.btntxt}>Next</Text>
                                 </TouchableOpacity>
                             ) : (
-                                <TouchableOpacity style={styles.button2} onPress={handleregis}>
+                                <TouchableOpacity style={styles.button2} onPress={changePassword}>
                                     <Text style={styles.btntxt}>Next</Text>
                                 </TouchableOpacity>
                             )}
@@ -75,76 +71,81 @@ export default function Forgot() {
         </View>
     );
 }
+
+//stylesheet for forgot screen
 const styles = StyleSheet.create({
-    forget1: {
-        // flex:1,
-        // justifyContent:'center',
-        // alignItems:'center'
+    //overall
+    forgot: {
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1
     },
-    png: {
-        height:'40%',
-        width:'40%',
-        marginBottom:30
+    //background
+    background: {
+        width: "100%",
+        height: "100%"
     },
-    textinput: {
-         height:50,
-         borderRadius:100,
-         width:300,
-         borderColor:'black',
-         borderWidth:2,
-         marginTop:50,
-         color:'black'
+    //app content
+    main: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '60%',
+        flex: 4,
     },
-    tex: {
-        //   marginHorizontal:30,
-           color:'black',
-           textAlign:'center',
-           marginVertical:7,
-           justifyContent:'center',
-           fontSize:23
-    },
-    button2: {
-        height:50,
-        marginVertical:40,
-        backgroundColor: 'orangered',
-        width:180,
-        borderRadius:30,
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    btntxt: {
-         color: 'white',
-         fontWeight: 'bold',
-         padding:10,
-         textAlign:'center',
-         fontSize:25
-    },
-    header: {
+    //appTitle
+    Title: {
         fontSize: 40,
-        color: 'orangered',
+        color: FORGOT_COLOR.ORANGERED,
     },
-    errormsg: {
-        //   marginVertical:30
+    //input-box 
+    textInput: {
+        height: 50,
+        borderRadius: 100,
+        width: 300,
+        borderColor: FORGOT_COLOR.BLACK,
+        borderWidth: 2,
+        marginTop: 20,
+        color: FORGOT_COLOR.BLACK
     },
-    em: {
-         color: 'red',
+    //input-box text
+    text: {
+
+        color: FORGOT_COLOR.BLACK,
+        textAlign: 'center',
+        marginVertical: 7,
+        justifyContent: 'center',
+        fontSize: 23
     },
-    button5: {
-        // alignSelf: 'stretch',
-        // alignItems: 'center',
-        // backgroundColor:'#454545',
+    //Error Message
+    textFailed: {
+        color: FORGOT_COLOR.RED,
     },
+    //disabled button
     button: {
-         height:60,
-        // marginVertical:50,
-         backgroundColor: '#F54905',
-        width:300,
-         margin:50,
-        borderRadius:30
+        height: 60,
+        backgroundColor: FORGOT_COLOR.ORANGERED,
+        width: 300,
+        margin: 50,
+        borderRadius: 30,
     },
-    back: {
-        //   height:"100%",
-        //   width:"100%",
-        //   opacity:0.8
-    }
+    //Enable button
+    button2: {
+        height: 50,
+        marginVertical: 40,
+        backgroundColor: FORGOT_COLOR.ORANGERED,
+        width: 300,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    //Enable & disable button
+    btntxt: {
+        color: FORGOT_COLOR.WHITE,
+        fontWeight: 'bold',
+        padding: 10,
+        textAlign: 'center',
+        fontSize: 25
+    },
 });

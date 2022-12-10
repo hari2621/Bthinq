@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   ImageBackground,
-  LogBox,
   StyleSheet,
   Text,
   TextInput,
@@ -9,7 +8,15 @@ import {
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-LogBox.ignoreLogs(['Remote debugger']);
+import {
+   TITLE,
+   PLACEHOLDER,
+   BUTTONS,
+   ERRORMESSAGE,
+   BACKGROUND_COLORS,
+   REGEX
+   } from "../../../Utility/constant";
+   import Utils from "../../../Utility/Utility";
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -21,8 +28,8 @@ export default function Signup({ navigation }) {
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setConfirmpass] = useState("");
   //User name Validation
-  const handlename = (text) => {
-    let rule = /^[a-zA-Z]{3,16}$/;
+  const userName = (text) => {
+    let rule =REGEX.USERNAME;
     setname(text)
     if (rule.test(text) || rule == 0) {
       setCheckValidateName(false);
@@ -30,22 +37,11 @@ export default function Signup({ navigation }) {
       setCheckValidateName(true);
     }
   };
-  //Email field
-  const handleCheckEmail = (text) => {
-    let re = /\S+@\S+\.\S+/;
-    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    setEmail(text)
-    if (re.test(text) || regex.test(text)) {
-      setCheckValidateEmail(false);
-    } else {
-      setCheckValidateEmail(true);
-    }
-  };
   //password validation
   const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    let passwordWhiteSpace=REGEX.PASSWORD;
     setPassword(text);
-    if (isNonWhiteSpace.test(text)) {
+    if (passwordWhiteSpace.test(text)) {
       setCheckValidPass(false);
     }
     else {
@@ -53,98 +49,108 @@ export default function Signup({ navigation }) {
     };
   };
   //confirm password Validation
-  const setConfi = (text) => {
+  const setConfirm = (text) => {
     setConfirmpass(text)
+  };
+   //Email field
+   const checkEmail = (email) => {
+   
+    setEmail(email)
+    if(Utils.validateEmail(email)) {
+      setCheckValidateEmail(false);
+    } else {
+      setCheckValidateEmail(true);
+    }
   };
   //Number validation
   const num = (numeri) => {
-    let rule = /^[0-9]{10}$/;
+    let numbervalid=REGEX.NUMBER;
     setnum(numeri)
-    if (rule.test(numeri) || rule == 0) {
+    if (numbervalid.test(numeri) || numbervalid == 0) {
       setnumcheck(false);
     } else {
       setnumcheck(true);
     }
   };
   return (
-    <View style={styles.signup}>
-      <ImageBackground style={styles.image1} source={require('../../../Image/Leaves.jpg')}>
-        <View style={styles.signup1} >
-          <View style={styles.head} >
-            <Text style={styles.header}>TOFO</Text>
+    <View >
+      <ImageBackground style={styles.backgroundImage} source={require('../../../Image/bg.jpg')}>
+        <View style={styles.contentView} >
+          <View style={styles.titleTextView} >
+            <Text style={styles.titleText}>{TITLE.TITLETEXT}</Text>
           </View>
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
-              placeholder="User name" placeholderTextColor={"white"} value={Name} onChange={(e => setname(e.target.value))}
-              onChangeText={(text) => handlename(text)}
+        <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
+              placeholder={PLACEHOLDER.USERNAME} placeholderTextColor={"white"} value={Name} onChange={(e => setname(e.target.value))}
+              onChangeText={(text) => userName(text)}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidName ? (
-            <Text style={styles.textFailed}>Name is required</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.USERNAME}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput} secureTextEntry={true}
-              placeholder="Password" placeholderTextColor={"white"} value={password}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText} secureTextEntry={true}
+              placeholder={PLACEHOLDER.PASSWORD} placeholderTextColor={"white"} value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidpass ? (
-            <Text style={styles.textFailed}>Please enter the valid password(Eg:Aaa@12)</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.PASSWORD}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
-              placeholder="Confirm Password" secureTextEntry={true}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
+              placeholder={PLACEHOLDER.CONFIRM_PASSWORD} secureTextEntry={true}
               placeholderTextColor={"white"}
-              onChangeText={(text) => setConfi(text)} value={Confirm}
+              onChangeText={(text) => setConfirm(text)} value={Confirm}
               underlineColorAndroid={'transparent'} />
           </View>
           {password == Confirm ? (
-            <Text style={styles.textFailed}></Text>
+            <Text style={styles.errorMessage}></Text>
           ) : (
-            <Text style={styles.textFailed}>Password doesn't match</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.CONFIRM_PASSWORD}</Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
-              placeholder="Email" placeholderTextColor={"white"} value={email} onChangeText={(text) => handleCheckEmail(text)}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
+              placeholder={PLACEHOLDER.EMAIL} placeholderTextColor={"white"} value={email} onChangeText={(email) => checkEmail(email)}
               underlineColorAndroid={'transparent'}
             />
           </View>
           {checkValidEmail ? (
-            <Text style={styles.textFailed}>Enter valid Email</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.EMAIL}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
-              placeholder="Mobile Number" placeholderTextColor={"white"} value={Number} onChangeText={(numeri) => num(numeri)}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
+              placeholder={PLACEHOLDER.MOBILE_NUMBER} placeholderTextColor={"white"} value={Number} onChangeText={(numeri) => num(numeri)}
               keyboardType='numeric'
               maxLength={10}
               underlineColorAndroid={'transparent'} />
           </View>
           {checkValidnum ? (
-            <Text style={styles.textFailed}>Enter valid number</Text>
+            <Text style={styles.errorMessage}>{ERRORMESSAGE.MOBILE_NUMBER}</Text>
           ) : (
-            <Text style={styles.textFailed}></Text>
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.fle}>
-            <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate('Login')}>
+          <View style={styles.buttonFlex}>
+            <TouchableOpacity style={styles.backToLoginButton} onPress={() => navigation.navigate('Login')}>
               <View >
-                <Text style={styles.backbtn}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />Back To Login</Text>
+                <Text style={styles.backToLoginButtonText}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />{BUTTONS.BACK_TO_LOGIN}</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.buttdis}>
+            <View style={styles.disabledButton}>
               {Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName ? (
                 <TouchableOpacity disabled>
-                  <Text style={styles.createbtn}>Create</Text>
+                  <Text style={styles.createButtonText}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("BottomNavigator")}>
-                  <Text style={styles.createbtn}>Create</Text>
+                <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate("BottomNavigator")}>
+                  <Text style={styles.createButtonText}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -156,28 +162,30 @@ export default function Signup({ navigation }) {
 };
 //Stylesheet for signup screen
 const styles = StyleSheet.create({
-  //Overall View style
-  signup1: {
+ //Background Image
+  backgroundImage: {
+    width: '100%',
+    height: '100%',
+   
+  },
+   //Overall View style
+   contentView: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  //Background Image
-  image1: {
-    width: '100%',
-    height: '100%',
-  },
   //View for text TOFO
-  head: {
-    marginBottom: 30
+  titleTextView: {
+    marginBottom: 30,
+    marginTop:'30%'
   },
   //Style for text TOFO
-  header: {
+  titleText: {
     fontSize: 30,
     color: '#000000',
   },
   //Textbox View
-  textbox: {
+  inputTextBox: {
     width: '80%',
     height: '5%',
     borderRadius: 30,
@@ -187,7 +195,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   //Textbox input style
-  textinput: {
+inputText: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
@@ -196,7 +204,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   //flex for buttons
-  fle:{
+  buttonFlex:{
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -204,9 +212,9 @@ const styles = StyleSheet.create({
     height: '15%',
   },
   //Back to Login Button
-  button1: {
+  backToLoginButton: {
     alignItems: 'center',
-    backgroundColor: '#F2661B',
+    backgroundColor: BACKGROUND_COLORS.ORANGE,
     width: '50%',
     height: '40%',
     borderRadius: 30,
@@ -214,12 +222,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   //Back to Login Text
-  backbtn: {
+  backToLoginButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
   //Create button enabled
-  button2: {
+  createButton: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '45%',
@@ -227,22 +235,23 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   //Create button disabled
-  buttdis: {
+  disabledButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F0358C',
+    backgroundColor: BACKGROUND_COLORS.PINK,
     width: '45%',
     height: '40%',
     borderRadius: 30,
     borderWidth: 1,
+    
   },
   //Create button text
-  createbtn: {
+  createButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
   //Error msg style
-  textFailed: {
+  errorMessage: {
     color: 'red',
     textAlign: 'center',
     marginBottom: 15,

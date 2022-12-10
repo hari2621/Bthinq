@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import {
@@ -7,183 +7,187 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ImageBackground
 } from "react-native";
-export default function Change() {
-  const navigation = useNavigation();
+import { ERROR_MESSAGE,FORGOT_COLOR,FORGOT_TITLE,FORGOT_VALIDATION } from '../../../Utility/constant';
+
+export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
-  const [otp, setotp] = useState("")
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
-  const [checkValidConfirmPassword, setCheckValidConfirmPassword] = useState(false);
-  const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    setPassword(text);
-    if (isNonWhiteSpace.test(text)) {
+  const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
+
+  const checkPasswordValidity = (checkPassword) => {
+    let regex_Password =FORGOT_VALIDATION.PASSWORD ;
+    setPassword(checkPassword);
+    if (regex_Password.test(checkPassword)) {
       setCheckValidPass(false);
     }
     else {
       setCheckValidPass(true);
     }
   };
-  const checkConfirmPasswordValidity = (text) => {
-    setPass(text);
+  const checkConfirmPasswordValidity = (checkConfirm) => {
+    setPass(checkConfirm);
+    if (password == checkConfirm) {
+      setCheckValidConfirm(true);
+    } else {
+      setCheckValidConfirm(false);
+    }
+
+
   };
   return (
-   
-     
-    <View style={{ justifyContent: "center", alignItems: "center",flex:1,backgroundColor:'white'}}>
-      <View style={styles.logo}>
-      <ImageBackground source={require('../../../Image/22.jpg')} style={{ width: "100%", height: "100%"}}/>
+
+
+    <View style={styles.change}>
+      <View style={styles.Logo}>
+        <ImageBackground source={require('../../../Image/22.jpg')} style={styles.background} />
       </View>
-        <StatusBar translucent backgroundColor="white" barStyle="light-content" />
-      <View style={{alignItems:'center', justifyContent:'center',flex:3,backgroundColor:'white',width:'100%',height:'100%',marginBottom:70}}>
-          <Text style={styles.txt}>Change Password</Text>
-          <View style={styles.textinput}>
-            <TextInput
-              style={styles.tex}
-              placeholder="New Password"
-              placeholderTextColor={"white"}
-              underlineColorAndroid={"transparent"}
-              value={password}
-              maxLength={16}
-              onChangeText={(text) => checkPasswordValidity(text)}
-              onChange={(e) => setPassword(e.target.value)}
-              secureTextEntry={true}
-            />
-          </View>
-          <View style={styles.errormsg}>
-            {checkValidpass ? (
-              <Text style={styles.em}>password must be one upper,lowercase,& 8digit</Text>
-            ) : (
-              <Text style={styles.em}></Text>
-            )}
-          </View>
-          <View style={styles.textinput1}>
-            <TextInput
-              style={styles.tex1}
-              placeholder="Confirm New Password"
-              placeholderTextColor={"white"}
-              maxLength={16}
-              onChange={(e) => setPass(e.target.value)}
-              onChangeText={(text) => checkConfirmPasswordValidity(text)}
-              underlineColorAndroid={"transparent"}
-              secureTextEntry={true}
-            /></View>
-          <View style={styles.errormsg1}>
-            {password == Confirm ? (
-              <Text style={styles.em1}></Text>
-            ) : (
-              <Text style={styles.em1}>password must be same</Text>
-            )}
-          </View>
-          <View>
-            {(checkValidpass) || password != Confirm ? (
-              <TouchableOpacity
-                disabled
-                style={styles.btn}
-              >
-                <Text style={styles.btntxt}>Submit</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Login")}>
-                <Text style={styles.btntxt}>Submit</Text>
-              </TouchableOpacity>
-            )}
-              
-          </View>
-          </View>
-       
-          </View>
-        
-     
-    
+      <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
+      <View style={styles.main}>
+        <Text style={styles.Title}>{FORGOT_TITLE.TITLE_CONTENT}</Text>
+        <View style={styles.textInput}>
+          <TextInput
+            style={styles.text}
+            placeholder={ERROR_MESSAGE.ENTER_NEWPASSWORD}
+            placeholderTextColor={FORGOT_COLOR.BLACK}
+            underlineColorAndroid={"transparent"}
+            value={password}
+            maxLength={10}
+            onChangeText={(checkPassword) => checkPasswordValidity(checkPassword)}
+            onChange={(New) => setPassword(New.target.value)}
+            secureTextEntry={true}
+          />
+        </View>
+        <View style={styles.errorMsg}>
+          {checkValidpass ? (
+            <Text style={styles.textFaild1}>{ERROR_MESSAGE.PASSWORD_INVALID}</Text>
+          ) : (
+            <Text style={styles.textFaild1}></Text>
+          )}
+        </View>
+        <View style={styles.textInput}>
+          <TextInput
+            style={styles.text}
+            placeholder={ERROR_MESSAGE.ENTER_CONFIRMPASSWORD}
+            placeholderTextColor={FORGOT_COLOR.BLACK}
+            maxLength={10}
+            onChange={(confirm) => setPass(confirm.target.value)}
+            onChangeText={(checkConfirm) => checkConfirmPasswordValidity(checkConfirm)}
+            underlineColorAndroid={"transparent"}
+            secureTextEntry={true}
+          /></View>
+        <View style={styles.errorMsg}>
+          {checkValidpConfirm ? (
+            <Text style={styles.textFaild1}></Text>
+          ) : (
+            <Text style={styles.textFaild1}>{ERROR_MESSAGE.PASSWORD_CONFIRM}</Text>
+          )}
+        </View>
+        <View>
+          {(checkValidpass) || (password != Confirm) || (password == '') || (Confirm == '') ? (
+            <TouchableOpacity
+              disabled
+              style={styles.button}
+            >
+              <Text style={styles.btntxt}>Submit</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Login")}>
+              <Text style={styles.btntxt}>Submit</Text>
+            </TouchableOpacity>
+          )}
+
+        </View>
+      </View>
+
+    </View>
   );
 }
-const styles = StyleSheet.create({
-  
-  back1: {
-    resizeMode: 'center',
-    width: 56
-  },
-  logo:{
-  flex:4,
-  width: '100%',
-  height: '100%',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor:'white'
-},
-  
-  png: {
-    height: 50,
-    width: 100,
-  },
-  header: {
-    fontSize: 40,
-    color: '#000000',
-   
-    alignSelf: 'center',
-  },
-  textinput: {
-    justifyContent: "center",
-    height: 50,
-    backgroundColor: 'rgba(52,52,52,0.7)',
-    borderRadius: 100,
-    width: "90%",
-    borderColor: 'black',
-    borderWidth: 1,
-  },
-  tex: {
-    marginHorizontal: 30,
-    color: "white",
-    fontWeight: 'bold'
-  },
-  textinput1: {
-    justifyContent: "center",
-    height: 50,
 
-    backgroundColor: 'rgba(52,52,52,0.7)',
-    borderRadius: 100,
-    width: "90%",
-    borderColor: 'black',
-    borderWidth: 1,
+//stylesheet for changepassword screen
+const styles = StyleSheet.create({
+  //overall
+  change: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    backgroundColor: FORGOT_COLOR.WHITE
   },
-  tex1: {
-    marginHorizontal: 30,
-    color: "white",
-    fontWeight: 'bold'
+  //background
+  background: {
+    width: "100%",
+    height: "100%"
   },
-  errormsg: {
-    marginVertical: 10
+  //app content
+  main: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 3,
+    backgroundColor: FORGOT_COLOR.WHITE,
+    width: '100%',
+    height: '100%',
+    marginBottom: 70
   },
-  em: {
-    color: 'red',
+  //appLogo
+  Logo: {
+    flex: 4,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: FORGOT_COLOR.WHITE
   },
-  errormsg1: {
-    marginVertical: 10
-  },
-  em1: {
-    color: 'red',
-  },
-  txt: {
+  //Display text
+  Title: {
     fontSize: 30,
     fontWeight: "bold",
     marginVertical: 25,
-    color: "black"
+    color: FORGOT_COLOR.BLACK
   },
-  btn: {
+  //(New Password & Confirm)
+  //input-box
+  textInput: {
+    justifyContent: "center",
+    height: 50,
+    backgroundColor: FORGOT_COLOR.BACKGROUND_INPUT,
+    borderRadius: 100,
+    width: "90%",
+    borderColor: FORGOT_COLOR.BLACK,
+    borderWidth: 1,
+  },
+  //input-box text
+  text: {
+    marginHorizontal: 30,
+    color: FORGOT_COLOR.WHITE,
+    fontWeight: 'bold',
+    fontSize: 20
+  },
+  //Error Message
+  errorMsg: {
+    marginVertical: 10
+  },
+  //Error Message text
+  textFaild1: {
+    color: FORGOT_COLOR.RED,
+  },
+
+  //disable button
+  button: {
     alignItems: 'center',
     height: 50,
-
-    backgroundColor: 'orangered',
-    width: 180,
+    backgroundColor: FORGOT_COLOR.ORANGERED,
+    width: 300,
     justifyContent: 'center',
     borderRadius: 30
   },
-  back1: {
-    height: "100%",
-    width: "100%",
-  }
+  //Enable & disable button
+  btntxt: {
+    color: FORGOT_COLOR.WHITE,
+    fontWeight: 'bold',
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 25
+  },
 })
