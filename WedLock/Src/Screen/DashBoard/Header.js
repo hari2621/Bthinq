@@ -1,17 +1,17 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { Appbar } from 'react-native-paper';
-import { COLOR } from '../../../Utility/constant';
+import { Appbar, Colors } from 'react-native-paper';
+import { COLOR, NAME_LOGIN } from '../../../Utility/Constant';
 
 const Head = () => (
-  <Appbar.Header style={styles.headercolor} activeColor="white">
-    <Image source={require('../../../Image/AppLogo.png')} style={styles.Logo} />
-    <Appbar.Content style={styles.headerTitleStyle} title="ToFo" />
+  <Appbar.Header style={styles.headercolor} activeColor={COLOR.WHITE}>
+    <Image source={require('../../../assets/Image/AppLogo.png')} style={styles.Logo} />
+    <Appbar.Content style={styles.headerTitleStyle} title={NAME_LOGIN.APP_NAME} />
     <Appbar.Action style={styles.menubar} icon="menu" onPress={() => { }} />
   </Appbar.Header>
 );
-export default Head;
 
+export default Head;
 const styles = StyleSheet.create({
   // header background 
   headercolor: {

@@ -9,8 +9,7 @@ import {
   View,
   ImageBackground
 } from "react-native";
-import { BUTTONS, ERROR_MESSAGE, FORGOT_COLOR, FORGOT_TITLE, NAVIGATION_SCREENS } from '../../../Utility/constant';
-import Regex from '../../../Utility/Utility';
+import { ERROR_MESSAGE,FORGOT_COLOR,FORGOT_TITLE,FORGOT_VALIDATION } from '../../../Utility/Constant';
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
@@ -39,7 +38,7 @@ export default function Change({ navigation }) {
   return (
     <View style={styles.change}>
       <View style={styles.Logo}>
-        <ImageBackground source={require('../../../Image/22.jpg')} style={styles.background} />
+        <ImageBackground source={require('../../../assets/Image/Image_csp.jpg')} style={styles.background} />
       </View>
       <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
       <View style={styles.main}>
