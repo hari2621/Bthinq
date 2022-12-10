@@ -1,13 +1,26 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
-import { COLOR } from '../../../Utility/constant';
+import {
+  COLOR,
+  PAGE_CONTENT,
+  TAB_NAME
+} from '../../../Utility/Constant';
 
 const Head = () => (
-  <Appbar.Header style={styles.headercolor} activeColor="white">
-    <Image source={require('../../../Image/AppLogo.png')} style={styles.Logo} />
-    <Appbar.Content style={styles.headerTitleStyle} title="ToFo" />
-    <Appbar.Action style={styles.menubar} icon="menu" onPress={() => { }} />
+  <Appbar.Header
+    style={styles.headercolor}
+    activeColor={COLOR.WHITE} >
+    <Image
+      source={require('../../../Image/AppLogo.png')}
+      style={styles.Logo} />
+    <Appbar.Content
+      style={styles.headerTitleStyle}
+      title={PAGE_CONTENT.APP_NAME} />
+    <Appbar.Action
+      style={styles.menubar}
+      icon={TAB_NAME.MENU}
+      onPress={() => { }} />
   </Appbar.Header>
 );
 export default Head;
@@ -25,7 +38,7 @@ const styles = StyleSheet.create({
   headerTitleStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    color: "red"
+    color: COLOR.RED
   },
   // app logo in header
   Logo: {

@@ -15,7 +15,11 @@ export const COLOR = {
     ORANGE:'orangered',
     BLUE:'blue',
     ORANGERED:"orangered",
+    DARK_CONTENT:"dark-content",
    }
+export const STYLE={
+    RECOVERSIZE_MODE:"cover"
+}
 //Error Message
 export const ERROR_MESSAGE={
     EMAIL_INVALID:"Enter valid Email Id",
@@ -63,7 +67,10 @@ export const NAVIGATION_SCREENS={
 export const TAB_NAME = {
     HOME: "Home",
     CHECKLIST: "Checklist",
-    USER: "User"
+    USER: "User",
+    MENU:"menu",
+    BELL:"bell",
+    ACCOUNT:"account"
 }
 // section header of home page 
 export const HOME_SECTION_HEADER = {

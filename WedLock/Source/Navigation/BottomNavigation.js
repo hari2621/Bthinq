@@ -3,8 +3,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Checklist from '../Screen/DashBoard/Checklist';
 import Profile from '../Screen/DashBoard/Profile';
 import Home from "../Screen/DashBoard/Home";
-import { BACKGROUND_COLOUR } from '../../Utility/constant';
-import { TAB_NAME } from '../../Utility/constant';
+import { BACKGROUND_COLOUR } from '../../Utility/Constant';
+import { TAB_NAME } from '../../Utility/Constant';
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigator() {
@@ -20,7 +20,7 @@ export default function BottomNavigator() {
           tabBarLabelStyle: { color: BACKGROUND_COLOUR.BLACK, fontSize: 14 },
           tabBarStyle: { backgroundColor: BACKGROUND_COLOUR.ORANGE },
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={BACKGROUND_COLOUR.BLACK} size={28} />
+            <MaterialCommunityIcons name={TAB_NAME.HOME} color={BACKGROUND_COLOUR.BLACK} size={28} />
           ),
         }}
       />
@@ -32,7 +32,7 @@ export default function BottomNavigator() {
           tabBarLabelStyle: { color: BACKGROUND_COLOUR.BLACK, fontSize: 14 },
           tabBarStyle: { backgroundColor: BACKGROUND_COLOUR.ORANGE },
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bell" color={BACKGROUND_COLOUR.BLACK} size={28} />
+            <MaterialCommunityIcons name={TAB_NAME.BELL} color={BACKGROUND_COLOUR.BLACK} size={28} />
           ),
         }}
       />
@@ -44,7 +44,7 @@ export default function BottomNavigator() {
           tabBarLabelStyle: { color: BACKGROUND_COLOUR.BLACK, fontSize: 14, },
           tabBarStyle: { backgroundColor: BACKGROUND_COLOUR.ORANGE },
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={BACKGROUND_COLOUR.BLACK} size={26} />
+            <MaterialCommunityIcons name={TAB_NAME.ACCOUNT} color={BACKGROUND_COLOUR.BLACK} size={26} />
           ),
         }}
       />

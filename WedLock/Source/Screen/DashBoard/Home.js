@@ -11,7 +11,13 @@ import {
   StatusBar
 } from 'react-native';
 import Head from './Header';
-import { COLOR, HOME_SECTION_HEADER,DEMO_IMAGE } from '../../../Utility/constant';
+import {
+  COLOR,
+  HOME_SECTION_HEADER,
+  DEMO_IMAGE,
+  BACKGROUND_COLORS,
+  STYLE
+} from '../../../Utility/Constant';
 
 const ListItem = ({ item }) => {
   return (
@@ -22,7 +28,7 @@ const ListItem = ({ item }) => {
             uri: item.uri,
           }}
           style={styles.itemPhoto}
-          resizeMode="cover"
+          resizeMode={STYLE.RECOVERSIZE_MODE}
         />
         <Text style={styles.itemText}>{item.text}</Text>
       </View>
@@ -34,8 +40,14 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Head />
-      <ImageBackground source={require("../../../Image/14.png")} resizeMode="cover" style={styles.backgroundimage}>
-        <StatusBar translucent backgroundColor="white" barStyle="dark-content" />
+      <ImageBackground
+        source={require("../../../Image/14.png")}
+        resizeMode={STYLE.RECOVERSIZE_MODE}
+        style={styles.backgroundimage}>
+        <StatusBar
+          translucent
+          backgroundColor={BACKGROUND_COLORS.WHITE}
+          barStyle={COLOR.DARK_CONTENT} />
         <SafeAreaView style={{ flex: 1 }}>
 
           <SectionList

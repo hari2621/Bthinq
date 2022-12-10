@@ -6,13 +6,21 @@ import {
   Image,
   ImageBackground
 } from 'react-native';
-import { BACKGROUND_COLORS, PROFILE_FIELD } from '../../../Utility/constant';
+import {
+  BACKGROUND_COLORS,
+  PROFILE_FIELD,
+  NAVIGATION_SCREENS
+} from '../../../Utility/Constant';
 
 export default function Profile({ navigation }) {
   return (
-    <ImageBackground style={styles.img} source={require('../../../Image/f1.png')}>
+    <ImageBackground
+      style={styles.img}
+      source={require('../../../Image/f1.png')}>
       <View style={styles.container}>
-        <Image style={styles.avatar} source={require('../../../Image/testing.png')} />
+        <Image
+          style={styles.avatar}
+          source={require('../../../Image/testing.png')} />
         <View style={styles.body}>
           <TouchableOpacity style={styles.buttonContainer}>
             <Text> {PROFILE_FIELD.PROFILE}</Text>
@@ -23,7 +31,8 @@ export default function Profile({ navigation }) {
           <TouchableOpacity style={styles.buttonContainer}>
             <Text>{PROFILE_FIELD.ABOUT_US}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.replace("Login")}>
+          <TouchableOpacity style={styles.buttonContainer}
+            onPress={() => navigation.replace(NAVIGATION_SCREENS.LOGIN)}>
             <Text>{PROFILE_FIELD.LOG_OUT}</Text>
           </TouchableOpacity>
         </View>
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor:BACKGROUND_COLORS.ORANGE_,
+    backgroundColor: BACKGROUND_COLORS.ORANGE_,
   }
 });
 
