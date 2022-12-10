@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ImageBackground
 } from "react-native";
 import { ERROR_MESSAGE } from '../../../Utility/constant';
@@ -18,7 +17,7 @@ export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
-  const [checkValidpConfirm, setCheckValidConfirm] =useState(true)
+  const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
 
   const checkPasswordValidity = (checkPassword) => {
     let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
@@ -32,11 +31,9 @@ export default function Change({ navigation }) {
   };
   const checkConfirmPasswordValidity = (checkConfirm) => {
     setPass(checkConfirm);
-    if (password==checkConfirm) 
-    {
+    if (password == checkConfirm) {
       setCheckValidConfirm(true);
-    } else 
-    {
+    } else {
       setCheckValidConfirm(false);
     }
 
@@ -50,13 +47,13 @@ export default function Change({ navigation }) {
         <ImageBackground source={require('../../../Image/22.jpg')} style={styles.background} />
       </View>
       <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
-      <View style={styles.app1}>
+      <View style={styles.main}>
         <Text style={styles.Title}>{FORGOT_TITLE.TITLE_CONTENT}</Text>
         <View style={styles.textInput}>
           <TextInput
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_NEWPASSWORD}
-            placeholderTextColor={FORGOT_COLOR.WHITE}
+            placeholderTextColor={FORGOT_COLOR.BLACK}
             underlineColorAndroid={"transparent"}
             value={password}
             maxLength={10}
@@ -76,7 +73,7 @@ export default function Change({ navigation }) {
           <TextInput
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_CONFIRMPASSWORD}
-            placeholderTextColor={FORGOT_COLOR.WHITE}
+            placeholderTextColor={FORGOT_COLOR.BLACK}
             maxLength={10}
             onChange={(confirm) => setPass(confirm.target.value)}
             onChangeText={(checkConfirm) => checkConfirmPasswordValidity(checkConfirm)}
@@ -91,7 +88,7 @@ export default function Change({ navigation }) {
           )}
         </View>
         <View>
-          {(checkValidpass) || (password != Confirm) || (password=='') || (Confirm=='') ? (
+          {(checkValidpass) || (password != Confirm) || (password == '') || (Confirm == '') ? (
             <TouchableOpacity
               disabled
               style={styles.button}
@@ -108,9 +105,6 @@ export default function Change({ navigation }) {
       </View>
 
     </View>
-
-
-
   );
 }
 
@@ -129,7 +123,7 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   //app content
-  app1: {
+  main: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 3,
@@ -154,7 +148,7 @@ const styles = StyleSheet.create({
     marginVertical: 25,
     color: FORGOT_COLOR.BLACK
   },
-  //(New Password)
+  //(New Password & Confirm)
   //input-box
   textInput: {
     justifyContent: "center",
@@ -169,7 +163,8 @@ const styles = StyleSheet.create({
   text: {
     marginHorizontal: 30,
     color: FORGOT_COLOR.WHITE,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 20
   },
   //Error Message
   errorMsg: {
