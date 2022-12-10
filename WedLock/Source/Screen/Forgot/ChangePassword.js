@@ -9,9 +9,7 @@ import {
   View,
   ImageBackground
 } from "react-native";
-import { ERROR_MESSAGE } from '../../../Utility/constant';
-import { FORGOT_COLOR } from '../../../Utility/constant';
-import { FORGOT_TITLE } from '../../../Utility/constant';
+import { ERROR_MESSAGE,FORGOT_COLOR,FORGOT_TITLE,FORGOT_VALIDATION } from '../../../Utility/constant';
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
@@ -20,9 +18,9 @@ export default function Change({ navigation }) {
   const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
 
   const checkPasswordValidity = (checkPassword) => {
-    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    let regex_Password =FORGOT_VALIDATION.PASSWORD ;
     setPassword(checkPassword);
-    if (isNonWhiteSpace.test(checkPassword)) {
+    if (regex_Password.test(checkPassword)) {
       setCheckValidPass(false);
     }
     else {

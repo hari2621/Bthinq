@@ -21,8 +21,10 @@ export const FORGOT_TITLE={
     TITLE_TEXT:"TOFO",
     TITLE_CONTENT:"Change Password"
 }
+//Forgot validation
 export const FORGOT_VALIDATION ={
-    EMAIL:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    EMAIL:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    PASSWORD:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
 }
 export const TITLE={
     TITLETEXT:"TOFO",
