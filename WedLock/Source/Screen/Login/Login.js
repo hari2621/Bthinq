@@ -1,116 +1,85 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Remote debugger']);
+import { COLOR, NAME_LOGIN, NAVIGATION_SCREENS } from "../../../Utility/constant";
 const responseWidth = Dimensions.get('window').width;
 const responseHeight = Dimensions.get('window').height;
 console.log(responseWidth);
 console.log(responseHeight);
-export default function Login({navigation}) {
-  const [username, setUsername] = useState("");
-  const [checkvaildusername, setvaildusername] = useState(false);
-  const [Password, setpassword] = useState("");
-  const [checkvaildpassword, setvaildpassword] = useState(false);
-  const CheckUserpassword = text => {
+export default function Login({ navigation }) {
+  const [userName, setUsername] = useState("");
+  const [checkvaildUsername, setvaildUsername] = useState(false);
+  const [Password, setPassword] = useState("");
+  const [checkvaildPassword, setvaildPassword] = useState(false);
+  const checkUserPassword = text => {
     let re = /\S+@\S+\S+/;
     let regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{3,10}$/;
-    setpassword(text);
+    setPassword(text);
     if (re.test(text) || regex.test(text)) {
-      setvaildpassword(false);
+      setvaildPassword(false);
     } else {
-      setvaildpassword(true);
+      setvaildPassword(true);
     }
   }
-  const CheckUsername = text => {
+  const checkUsername = text => {
     let re = /\S+@\S+\S+/;
     let regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]{0,1})[A-Za-z\d@$!%*#?&]{8,10}$/;
     setUsername(text);
     if (re.test(text) || regex.test(text)) {
-      setvaildusername(false);
+      setvaildUsername(false);
     }
     else {
-      setvaildusername(true);
+      setvaildUsername(true);
     }
   }
-  const checkPasswordValidity = value => {
-    const isNonWhiteSpace = /^\S*$/;
-    if (!isNonWhiteSpace.test(value)) {
-      return 'Password must not contain Whitespaces.';
-    }
-    const isContainsUppercase = /^(?=.*[A-Z]).*$/;
-    if (!isContainsUppercase.test(value)) {
-      return 'Password must have at least one Uppercase Character.';
-    }
-    const isContainsLowercase = /^(?=.*[a-z]).*$/;
-    if (!isContainsLowercase.test(value)) {
-      return 'Password must have at least one Lowercase Character.';
-    }
-    const isContainsNumber = /^(?=.*[0-9]).*$/;
-    if (!isContainsNumber.test(value)) {
-      return 'Password must contain at least one Digit.';
-    }
-    const isValidLength = /^.{8,16}$/;
-    if (!isValidLength.test(value)) {
-      return 'Password must be 8-16 Characters Long.';
-    }
-    return null;
-  };
-  const nav = () => {
-    const checkPassword = checkPasswordValidity(Password);
-    if (!checkPassword) {
-      navigation.navigate("BottomNavigator")
-    } else {
-      alert(checkPassword);
-    }
-  };
+ 
   return (
     <View style={styles.container}>
-      <View style={styles.logo}>
-        <ImageBackground style={styles.image1} source={require('../../../Image/back1.png')} />
+      <View style={styles.backgroundImage}>
+        <ImageBackground style={styles.backgroundImageSize} source={require('../../../Image/back1.png')} />
       </View>
-      <View style={styles.topbox}>
-        <View style={styles.head}>
-        <Text style={styles.headingclr}>Welcome To <Text style={{ color: 'red' }}>TOFO</Text> Events</Text>
+      <View style={styles.inputBoxContainer}>
+        <View style={styles.titleView}>
+          <Text style={styles.titleText}>{NAME_LOGIN.WELCOME}<Text style={styles.tittleTextColor}>{NAME_LOGIN.APP_NAME}</Text>{NAME_LOGIN.TYPE}</Text>
         </View>
-         <View style={styles.inputBox}>
-          <TextInput style={styles.text} maxLength={15} value={username} onChangeText={text => CheckUsername(text)}
-            placeholder="UserName" placeholderTextColor='black' />
+        <View style={styles.inputBox}>
+          <TextInput style={styles.inputText} maxLength={15} value={userName} onChangeText={text => checkUsername(text)}
+            placeholder={NAME_LOGIN.USERNAME} placeholderTextColor={COLOR.BLACK} />
         </View>
-        {checkvaildusername ? (
-          <Text style={styles.fontsfield}>UserName is not valid</Text>
+        {checkvaildUsername ? (
+          <Text style={styles.errorMessageText}>{NAME_LOGIN.USERNAME_ERROR}</Text>
         ) : (
-          <Text style={styles.fontsfield}> </Text>
+          null
         )}
-        <View style={styles.inputBox1}>
-          <TextInput secureTextEntry={true} style={styles.text} maxLength={15}
-            placeholder="Password" value={Password} placeholderTextColor='black' onChangeText={text => CheckUserpassword(text)} />
+        <View style={styles.inputBox}>
+          <TextInput secureTextEntry={true} style={styles.inputText} maxLength={15}
+            placeholder={NAME_LOGIN.PASSWORD} value={Password} placeholderTextColor={COLOR.BLACK} onChangeText={text => checkUserPassword(text)} />
         </View>
-        {checkvaildpassword ? (
-          <Text style={styles.fontsfield1}>Password is not valid</Text>
+        {checkvaildPassword ? (
+          <Text style={styles.errorMessageText}>{NAME_LOGIN.PASSWORD_ERROR}</Text>
         ) : (
-          <Text style={styles.fontsfield1}> </Text>
+          null
         )}
-        <View style={styles.buttonContainer}>
-          {username == '' || Password == '' || checkvaildusername == true || checkvaildpassword == true ? (
-            <TouchableOpacity disabled style={styles.buttondis} onPress={nav}  >
-              <Text style={styles.buttonLabel}>Login</Text>
+        <View style={styles.loginButtonview}>
+          { checkvaildUsername == true || checkvaildPassword == true ? (
+            <TouchableOpacity disabled style={styles.loginButtonDisabled}>
+              <Text style={styles.buttonLabel}>{NAME_LOGIN.LOGIN_TEXT}</Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity style={styles.button} onPress={nav}  >
-              <Text style={styles.buttonLabel} >Login</Text>
+            <TouchableOpacity style={styles.loginButtonActive} onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}  >
+              <Text style={styles.buttonLabel} >{NAME_LOGIN.LOGIN_TEXT}</Text>
             </TouchableOpacity>
           )}
         </View>
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
-            <Text style={styles.ForgotText}>Forgot Password..?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate(NAVIGATION_SCREENS.FORGOT_SCREEN)}>
+            <Text style={styles.forgotText}>{NAME_LOGIN.FORGOT}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.footer}>
-          <Text style={styles.text1}>Don't have an account?</Text>
-          <Pressable onPress={() => navigation.navigate("SignUp")}>
-            <Text style={styles.buttonLabel1}>Signup</Text>
+          <Text style={styles.footerText}>{NAME_LOGIN.NEW_ACCOUNT}</Text>
+          <Pressable onPress={() => navigation.navigate(NAVIGATION_SCREENS.SIGN_UP)}>
+            <Text style={styles.signUpText}>{NAME_LOGIN.SIGNUP}</Text>
           </Pressable>
         </View>
         <StatusBar style="auto" />
@@ -120,134 +89,133 @@ export default function Login({navigation}) {
 }
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor:'white'
+    backgroundColor:COLOR.WHITE
   },
-  logo: {
-    flex:4,
+  backgroundImage: {
+    flex: 4,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'white'
+    backgroundColor:COLOR.WHITE
   },
-  topbox: {
-    flex:4,
-    width:'80%',
-    height:'100%',
-    justifyContent:'flex-start',
-    alignItems:'center',
-    backgroundColor:'white',
-  },
-  image1: {
+  backgroundImageSize: {
     width: '100%',
     height: '100%'
-  },//backgroundimage
-  head:{
-    marginVertical:10
-  },// tittle space
-  headingclr: {
-    color: '#000000',
+  },
+  // InputBox container for all content
+  inputBoxContainer: {
+    flex:4,
+    width: '80%',
+    height: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: COLOR.WHITE,
+  },
+  // tittle space
+  titleView: {
+    marginVertical: 10
+  },
+  //Title color and font Size
+  titleText: {
+    color: COLOR.BLACK,
     fontSize: 24,
     fontWeight: 'bold',
+  },
+// Color for  App Name
+  tittleTextColor: {
+    color:COLOR.RED
+  },
 
-  },//heading
-
+  //InputBox for userName and password
   inputBox: {
-    width:'100%',
-    height:'10%',
-    justifyContent:'center',
+    width: '100%',
+    height: '10%',
+    justifyContent: 'center',
     borderWidth: 1,
     borderRadius: 30,
-    backgroundColor: 'white',
-    marginVertical:5
-
-  },//input field
-
-  text: {
+    backgroundColor: COLOR.WHITE,
+    marginVertical: 5
+  },
+  //input field Text
+  inputText: {
     fontSize: 20,
     color: 'black',
-    marginHorizontal:10
-  
-  },//username text
-  inputBox1: {
-    width:'100%',
-    height:'10%',
-    justifyContent:'center',
-    borderWidth: 1,
-    borderRadius: 30,
-    backgroundColor: 'white',
-    marginVertical:5
-  },//input field
-  fontsfield: {
+    marginHorizontal: 10
+  },
+  //error message field
+  errorMessageText: {
     alignSelf: 'flex-end',
-    color: 'red',
+    color:COLOR.RED,
     fontSize: 20,
-  },//error message field
-  fontsfield1: {
-    alignSelf: 'flex-end',
-    color: 'red',
-    fontSize: 20,
-  },//error message field
-  buttonContainer: {
-    width:'100%',
-    height:'10%',
+  },
+  //login Button View
+  loginButtonview: {
+    width: '100%',
+    height: '10%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical:10
-  },//login button
-  buttondis: {
+    marginVertical: 10
+  },
+  //Button disable for login
+  loginButtonDisabled: {
     width: '100%',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orangered',
+    backgroundColor:COLOR.ORANGE,
     borderRadius: 30,
-  },//button disable
-  button: {
+  },
+  //login button for  active
+  loginButtonActive: {
     width: '100%',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orangered',
+    backgroundColor:COLOR.ORANGE,
     borderRadius: 50,
-  },//login button view active
+  },
+  //Text for login
   buttonLabel: {
-    color: '#fff',
+    color: COLOR.WHITE,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginLeft: -10,
-    marginRight: 10,
-  },//text for login
-  ForgotText: {
-    color: '#000',
+    alignItems:'center'
+  },
+  //Forget text
+  forgotText: {
+    color: COLOR.BLACK,
     fontSize: 19,
     textAlign: 'center',
     paddingTop: 6
-  },//forget text
+  },
+  //Bottom view for forgot
   footer: {
     flexDirection: "row",
-    marginTop:5
-  },//bottom view for forgot
-  text1: {
-    color: '#000000',
+    marginTop: 5
+  },
+  //don't have an account Text
+  footerText: {
+    color:COLOR.BLACK,
     fontSize: 15
-  },//don't text
-  buttonLabel1: {
-    color: 'blue',
+  },
+  //SignUp text
+  signUpText: {
+    color:COLOR.BLUE,
     fontSize: 15,
     fontWeight: 'bold',
-    marginHorizontal:10
-  },//login text
+    marginHorizontal: 10
+  },
 });
- 
-  
-  
 
-  
+
+
+
+
 
