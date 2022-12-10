@@ -8,15 +8,15 @@ import {
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { ERROR_MESSAGE, FORGOT_VALIDATION, FORGOT_COLOR,FORGOT_TITLE} from '../../../Utility/Constant';
-
+import { ERROR_MESSAGE, COLOR, PAGE_CONTENT} from '../../../Utility/Constant';
+import Regex from '../../../Utility/Validation';
 export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState()
+    // Email validation
     const checkEmail = validEmail => {
-        let regex_Forgot = FORGOT_VALIDATION.EMAIL;
         setEmail(validEmail)
-        if (regex_Forgot.test(validEmail)) {
+        if (Regex.validateEmail(email)) {
             setCheckValidateEmail(false);
         } else {
             setCheckValidateEmail(true);
@@ -25,7 +25,7 @@ export default function Forgot({ navigation }) {
     const changePassword = () => {
         const checkPassword = checkEmail(email);
         if (!checkPassword) {
-            navigation.navigate("ChangePassword");
+            navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN);
         } else {
             alert(checkPassword);
         }
@@ -33,12 +33,12 @@ export default function Forgot({ navigation }) {
     return (
         <View style={styles.forgot}>
             <ImageBackground source={require('../../../assets/Image/Image_F.jpg')} style={styles.background}>
-                <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
+                <StatusBar translucent backgroundColor={COLOR.WHITE} barStyle="light-content" />
                 <View style={styles.main}>
-                    <Text style={styles.Title}>{FORGOT_TITLE.TITLE_TEXT}</Text>
+                    <Text style={styles.Title}>{PAGE_CONTENT.APP_NAME}</Text>
                     <View style={styles.textInput}>
                         <TextInput style={styles.text}
-                            placeholder={ERROR_MESSAGE.ENTER_EMAILID} placeholderTextColor={FORGOT_COLOR.BLACK} value={email}
+                            placeholder={ERROR_MESSAGE.ENTER_EMAILID} placeholderTextColor={COLOR.BLACK} value={email}
                             onChangeText={validEmail => checkEmail(validEmail)}
                             underlineColorAndroid={'transparent'} />
                     </View>
@@ -50,21 +50,11 @@ export default function Forgot({ navigation }) {
                         )}
                     </View>
                     <View>
-                        {email == "" ||
-                            checkValidEmail == true ?
-                            (
-                                <TouchableOpacity
-                                    disabled
-                                    style={styles.button}
-                                    onPress={changePassword}
-                                >
-                                    <Text style={styles.btntxt}>Next</Text>
-                                </TouchableOpacity>
-                            ) : (
-                                <TouchableOpacity style={styles.button2} onPress={changePassword}>
-                                    <Text style={styles.btntxt}>Next</Text>
-                                </TouchableOpacity>
-                            )}
+                        <TouchableOpacity disabled={email == "" || checkValidEmail == true}
+                            style={styles.button}
+                            onPress={changePassword}>
+                            <Text style={styles.btntxt}>{BUTTONS.FORGOT}</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ImageBackground>
@@ -97,22 +87,22 @@ const styles = StyleSheet.create({
     //appTitle
     Title: {
         fontSize: 40,
-        color: FORGOT_COLOR.ORANGERED,
+        color: COLOR.ORANGERED,
     },
     //input-box 
     textInput: {
         height: 50,
         borderRadius: 100,
         width: 300,
-        borderColor: FORGOT_COLOR.BLACK,
+        borderColor: COLOR.BLACK,
         borderWidth: 2,
         marginTop: 20,
-        color: FORGOT_COLOR.BLACK
+        color: COLOR.BLACK
     },
     //input-box text
     text: {
 
-        color: FORGOT_COLOR.BLACK,
+        color: COLOR.BLACK,
         textAlign: 'center',
         marginVertical: 7,
         justifyContent: 'center',
@@ -120,12 +110,12 @@ const styles = StyleSheet.create({
     },
     //Error Message
     textFailed: {
-        color: FORGOT_COLOR.RED,
+        color: COLOR.RED,
     },
     //disabled button
     button: {
         height: 60,
-        backgroundColor: FORGOT_COLOR.ORANGERED,
+        backgroundColor: COLOR.ORANGERED,
         width: 300,
         margin: 50,
         borderRadius: 30,
@@ -134,7 +124,7 @@ const styles = StyleSheet.create({
     button2: {
         height: 50,
         marginVertical: 40,
-        backgroundColor: FORGOT_COLOR.ORANGERED,
+        backgroundColor: COLOR.ORANGERED,
         width: 300,
         borderRadius: 30,
         alignItems: 'center',
@@ -142,7 +132,7 @@ const styles = StyleSheet.create({
     },
     //Enable & disable button
     btntxt: {
-        color: FORGOT_COLOR.WHITE,
+        color: COLOR.WHITE,
         fontWeight: 'bold',
         padding: 10,
         textAlign: 'center',

@@ -15,8 +15,12 @@ export const COLOR = {
     ORANGE:'orangered',
     BLUE:'blue',
     ORANGERED:"orangered",
-    TRANSPARENT:"transparent"
+    TRANSPARENT:"transparent",
+    DARK_CONTENT:"dark-content",
    }
+export const STYLE={
+    RECOVERSIZE_MODE:"cover"
+}
 //Error Message
 export const ERROR_MESSAGE={
     EMAIL_INVALID:"Enter valid Email Id",
@@ -43,7 +47,12 @@ export const PAGE_CONTENT={
         SIGNUP:"Sign Up",
         NEW_ACCOUNT:"Don't have an account?",
         BACK_TO_LOGIN:"Back To Login",
-        CREATE:"Create"
+        CREATE:"Create",
+        NEXT:"Next",
+        SUBMIT:"Submit"
+       
+   
+    
 }
 //placeholder inputbox
 export const PLACEHOLDER={
@@ -58,14 +67,17 @@ export const NAVIGATION_SCREENS={
     LOGIN:"Login",
     HOME_SCREEN:"BottomNavigator",
     FORGOT_SCREEN:"Forgot",
-    CHANGE_SCREEN:"Change",
+    CHANGE_SCREEN:"ChangePassword",
     SIGN_UP:"SignUp",
 }
 //tab screen icon name
 export const TAB_NAME = {
     HOME: "Home",
     CHECKLIST: "Checklist",
-    USER: "User"
+    USER: "User",
+    MENU:"menu",
+    BELL:"bell",
+    ACCOUNT:"account"
 }
 // section header of home page 
 export const HOME_SECTION_HEADER = {
