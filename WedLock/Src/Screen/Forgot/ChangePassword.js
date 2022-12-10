@@ -9,7 +9,9 @@ import {
   View,
   ImageBackground
 } from "react-native";
-import { ERROR_MESSAGE,FORGOT_COLOR,FORGOT_TITLE,FORGOT_VALIDATION } from '../../../Utility/Constant';
+import { BACKGROUND_COLORS, COLOR, ERROR_MESSAGE, PAGE_CONTENT } from '../../../Utility/Constant';
+import Regex from '../../../Utility/Validation';
+
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
@@ -40,14 +42,14 @@ export default function Change({ navigation }) {
       <View style={styles.Logo}>
         <ImageBackground source={require('../../../assets/Image/Image_csp.jpg')} style={styles.background} />
       </View>
-      <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
+      <StatusBar translucent backgroundColor={COLOR.WHITE} barStyle="light-content" />
       <View style={styles.main}>
-        <Text style={styles.Title}>{FORGOT_TITLE.TITLE_CONTENT}</Text>
+        <Text style={styles.Title}>{PAGE_CONTENT.CHANGEPASSWORD_TITLE}</Text>
         <View style={styles.textInput}>
           <TextInput
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_NEWPASSWORD}
-            placeholderTextColor={FORGOT_COLOR.BLACK}
+            placeholderTextColor={COLOR.BLACK}
             underlineColorAndroid={"transparent"}
             value={password}
             maxLength={10}
@@ -67,7 +69,7 @@ export default function Change({ navigation }) {
           <TextInput
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_CONFIRMPASSWORD}
-            placeholderTextColor={FORGOT_COLOR.BLACK}
+            placeholderTextColor={COLOR.BLACK}
             maxLength={10}
             onChange={(confirm) => setPass(confirm.target.value)}
             onChangeText={(checkConfirm) => checkConfirmPasswordValidity(checkConfirm)}
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    backgroundColor: FORGOT_COLOR.WHITE
+    backgroundColor: BACKGROUND_COLORS.WHITE
   },
   //background
   background: {
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 3,
-    backgroundColor: FORGOT_COLOR.WHITE,
+    backgroundColor: BACKGROUND_COLORS.WHITE,
     width: '100%',
     height: '100%',
     marginBottom: 70
@@ -125,30 +127,30 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: FORGOT_COLOR.WHITE
+    backgroundColor: BACKGROUND_COLORS.WHITE
   },
   //Display text
   Title: {
     fontSize: 30,
     fontWeight: "bold",
     marginVertical: 25,
-    color: FORGOT_COLOR.BLACK
+    color: COLOR.BLACK
   },
   //(New Password & Confirm)
   //input-box
   textInput: {
     justifyContent: "center",
     height: 50,
-    backgroundColor: FORGOT_COLOR.BACKGROUND_INPUT,
+    backgroundColor: BACKGROUND_COLORS.WHITE,
     borderRadius: 100,
     width: "90%",
-    borderColor: FORGOT_COLOR.BLACK,
+    borderColor: COLOR.BLACK,
     borderWidth: 1,
   },
   //input-box text
   text: {
     marginHorizontal: 30,
-    color: FORGOT_COLOR.BLACK,
+    color: COLOR.BLACK,
     fontWeight: 'bold',
     fontSize: 20
   },
@@ -158,21 +160,21 @@ const styles = StyleSheet.create({
   },
   //Error Message text
   textFaild1: {
-    color: FORGOT_COLOR.RED,
+    color: COLOR.RED,
   },
 
   //disable button
   button: {
     alignItems: 'center',
     height: 50,
-    backgroundColor: FORGOT_COLOR.ORANGERED,
+    backgroundColor: COLOR.ORANGERED,
     width: 300,
     justifyContent: 'center',
     borderRadius: 30
   },
   //Enable & disable button
   btntxt: {
-    color: FORGOT_COLOR.WHITE,
+    color: COLOR.WHITE,
     fontWeight: 'bold',
     padding: 10,
     textAlign: 'center',
