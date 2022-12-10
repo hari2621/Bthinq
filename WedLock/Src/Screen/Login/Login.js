@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
-import { COLOR, NAME_LOGIN, NAVIGATION_SCREENS } from "../../../Utility/constant";
-import Regex from "../../../Utility/Utility";
+import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, } from "react-native";
+import { COLOR, NAME_LOGIN, NAVIGATION_SCREENS } from "../../../Utility/Constant";
+import Regex from "../../../Utility/Validation";
 
 export default function Login({ navigation }) {
   const [userName, setUsername] = useState("");
@@ -31,7 +31,7 @@ export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundImage}>
-        <ImageBackground style={styles.backgroundImageSize} source={require('../../../Image/back1.png')} />
+        <ImageBackground style={styles.backgroundImageSize} source={require('../../../assets/Image/Image_login.png')} />
       </View>
       <View style={styles.inputBoxContainer}>
         <View style={styles.titleView}>
@@ -56,15 +56,12 @@ export default function Login({ navigation }) {
           null
         )}
         <View style={styles.loginButtonview}>
-          {userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true ? (
-            <TouchableOpacity disabled style={styles.loginButtonDisabled}>
-              <Text style={styles.buttonLabel}>{NAME_LOGIN.LOGIN_TEXT}</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity style={styles.loginButtonActive} onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}  >
-              <Text style={styles.buttonLabel} >{NAME_LOGIN.LOGIN_TEXT}</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
+            style={styles.loginButtonDisabled}
+            onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
+
+            <Text style={styles.buttonLabel}>{NAME_LOGIN.LOGIN_TEXT}</Text>
+          </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={() => navigation.navigate(NAVIGATION_SCREENS.FORGOT_SCREEN)}>

@@ -23,8 +23,8 @@ const Head = () => (
       onPress={() => { }} />
   </Appbar.Header>
 );
-export default Head;
 
+export default Head;
 const styles = StyleSheet.create({
   // header background 
   headercolor: {

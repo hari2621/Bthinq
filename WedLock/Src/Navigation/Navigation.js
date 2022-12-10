@@ -8,7 +8,6 @@ import Login from '../Screen/Login/Login';
 import Signup from '../Screen/Signup/SignUp';
 import BottomNavigator from './BottomNavigation';
 
-
 export default function App() {
     const Stack = createStackNavigator();
     return (
@@ -38,15 +37,12 @@ export default function App() {
                     options={{
                         headerShown: false
                     }} />
-
                 <Stack.Screen
                     name="BottomNavigator"
                     component={BottomNavigator}
                     options={{
                         headerShown: false
                     }} />
-
-
             </Stack.Navigator>
         </NavigationContainer>
 
