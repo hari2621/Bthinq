@@ -1,3 +1,4 @@
+//Forgot page Error
 export const ERROR_MESSAGE={
     EMAIL_INVALID:"Enter valid Email Id",
     PASSWORD_INVALID:"Password must be One Upper,Lowercase,& 8digit",
@@ -7,17 +8,21 @@ export const ERROR_MESSAGE={
     ENTER_CONFIRMPASSWORD:"Confirm New Password"
 
 }
+//Forgot page Color
 export const FORGOT_COLOR={
    BLACK:"#000000",
    RED:"red",
    WHITE:"white",
    ORANGERED:"orangered",
-   BACKGROUND:"#F54905",
-   BACKGROUND_INPUT:"rgba(52,52,52,0.7)"
+   BACKGROUND_INPUT:"white"
 }
+//Forgot page Title
 export const FORGOT_TITLE={
     TITLE_TEXT:"TOFO",
     TITLE_CONTENT:"Change Password"
+}
+export const FORGOT_VALIDATION ={
+    EMAIL:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 }
 export const TITLE={
     TITLETEXT:"TOFO",

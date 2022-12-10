@@ -5,11 +5,10 @@ import {
     Text,
     View,
     TextInput,
-    Image,
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { ERROR_MESSAGE } from '../../../Utility/constant';
+import { ERROR_MESSAGE, FORGOT_VALIDATION } from '../../../Utility/constant';
 import { FORGOT_COLOR } from '../../../Utility/constant';
 import { FORGOT_TITLE } from '../../../Utility/constant';
 
@@ -17,10 +16,9 @@ export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState()
     const checkEmail = validEmail => {
-        let re_whiteSpace = /\S+@\S+\.\S+/;
-        let regex_Forgot = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        let regex_Forgot = FORGOT_VALIDATION.EMAIL;
         setEmail(validEmail)
-        if (re_whiteSpace.test(validEmail) || regex_Forgot.test(validEmail)) {
+        if (regex_Forgot.test(validEmail)) {
             setCheckValidateEmail(false);
         } else {
             setCheckValidateEmail(true);
@@ -38,8 +36,7 @@ export default function Forgot({ navigation }) {
         <View style={styles.forgot}>
             <ImageBackground source={require('../../../Image/123.jpg')} style={styles.background}>
                 <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
-                <View style={styles.app}>
-                    <Image style={styles.Logo} source={require('../../../Image/AppLogo.png')} />
+                <View style={styles.main}>
                     <Text style={styles.Title}>{FORGOT_TITLE.TITLE_TEXT}</Text>
                     <View style={styles.textInput}>
                         <TextInput style={styles.text}
@@ -93,18 +90,11 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     //app content
-    app: {
+    main: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 70,
-        flex: 4
-    },
-
-    //appLogo
-    Logo: {
-        height: '40%',
-        width: '40%',
-        marginBottom: 30
+        marginTop: '60%',
+        flex: 4,
     },
     //appTitle
     Title: {
@@ -118,7 +108,7 @@ const styles = StyleSheet.create({
         width: 300,
         borderColor: FORGOT_COLOR.BLACK,
         borderWidth: 2,
-        marginTop: 50,
+        marginTop: 20,
         color: FORGOT_COLOR.BLACK
     },
     //input-box text
@@ -137,10 +127,10 @@ const styles = StyleSheet.create({
     //disabled button
     button: {
         height: 60,
-        backgroundColor: FORGOT_COLOR.BACKGROUND,
+        backgroundColor: FORGOT_COLOR.ORANGERED,
         width: 300,
         margin: 50,
-        borderRadius: 30
+        borderRadius: 30,
     },
     //Enable button
     button2: {
@@ -160,6 +150,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25
     },
-
-
 });
