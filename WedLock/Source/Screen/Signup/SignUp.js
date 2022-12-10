@@ -9,9 +9,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {
-  BACKGROUND_COLORS, BUTTONS,
-  ERRORMESSAGE, PLACEHOLDER, TITLE
-} from "../../../Utility/constant";
+   TITLE,
+   PLACEHOLDER,
+   BUTTONS,
+   ERRORMESSAGE,
+   BACKGROUND_COLORS,
+   REGEX
+   } from "../../../Utility/constant";
+   import Utils from "../../../Utility/Utility";
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -24,7 +29,7 @@ export default function Signup({ navigation }) {
   const [Confirm, setConfirmpass] = useState("");
   //User name Validation
   const userName = (text) => {
-    let rule = /^[a-zA-Z]{3,16}$/;
+    let rule =REGEX.USERNAME;
     setname(text)
     if (rule.test(text) || rule == 0) {
       setCheckValidateName(false);
@@ -32,22 +37,11 @@ export default function Signup({ navigation }) {
       setCheckValidateName(true);
     }
   };
-  //Email field
-  const checkEmail = (text) => {
-    let re = /\S+@\S+\.\S+/;
-    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    setEmail(text)
-    if (re.test(text) || regex.test(text)) {
-      setCheckValidateEmail(false);
-    } else {
-      setCheckValidateEmail(true);
-    }
-  };
   //password validation
   const checkPasswordValidity = (text) => {
-    let isNonWhiteSpace = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    let passwordWhiteSpace=REGEX.PASSWORD;
     setPassword(text);
-    if (isNonWhiteSpace.test(text)) {
+    if (passwordWhiteSpace.test(text)) {
       setCheckValidPass(false);
     }
     else {
@@ -58,25 +52,35 @@ export default function Signup({ navigation }) {
   const setConfirm = (text) => {
     setConfirmpass(text)
   };
+   //Email field
+   const checkEmail = (email) => {
+   
+    setEmail(email)
+    if(Utils.validateEmail(email)) {
+      setCheckValidateEmail(false);
+    } else {
+      setCheckValidateEmail(true);
+    }
+  };
   //Number validation
   const num = (numeri) => {
-    let rule = /^[0-9]{10}$/;
+    let numbervalid=REGEX.NUMBER;
     setnum(numeri)
-    if (rule.test(numeri) || rule == 0) {
+    if (numbervalid.test(numeri) || numbervalid == 0) {
       setnumcheck(false);
     } else {
       setnumcheck(true);
     }
   };
   return (
-    <View style={styles.container}>
-      <ImageBackground style={styles.backgroundImage} source={require('../../../Image/Leaves.jpg')}>
-        <View style={styles.signupform} >
-          <View style={styles.title} >
+    <View >
+      <ImageBackground style={styles.backgroundImage} source={require('../../../Image/bg.jpg')}>
+        <View style={styles.contentView} >
+          <View style={styles.titleTextView} >
             <Text style={styles.titleText}>{TITLE.TITLETEXT}</Text>
           </View>
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
+        <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
               placeholder={PLACEHOLDER.USERNAME} placeholderTextColor={"white"} value={Name} onChange={(e => setname(e.target.value))}
               onChangeText={(text) => userName(text)}
               underlineColorAndroid={'transparent'} />
@@ -84,10 +88,10 @@ export default function Signup({ navigation }) {
           {checkValidName ? (
             <Text style={styles.errorMessage}>{ERRORMESSAGE.USERNAME}</Text>
           ) : (
-            null
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput} secureTextEntry={true}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText} secureTextEntry={true}
               placeholder={PLACEHOLDER.PASSWORD} placeholderTextColor={"white"} value={password}
               onChangeText={(text) => checkPasswordValidity(text)}
               onChange={(e) => setPassword(e.target.value)}
@@ -96,10 +100,10 @@ export default function Signup({ navigation }) {
           {checkValidpass ? (
             <Text style={styles.errorMessage}>{ERRORMESSAGE.PASSWORD}</Text>
           ) : (
-            null
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
               placeholder={PLACEHOLDER.CONFIRM_PASSWORD} secureTextEntry={true}
               placeholderTextColor={"white"}
               onChangeText={(text) => setConfirm(text)} value={Confirm}
@@ -110,19 +114,19 @@ export default function Signup({ navigation }) {
           ) : (
             <Text style={styles.errorMessage}>{ERRORMESSAGE.CONFIRM_PASSWORD}</Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
-              placeholder={PLACEHOLDER.EMAIL} placeholderTextColor={"white"} value={email} onChangeText={(text) => checkEmail(text)}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
+              placeholder={PLACEHOLDER.EMAIL} placeholderTextColor={"white"} value={email} onChangeText={(email) => checkEmail(email)}
               underlineColorAndroid={'transparent'}
             />
           </View>
           {checkValidEmail ? (
             <Text style={styles.errorMessage}>{ERRORMESSAGE.EMAIL}</Text>
           ) : (
-            null
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.textbox}>
-            <TextInput style={styles.textinput}
+          <View style={styles.inputTextBox}>
+            <TextInput style={styles.inputText}
               placeholder={PLACEHOLDER.MOBILE_NUMBER} placeholderTextColor={"white"} value={Number} onChangeText={(numeri) => num(numeri)}
               keyboardType='numeric'
               maxLength={10}
@@ -131,18 +135,18 @@ export default function Signup({ navigation }) {
           {checkValidnum ? (
             <Text style={styles.errorMessage}>{ERRORMESSAGE.MOBILE_NUMBER}</Text>
           ) : (
-            null
+            <Text style={styles.errorMessage}></Text>
           )}
-          <View style={styles.buttonflex}>
-            <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Login')}>
+          <View style={styles.buttonFlex}>
+            <TouchableOpacity style={styles.backToLoginButton} onPress={() => navigation.navigate('Login')}>
               <View >
-                <Text style={styles.loginButtonText}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />{BUTTONS.BACK_TO_LOGIN}</Text>
+                <Text style={styles.backToLoginButtonText}><Icon name='doubleleft' size={20} color={'white'} alignItems={'center'} />{BUTTONS.BACK_TO_LOGIN}</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.disbut} >
+            <View style={styles.disabledButton}>
               {Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName ? (
-                <TouchableOpacity disabled style={styles.buttondisabled}>
-                  <Text style={styles.createbtn}>{BUTTONS.CREATE}</Text>
+                <TouchableOpacity disabled>
+                  <Text style={styles.createButtonText}>{BUTTONS.CREATE}</Text>
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate("BottomNavigator")}>
@@ -158,26 +162,22 @@ export default function Signup({ navigation }) {
 };
 //Stylesheet for signup screen
 const styles = StyleSheet.create({
-  //Overall View style
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  //Background Image
+ //Background Image
   backgroundImage: {
     width: '100%',
     height: '100%',
+   
   },
-  //View for total form
-  signupform: {
+   //Overall View style
+   contentView: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   //View for text TOFO
-  title: {
-    marginBottom: 30
+  titleTextView: {
+    marginBottom: 30,
+    marginTop:'30%'
   },
   //Style for text TOFO
   titleText: {
@@ -185,26 +185,26 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   //Textbox View
-  textbox: {
+  inputTextBox: {
     width: '80%',
     height: '5%',
     borderRadius: 30,
-    backgroundColor: BACKGROUND_COLORS.GREY,
+    backgroundColor: 'rgba(52,52, 52, 0.9)',
     borderWidth: 1,
     justifyContent: 'center',
     marginVertical: 5,
   },
   //Textbox input style
-  textinput: {
+inputText: {
     fontSize: 20,
-    color: BACKGROUND_COLORS.WHITE,
+    color: 'white',
     fontWeight: 'bold',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: "center"
   },
   //flex for buttons
-  buttonflex: {
+  buttonFlex:{
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     height: '15%',
   },
   //Back to Login Button
-  loginButton: {
+  backToLoginButton: {
     alignItems: 'center',
     backgroundColor: BACKGROUND_COLORS.ORANGE,
     width: '50%',
@@ -222,28 +222,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   //Back to Login Text
-  loginButtonText: {
-    color: BACKGROUND_COLORS.WHITE,
+  backToLoginButtonText: {
+    color: 'white',
     fontWeight: 'bold',
   },
   //Create button enabled
   createButton: {
     alignItems: 'center',
     justifyContent: 'center',
-
     width: '45%',
     height: '40%',
     borderRadius: 30,
-
   },
   //Create button disabled
-  buttondisabled: {
+  disabledButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: BACKGROUND_COLORS.GRAY,
+    backgroundColor: BACKGROUND_COLORS.PINK,
     width: '45%',
     height: '40%',
     borderRadius: 30,
+    borderWidth: 1,
   },
   //Create button text
   createButtonText: {

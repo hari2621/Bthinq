@@ -20,8 +20,8 @@ export const ERRORMESSAGE={
     MOBILE_NUMBER:"Enter valid number"
 }
 export const BACKGROUND_COLORS={
-    ORANGE:"#F2661B",
-    GRAY:"gray",
+    ORANGE:"orangered",
+    PINK:"#FAAFBA",
     GREY:"rgba(52,52, 52, 0.9)",
     WHITE:"#FFFFFF"
 }
@@ -83,4 +83,11 @@ export const PROFILE_FIELD={
     FEEDBACK:"Feddback",
     ABOUT_US:"About Us",
     LOG_OUT:"Logout"
+}
+export const REGEX = {
+    WHITESPACE:/\S+@\S+\.\S+/,
+    EMAIL:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+    USERNAME: /^[a-zA-Z]{3,16}$/,
+    PASSWORD:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+    NUMBER:/^[0-9]{10}$/,
 }
