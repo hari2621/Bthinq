@@ -1,7 +1,20 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, } from "react-native";
-import { COLOR, NAME_LOGIN, NAVIGATION_SCREENS } from "../../../Utility/Constant";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  Pressable,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
+import {
+  COLOR,
+  PAGE_CONTENT,
+  NAVIGATION_SCREENS,
+  ERROR_MESSAGE
+} from "../../../Utility/Constant";
 import Regex from "../../../Utility/Validation";
 
 export default function Login({ navigation }) {
@@ -31,47 +44,62 @@ export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundImage}>
-        <ImageBackground style={styles.backgroundImageSize} source={require('../../../assets/Image/Image_login.png')} />
+        <ImageBackground style={styles.backgroundImageSize}
+          source={require('../../../assets/Image/Image_login.png')} />
       </View>
       <View style={styles.inputBoxContainer}>
         <View style={styles.titleView}>
-          <Text style={styles.titleText}>{NAME_LOGIN.WELCOME}<Text style={styles.tittleTextColor}>{NAME_LOGIN.APP_NAME}</Text>{NAME_LOGIN.TYPE}</Text>
+          <Text style={styles.titleText}>{PAGE_CONTENT.WELCOME}
+            <Text style={styles.tittleTextColor}>{PAGE_CONTENT.APP_NAME}
+            </Text>{PAGE_CONTENT.TYPE}</Text>
         </View>
         <View style={styles.inputBox}>
-          <TextInput style={styles.inputText} maxLength={15} value={userName} onChangeText={userNameText => checkUsername(userNameText)}
-            placeholder={NAME_LOGIN.USERNAME} placeholderTextColor={COLOR.BLACK} />
+          <TextInput
+            style={styles.inputText}
+            maxLength={15}
+            value={userName}
+            onChangeText={userNameText => checkUsername(userNameText)}
+            placeholder={PAGE_CONTENT.USERNAME} placeholderTextColor={COLOR.BLACK} />
         </View>
         {checkvaildUsername ? (
-          <Text style={styles.errorMessageText}>{NAME_LOGIN.USERNAME_ERROR}</Text>
+          <Text style={styles.errorMessageText}>{ERROR_MESSAGE.USERNAME_ERROR}</Text>
         ) : (
           null
         )}
         <View style={styles.inputBox}>
-          <TextInput secureTextEntry={true} style={styles.inputText} maxLength={16}
-            placeholder={NAME_LOGIN.PASSWORD} value={Password} placeholderTextColor={COLOR.BLACK} onChangeText={passwordText => checkUserPassword(passwordText)} />
+          <TextInput
+            secureTextEntry={true}
+            style={styles.inputText}
+            maxLength={16}
+            placeholder={PAGE_CONTENT.PASSWORD}
+            value={Password}
+            placeholderTextColor={COLOR.BLACK}
+            onChangeText={passwordText => checkUserPassword(passwordText)} />
         </View>
         {checkvaildPassword ? (
-          <Text style={styles.errorMessageText}>{NAME_LOGIN.PASSWORD_ERROR}</Text>
+          <Text style={styles.errorMessageText}>{ERROR_MESSAGE.PASSWORD}</Text>
         ) : (
           null
         )}
         <View style={styles.loginButtonview}>
-          <TouchableOpacity disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
+          <TouchableOpacity
+            disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
             style={styles.loginButtonDisabled}
             onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
 
-            <Text style={styles.buttonLabel}>{NAME_LOGIN.LOGIN_TEXT}</Text>
+            <Text style={styles.buttonLabel}>{PAGE_CONTENT.LOGIN_TEXT}</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate(NAVIGATION_SCREENS.FORGOT_SCREEN)}>
-            <Text style={styles.forgotText}>{NAME_LOGIN.FORGOT}</Text>
+          <TouchableOpacity
+           onPress={() => navigation.navigate(NAVIGATION_SCREENS.FORGOT_SCREEN)}>
+            <Text style={styles.forgotText}>{PAGE_CONTENT.FORGOT}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.footer}>
-          <Text style={styles.footerText}>{NAME_LOGIN.NEW_ACCOUNT}</Text>
+          <Text style={styles.footerText}>{PAGE_CONTENT.NEW_ACCOUNT}</Text>
           <Pressable onPress={() => navigation.navigate(NAVIGATION_SCREENS.SIGN_UP)}>
-            <Text style={styles.signUpText}>{NAME_LOGIN.SIGNUP}</Text>
+            <Text style={styles.signUpText}>{PAGE_CONTENT.SIGNUP}</Text>
           </Pressable>
         </View>
         <StatusBar style="auto" />

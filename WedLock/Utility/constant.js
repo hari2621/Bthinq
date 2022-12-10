@@ -15,6 +15,7 @@ export const COLOR = {
     ORANGE:'orangered',
     BLUE:'blue',
     ORANGERED:"orangered",
+    TRANSPARENT:"transparent"
    }
 //Error Message
 export const ERROR_MESSAGE={
@@ -26,7 +27,8 @@ export const ERROR_MESSAGE={
     USERNAME:"Name is required",
     PASSWORD:"Please enter the valid password(Eg:Aaa@12)",
     CONFIRM_PASSWORD:"Password doesn't match",
-    MOBILE_NUMBER:"Enter valid number"
+    MOBILE_NUMBER:"Enter valid number",
+    USERNAME_ERROR:"Username is not Valid"
 }
 //page Title
 export const PAGE_CONTENT={
