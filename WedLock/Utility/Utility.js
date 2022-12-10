@@ -10,11 +10,13 @@ export default class Regex {
         let regex_password = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{9,}$/;
         return regex_password.test(Password1);
     }
-    //Email Validation
-    static validateEmail(email) {
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/;
-        return re.test(String(email));
+
+    //Forgot validation
+    static validateEmail(validEmail) {
+        let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return re.test(String(validEmail));
     }
+
 
 }
 

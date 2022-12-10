@@ -35,11 +35,6 @@ export const FORGOT_TITLE={
     TITLE_TEXT:"TOFO",
     TITLE_CONTENT:"Change Password"
 }
-//Forgot validation
-export const FORGOT_VALIDATION ={
-    EMAIL:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-    PASSWORD:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-}
 export const TITLE={
     TITLETEXT:"TOFO",
 }
@@ -53,6 +48,8 @@ export const PLACEHOLDER={
 export const BUTTONS={
     BACK_TO_LOGIN:"Back To Login",
     CREATE:"Create",
+    FORGOT:"Next",
+    CHANGE:"Submit"
 }
 export const ERRORMESSAGE={
     USERNAME:"Name is required",
@@ -73,7 +70,7 @@ export const NAVIGATION_SCREENS={
     LOGIN:"Login",
     HOME_SCREEN:"BottomNavigator",
     FORGOT_SCREEN:"Forgot",
-    CHANGE_SCREEN:"Change",
+    CHANGE_SCREEN:"ChangePassword",
     SIGN_UP:"SignUp",
 
 }

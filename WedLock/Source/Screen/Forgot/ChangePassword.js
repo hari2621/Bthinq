@@ -9,7 +9,8 @@ import {
   View,
   ImageBackground
 } from "react-native";
-import { ERROR_MESSAGE,FORGOT_COLOR,FORGOT_TITLE,FORGOT_VALIDATION } from '../../../Utility/constant';
+import { BUTTONS, ERROR_MESSAGE, FORGOT_COLOR, FORGOT_TITLE, NAVIGATION_SCREENS } from '../../../Utility/constant';
+import Regex from '../../../Utility/Utility';
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
@@ -17,10 +18,10 @@ export default function Change({ navigation }) {
   const [Confirm, setPass] = useState("");
   const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
 
+  // password validation
   const checkPasswordValidity = (checkPassword) => {
-    let regex_Password =FORGOT_VALIDATION.PASSWORD ;
     setPassword(checkPassword);
-    if (regex_Password.test(checkPassword)) {
+    if (Regex.validatePassword(checkPassword)) {
       setCheckValidPass(false);
     }
     else {
@@ -34,12 +35,8 @@ export default function Change({ navigation }) {
     } else {
       setCheckValidConfirm(false);
     }
-
-
   };
   return (
-
-
     <View style={styles.change}>
       <View style={styles.Logo}>
         <ImageBackground source={require('../../../Image/22.jpg')} style={styles.background} />
@@ -86,22 +83,14 @@ export default function Change({ navigation }) {
           )}
         </View>
         <View>
-          {(checkValidpass) || (password != Confirm) || (password == '') || (Confirm == '') ? (
-            <TouchableOpacity
-              disabled
-              style={styles.button}
-            >
-              <Text style={styles.btntxt}>Submit</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Login")}>
-              <Text style={styles.btntxt}>Submit</Text>
-            </TouchableOpacity>
-          )}
 
+          <TouchableOpacity disabled={checkValidpass || password != Confirm || password == '' || Confirm == ''}
+            style={styles.button}
+            onPress={() => navigation.navigate(NAVIGATION_SCREENS.LOGIN)} >
+            <Text style={styles.btntxt}>{BUTTONS.CHANGE}</Text>
+          </TouchableOpacity>
         </View>
       </View>
-
     </View>
   );
 }

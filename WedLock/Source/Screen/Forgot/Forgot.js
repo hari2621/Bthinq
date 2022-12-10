@@ -8,15 +8,16 @@ import {
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { ERROR_MESSAGE, FORGOT_VALIDATION, FORGOT_COLOR,FORGOT_TITLE} from '../../../Utility/constant';
+import { BUTTONS, ERROR_MESSAGE, FORGOT_COLOR, FORGOT_TITLE, NAVIGATION_SCREENS } from '../../../Utility/constant';
+import Regex from '../../../Utility/Utility';
 
 export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState()
+    // Email validation
     const checkEmail = validEmail => {
-        let regex_Forgot = FORGOT_VALIDATION.EMAIL;
         setEmail(validEmail)
-        if (regex_Forgot.test(validEmail)) {
+        if (Regex.validateEmail(email)) {
             setCheckValidateEmail(false);
         } else {
             setCheckValidateEmail(true);
@@ -25,7 +26,7 @@ export default function Forgot({ navigation }) {
     const changePassword = () => {
         const checkPassword = checkEmail(email);
         if (!checkPassword) {
-            navigation.navigate("ChangePassword");
+            navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN);
         } else {
             alert(checkPassword);
         }
@@ -50,21 +51,11 @@ export default function Forgot({ navigation }) {
                         )}
                     </View>
                     <View>
-                        {email == "" ||
-                            checkValidEmail == true ?
-                            (
-                                <TouchableOpacity
-                                    disabled
-                                    style={styles.button}
-                                    onPress={changePassword}
-                                >
-                                    <Text style={styles.btntxt}>Next</Text>
-                                </TouchableOpacity>
-                            ) : (
-                                <TouchableOpacity style={styles.button2} onPress={changePassword}>
-                                    <Text style={styles.btntxt}>Next</Text>
-                                </TouchableOpacity>
-                            )}
+                        <TouchableOpacity disabled={email == "" || checkValidEmail == true}
+                            style={styles.button}
+                            onPress={changePassword}>
+                            <Text style={styles.btntxt}>{BUTTONS.FORGOT}</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ImageBackground>
