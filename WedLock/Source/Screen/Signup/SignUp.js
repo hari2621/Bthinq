@@ -243,6 +243,7 @@ inputText: {
     height: '40%',
     borderRadius: 30,
     borderWidth: 1,
+    
   },
   //Create button text
   createButtonText: {
