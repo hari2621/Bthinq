@@ -4,15 +4,12 @@ import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBa
 import { COLOR, NAME_LOGIN, NAVIGATION_SCREENS } from "../../../Utility/constant";
 import Regex from "../../../Utility/Utility";
 
-
 export default function Login({ navigation }) {
   const [userName, setUsername] = useState("");
   const [checkvaildUsername, setvaildUsername] = useState(false);
   const [Password, setPassword] = useState("");
   const [checkvaildPassword, setvaildPassword] = useState(false);
-
-  const [Activebutton,InactiveButton] = useState("");
-  
+  //password Validation
   const checkUserPassword = passwordText => {
     setPassword(passwordText);
     if (Regex.validatePassword(Password)) {
@@ -21,6 +18,7 @@ export default function Login({ navigation }) {
       setvaildPassword(true);
     }
   }
+  //UserName Validation
   const checkUsername = userNameText => {
     setUsername(userNameText);
     if (Regex.validateUserName(userName)) {
@@ -30,7 +28,6 @@ export default function Login({ navigation }) {
       setvaildUsername(true);
     }
   }
-
   return (
     <View style={styles.container}>
       <View style={styles.backgroundImage}>
@@ -85,6 +82,7 @@ export default function Login({ navigation }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor:COLOR.WHITE
+    backgroundColor: COLOR.WHITE
   },
   backgroundImage: {
     flex: 4,
@@ -100,7 +98,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:COLOR.WHITE
+    backgroundColor: COLOR.WHITE
   },
   backgroundImageSize: {
     width: '100%',
@@ -108,7 +106,7 @@ const styles = StyleSheet.create({
   },
   // InputBox container for all content
   inputBoxContainer: {
-    flex:4,
+    flex: 4,
     width: '80%',
     height: '100%',
     justifyContent: 'flex-start',
@@ -125,9 +123,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-// Color for  App Name
+  // Color for  App Name
   tittleTextColor: {
-    color:COLOR.RED
+    color: COLOR.RED
   },
 
   //InputBox for userName and password
@@ -149,7 +147,7 @@ const styles = StyleSheet.create({
   //error message field
   errorMessageText: {
     alignSelf: 'flex-end',
-    color:COLOR.RED,
+    color: COLOR.RED,
     fontSize: 20,
   },
   //login Button View
@@ -166,7 +164,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:COLOR.ORANGE,
+    backgroundColor: COLOR.ORANGE,
     borderRadius: 30,
   },
   //login button for  active
@@ -175,7 +173,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:COLOR.ORANGE,
+    backgroundColor: COLOR.ORANGE,
     borderRadius: 50,
   },
   //Text for login
@@ -184,7 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    alignItems:'center'
+    alignItems: 'center'
   },
   //Forget text
   forgotText: {
@@ -200,12 +198,12 @@ const styles = StyleSheet.create({
   },
   //don't have an account Text
   footerText: {
-    color:COLOR.BLACK,
+    color: COLOR.BLACK,
     fontSize: 15
   },
   //SignUp text
   signUpText: {
-    color:COLOR.BLUE,
+    color: COLOR.BLUE,
     fontSize: 15,
     fontWeight: 'bold',
     marginHorizontal: 10

@@ -115,7 +115,7 @@ export const PROFILE_FIELD = {
     ABOUT_US: "About Us",
     LOG_OUT: "Logout"
 }
-//Home page images
+//App page images
 export const DEMO_IMAGE={
     ENGAGEMENT_IMAGE1:"https://styl-inc.com/wp-content/uploads/2022/04/Untitled-design-3.png",
     ENGAGEMENT_IMAGE2:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ56x1Qn31pHNTO4hrCBpDMvbrhFs-F_yQgyA&usqp=CAU",
@@ -134,6 +134,7 @@ export const DEMO_IMAGE={
     WEDDING_IMAGE3:"https://www.7eventzz.com/blog/wp-content/uploads/2022/03/chennaieventsanddecors_270572097_3149245691983782_6146114254369164377_n-1024x878.jpg",
     OTHERS1:"https://secureservercdn.net/45.40.150.54/ihr.09f.myftpupload.com/wp-content/uploads/2018/01/best-south-indian-food-wedding-lunch.jpg?time=1659995476",
     OTHERS2:"https://antphotography.in/wp-content/uploads/2019/08/Aditya-and-Chandani-fantastic-pre-wedding-photoshoot-in-Alibaug-and-Tamini-Ghat-Pune23.jpg",
+    Login_Image:"../../../Image/back1.png"
 }
 export const REGEX = {
     WHITESPACE:/\S+@\S+\.\S+/,
