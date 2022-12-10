@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+
 const Style = StyleSheet.create({
     buttonContainer: {
         marginTop: 10,
@@ -9,9 +10,6 @@ const Style = StyleSheet.create({
         width: 250,
         borderRadius: 30,
         backgroundColor: "#F77D3B",
-      },
-      
-      
-    
-})
+      }})
+
 export {Style}
