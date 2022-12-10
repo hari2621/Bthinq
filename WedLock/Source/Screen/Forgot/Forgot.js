@@ -8,9 +8,7 @@ import {
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { ERROR_MESSAGE, FORGOT_VALIDATION } from '../../../Utility/constant';
-import { FORGOT_COLOR } from '../../../Utility/constant';
-import { FORGOT_TITLE } from '../../../Utility/constant';
+import { ERROR_MESSAGE, FORGOT_VALIDATION, FORGOT_COLOR,FORGOT_TITLE} from '../../../Utility/constant';
 
 export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
