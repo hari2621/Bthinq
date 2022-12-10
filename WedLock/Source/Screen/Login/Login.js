@@ -2,37 +2,35 @@ import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TextInput, View, Text, Pressable, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
 import { COLOR, NAME_LOGIN, NAVIGATION_SCREENS } from "../../../Utility/constant";
-const responseWidth = Dimensions.get('window').width;
-const responseHeight = Dimensions.get('window').height;
-console.log(responseWidth);
-console.log(responseHeight);
+import Regex from "../../../Utility/Utility";
+
+
 export default function Login({ navigation }) {
   const [userName, setUsername] = useState("");
   const [checkvaildUsername, setvaildUsername] = useState(false);
   const [Password, setPassword] = useState("");
   const [checkvaildPassword, setvaildPassword] = useState(false);
-  const checkUserPassword = text => {
-    let re = /\S+@\S+\S+/;
-    let regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{3,10}$/;
-    setPassword(text);
-    if (re.test(text) || regex.test(text)) {
+
+  const [Activebutton,InactiveButton] = useState("");
+  
+  const checkUserPassword = passwordText => {
+    setPassword(passwordText);
+    if (Regex.validatePassword(Password)) {
       setvaildPassword(false);
     } else {
       setvaildPassword(true);
     }
   }
-  const checkUsername = text => {
-    let re = /\S+@\S+\S+/;
-    let regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]{0,1})[A-Za-z\d@$!%*#?&]{8,10}$/;
-    setUsername(text);
-    if (re.test(text) || regex.test(text)) {
+  const checkUsername = userNameText => {
+    setUsername(userNameText);
+    if (Regex.validateUserName(userName)) {
       setvaildUsername(false);
     }
     else {
       setvaildUsername(true);
     }
   }
- 
+
   return (
     <View style={styles.container}>
       <View style={styles.backgroundImage}>
@@ -43,7 +41,7 @@ export default function Login({ navigation }) {
           <Text style={styles.titleText}>{NAME_LOGIN.WELCOME}<Text style={styles.tittleTextColor}>{NAME_LOGIN.APP_NAME}</Text>{NAME_LOGIN.TYPE}</Text>
         </View>
         <View style={styles.inputBox}>
-          <TextInput style={styles.inputText} maxLength={15} value={userName} onChangeText={text => checkUsername(text)}
+          <TextInput style={styles.inputText} maxLength={15} value={userName} onChangeText={userNameText => checkUsername(userNameText)}
             placeholder={NAME_LOGIN.USERNAME} placeholderTextColor={COLOR.BLACK} />
         </View>
         {checkvaildUsername ? (
@@ -52,8 +50,8 @@ export default function Login({ navigation }) {
           null
         )}
         <View style={styles.inputBox}>
-          <TextInput secureTextEntry={true} style={styles.inputText} maxLength={15}
-            placeholder={NAME_LOGIN.PASSWORD} value={Password} placeholderTextColor={COLOR.BLACK} onChangeText={text => checkUserPassword(text)} />
+          <TextInput secureTextEntry={true} style={styles.inputText} maxLength={16}
+            placeholder={NAME_LOGIN.PASSWORD} value={Password} placeholderTextColor={COLOR.BLACK} onChangeText={passwordText => checkUserPassword(passwordText)} />
         </View>
         {checkvaildPassword ? (
           <Text style={styles.errorMessageText}>{NAME_LOGIN.PASSWORD_ERROR}</Text>
@@ -61,7 +59,7 @@ export default function Login({ navigation }) {
           null
         )}
         <View style={styles.loginButtonview}>
-          { checkvaildUsername == true || checkvaildPassword == true ? (
+          {userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true ? (
             <TouchableOpacity disabled style={styles.loginButtonDisabled}>
               <Text style={styles.buttonLabel}>{NAME_LOGIN.LOGIN_TEXT}</Text>
             </TouchableOpacity>
