@@ -72,6 +72,7 @@ export const NAVIGATION_SCREENS={
     LOGIN:"Login",
     HOME_SCREEN:"BottomNavigator",
     FORGOT_SCREEN:"Forgot",
+    CHANGE_SCREEN:"Change",
     SIGN_UP:"SignUp",
 
 }
