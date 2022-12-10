@@ -15,8 +15,9 @@ import {
    ERRORMESSAGE,
    BACKGROUND_COLORS,
    REGEX
-   } from "../../../Utility/constant";
-   import Utils from "../../../Utility/Utility";
+   } from "../../../Utility/Constant";
+import Regex from "../../../Utility/Validation";
+ 
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -56,7 +57,7 @@ export default function Signup({ navigation }) {
    const checkEmail = (email) => {
    
     setEmail(email)
-    if(Utils.validateEmail(email)) {
+    if(Regex.validateEmail(email)) {
       setCheckValidateEmail(false);
     } else {
       setCheckValidateEmail(true);
@@ -74,7 +75,7 @@ export default function Signup({ navigation }) {
   };
   return (
     <View >
-      <ImageBackground style={styles.backgroundImage} source={require('../../../Image/bg.jpg')}>
+      <ImageBackground style={styles.backgroundImage} source={require('../../../assets/Image/Image_signup.jpg')}>
         <View style={styles.contentView} >
           <View style={styles.titleTextView} >
             <Text style={styles.titleText}>{TITLE.TITLETEXT}</Text>

@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { ERROR_MESSAGE, FORGOT_VALIDATION, FORGOT_COLOR,FORGOT_TITLE} from '../../../Utility/constant';
+import { ERROR_MESSAGE, FORGOT_VALIDATION, FORGOT_COLOR,FORGOT_TITLE} from '../../../Utility/Constant';
 
 export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
@@ -32,7 +32,7 @@ export default function Forgot({ navigation }) {
     };
     return (
         <View style={styles.forgot}>
-            <ImageBackground source={require('../../../Image/123.jpg')} style={styles.background}>
+            <ImageBackground source={require('../../../assets/Image/Image_F.jpg')} style={styles.background}>
                 <StatusBar translucent backgroundColor={FORGOT_COLOR.WHITE} barStyle="light-content" />
                 <View style={styles.main}>
                     <Text style={styles.Title}>{FORGOT_TITLE.TITLE_TEXT}</Text>

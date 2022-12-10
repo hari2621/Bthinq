@@ -6,13 +6,13 @@ import {
   Image,
   ImageBackground
 } from 'react-native';
-import { BACKGROUND_COLOUR, PROFILE_FIELD } from '../../../Utility/constant';
+import { BACKGROUND_COLOUR, PROFILE_FIELD } from '../../../Utility/Constant';
 
 export default function Profile({ navigation }) {
   return (
-    <ImageBackground style={styles.img} source={require('../../../Image/f1.png')}>
+    <ImageBackground style={styles.img} source={require('../../../assets/Image/Profile_bg.png')}>
       <View style={styles.container}>
-        <Image style={styles.avatar} source={require('../../../Image/testing.png')} />
+        <Image style={styles.avatar} source={require('../../../assets/Image/testing.png')} />
         <View style={styles.body}>
           <TouchableOpacity style={styles.buttonContainer}>
             <Text> {PROFILE_FIELD.PROFILE}</Text>
