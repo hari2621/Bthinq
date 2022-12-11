@@ -9,7 +9,7 @@ import {
   View,
   ImageBackground
 } from "react-native";
-import { BACKGROUND_COLORS, COLOR, ERROR_MESSAGE, PAGE_CONTENT } from '../../../Utility/Constant';
+import { BACKGROUND_COLORS, COLOR, ERROR_MESSAGE, PAGE_CONTENT } from '../../../Utility/Constants';
 import Regex from '../../../Utility/Validation';
 
 

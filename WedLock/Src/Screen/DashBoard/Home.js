@@ -17,7 +17,7 @@ import {
   DEMO_IMAGE,
   BACKGROUND_COLORS,
   STYLE
-} from '../../../Utility/Constant';
+} from '../../../Utility/Constants';
 
 const ListItem = ({ item }) => {
   return (
@@ -41,7 +41,7 @@ export default function Home() {
     <View style={styles.container}>
       <Head />
       <ImageBackground
-        source={require("../../../Image/14.png")}
+        source={require("../../../assets/Image/Home_bg.png")}
         resizeMode={STYLE.RECOVERSIZE_MODE}
         style={styles.backgroundimage}>
         <StatusBar

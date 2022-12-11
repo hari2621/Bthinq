@@ -14,7 +14,7 @@ import {
   PAGE_CONTENT,
   NAVIGATION_SCREENS,
   ERROR_MESSAGE
-} from "../../../Utility/Constant";
+} from "../../../Utility/Constants";
 import Regex from "../../../Utility/Validation";
 
 export default function Login({ navigation }) {
@@ -166,14 +166,14 @@ const styles = StyleSheet.create({
   //input field Text
   inputText: {
     fontSize: 20,
-    color: 'black',
+    color: COLOR.BLACK,
     marginHorizontal: 10
   },
   //error message field
   errorMessageText: {
-    alignSelf: 'flex-end',
+    alignSelf: 'baseline',
     color: COLOR.RED,
-    fontSize: 20,
+    fontSize: 15,
   },
   //login Button View
   loginButtonview: {

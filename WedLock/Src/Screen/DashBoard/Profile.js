@@ -10,17 +10,17 @@ import {
   BACKGROUND_COLORS,
   PROFILE_FIELD,
   NAVIGATION_SCREENS
-} from '../../../Utility/Constant';
+} from '../../../Utility/Constants';
 
 export default function Profile({ navigation }) {
   return (
     <ImageBackground
       style={styles.img}
-      source={require('../../../Image/f1.png')}>
+      source={require('../../../assets/Image/Profile_bg.png')}>
       <View style={styles.container}>
         <Image
           style={styles.avatar}
-          source={require('../../../Image/testing.png')} />
+          source={require('../../../assets/Image/testing.png')} />
         <View style={styles.body}>
           <TouchableOpacity style={styles.buttonContainer}>
             <Text> {PROFILE_FIELD.PROFILE}</Text>

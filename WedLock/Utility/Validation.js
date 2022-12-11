@@ -1,3 +1,4 @@
+import { REGEX } from "./Constants";
 export default class Regex {
     //UserName Validation
     static validateUserName(userName) {
@@ -9,12 +10,31 @@ export default class Regex {
         let regex_password = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
         return regex_password.test(Password1);
     }
-
     //Forgot validation
     static validateEmail(validEmail) {
         let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        return re.test(String(validEmail));
+        return re.test(validEmail);
     }
+    //Email Validation
+    static validateEmail(email) {
+        let regex_email =REGEX.EMAIL;
+        return regex_email.test(String(email));
+    }
+    //Number Validation
+    static validateNumber(mobnumber){
+        let regex_mob=REGEX.NUMBER;
+        return regex_mob.test(mobnumber);
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

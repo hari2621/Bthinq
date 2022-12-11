@@ -8,8 +8,15 @@ import {
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import { ERROR_MESSAGE, COLOR, PAGE_CONTENT} from '../../../Utility/Constant';
+import {
+    ERROR_MESSAGE,
+    COLOR,
+    BACKGROUND_COLORS,
+    PAGE_CONTENT,
+    PLACEHOLDER
+} from '../../../Utility/Constants'; 
 import Regex from '../../../Utility/Validation';
+
 export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState()
@@ -32,28 +39,35 @@ export default function Forgot({ navigation }) {
     };
     return (
         <View style={styles.forgot}>
-            <ImageBackground source={require('../../../assets/Image/Image_F.jpg')} style={styles.background}>
-                <StatusBar translucent backgroundColor={COLOR.WHITE} barStyle="light-content" />
+            <ImageBackground
+                source={require('../../../assets/Image/Image_F.jpg')}
+                style={styles.background}>
+                <StatusBar
+                    translucent
+                    backgroundColor={COLOR.WHITE}
+                    barStyle="light-content" />
                 <View style={styles.main}>
                     <Text style={styles.Title}>{PAGE_CONTENT.APP_NAME}</Text>
                     <View style={styles.textInput}>
                         <TextInput style={styles.text}
-                            placeholder={ERROR_MESSAGE.ENTER_EMAILID} placeholderTextColor={COLOR.BLACK} value={email}
+                            placeholder={PLACEHOLDER.EMAIL}
+                            placeholderTextColor={COLOR.BLACK}
+                            value={email}
                             onChangeText={validEmail => checkEmail(validEmail)}
-                            underlineColorAndroid={'transparent'} />
+                            underlineColorAndroid={BACKGROUND_COLORS.TRANSPARENT} />
                     </View>
                     <View style={styles.errorMessage}>
                         {checkValidEmail ? (
                             <Text style={styles.textFailed}>{ERROR_MESSAGE.EMAIL_INVALID}</Text>
                         ) : (
-                            <Text></Text>
+                            null
                         )}
                     </View>
                     <View>
                         <TouchableOpacity disabled={email == "" || checkValidEmail == true}
                             style={styles.button}
                             onPress={changePassword}>
-                            <Text style={styles.btntxt}>{BUTTONS.FORGOT}</Text>
+                            <Text style={styles.btntxt}>{PLACEHOLDER.NEXT_BUTTON}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -61,7 +75,6 @@ export default function Forgot({ navigation }) {
         </View>
     );
 }
-
 //stylesheet for forgot screen
 const styles = StyleSheet.create({
     //overall

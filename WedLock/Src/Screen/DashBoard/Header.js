@@ -5,14 +5,14 @@ import {
   COLOR,
   PAGE_CONTENT,
   TAB_NAME
-} from '../../../Utility/Constant';
+} from '../../../Utility/Constants';
 
 const Head = () => (
   <Appbar.Header
     style={styles.headercolor}
     activeColor={COLOR.WHITE} >
     <Image
-      source={require('../../../Image/AppLogo.png')}
+      source={require('../../../assets/Image/AppLogo.png')}
       style={styles.Logo} />
     <Appbar.Content
       style={styles.headerTitleStyle}

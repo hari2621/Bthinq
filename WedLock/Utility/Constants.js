@@ -4,7 +4,8 @@ export const BACKGROUND_COLORS={
     GREY:"rgba(52,52, 52, 0.9)",
     WHITE:"#FFFFFF",
     ORANGE_:"#F77D3B",
-    BLACK:"#000000"
+    BLACK:"#000000",
+    TRANSPARENT:"transparent",
 }
 export const COLOR = {
     BLACK:"#000000",
@@ -29,7 +30,7 @@ export const ERROR_MESSAGE={
     ENTER_NEWPASSWORD:"New Password",
     ENTER_CONFIRMPASSWORD:"Confirm New Password",
     USERNAME:"Name is required",
-    PASSWORD:"Please enter the valid password(Eg:Aaa@12)",
+    PASSWORD:"Enter valid password(Eg:Aaa@12)",
     CONFIRM_PASSWORD:"Password doesn't match",
     MOBILE_NUMBER:"Enter valid number",
     USERNAME_ERROR:"Username is not Valid"
@@ -47,12 +48,8 @@ export const PAGE_CONTENT={
         SIGNUP:"Sign Up",
         NEW_ACCOUNT:"Don't have an account?",
         BACK_TO_LOGIN:"Back To Login",
-        CREATE:"Create",
-        NEXT:"Next",
-        SUBMIT:"Submit"
-       
-   
-    
+        CREATE:"Create" ,
+        KEYBOARD:"numeric"    
 }
 //placeholder inputbox
 export const PLACEHOLDER={
@@ -60,7 +57,9 @@ export const PLACEHOLDER={
     PASSWORD:"Password",
     CONFIRM_PASSWORD:"Confirm Password",
     EMAIL:"Email",
-    MOBILE_NUMBER:"Mobile Number"
+    MOBILE_NUMBER:"Mobile Number",
+    SUBMIT:"Submit" ,
+    NEXT_BUTTON:"Next"   
 }
 //navigation screens 
 export const NAVIGATION_SCREENS={
@@ -72,12 +71,13 @@ export const NAVIGATION_SCREENS={
 }
 //tab screen icon name
 export const TAB_NAME = {
-    HOME: "Home",
+    HOME: "home",
     CHECKLIST: "Checklist",
     USER: "User",
     MENU:"menu",
     BELL:"bell",
-    ACCOUNT:"account"
+    ACCOUNT:"account",
+    DOUBLE_LEFT:"doubleleft"
 }
 // section header of home page 
 export const HOME_SECTION_HEADER = {
@@ -124,4 +124,5 @@ export const REGEX = {
     PASSWORD:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
     NUMBER:/^[0-9]{10}$/,
     EMAIL_FORGOT:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
 }
