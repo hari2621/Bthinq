@@ -1,4 +1,3 @@
-
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import {
@@ -9,16 +8,21 @@ import {
   View,
   ImageBackground
 } from "react-native";
-import { BACKGROUND_COLORS, COLOR, ERROR_MESSAGE, PAGE_CONTENT } from '../../../Utility/Constants';
+import {
+  BACKGROUND_COLORS,
+  COLOR,
+  ERROR_MESSAGE,
+  PAGE_CONTENT,
+  NAVIGATION_SCREENS,
+  PLACEHOLDER
+} from '../../../Utility/Constants';
 import Regex from '../../../Utility/Validation';
-
 
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
   const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
-
   // password validation
   const checkPasswordValidity = (checkPassword) => {
     setPassword(checkPassword);
@@ -42,7 +46,9 @@ export default function Change({ navigation }) {
       <View style={styles.Logo}>
         <ImageBackground source={require('../../../assets/Image/Image_csp.jpg')} style={styles.background} />
       </View>
-      <StatusBar translucent backgroundColor={COLOR.WHITE} barStyle="light-content" />
+      <StatusBar translucent
+        backgroundColor={COLOR.WHITE}
+        barStyle={COLOR.LIGHT_CONTENT} />
       <View style={styles.main}>
         <Text style={styles.Title}>{PAGE_CONTENT.CHANGEPASSWORD_TITLE}</Text>
         <View style={styles.textInput}>
@@ -50,7 +56,7 @@ export default function Change({ navigation }) {
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_NEWPASSWORD}
             placeholderTextColor={COLOR.BLACK}
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={BACKGROUND_COLORS.TRANSPARENT}
             value={password}
             maxLength={10}
             onChangeText={(checkPassword) => checkPasswordValidity(checkPassword)}
@@ -84,18 +90,16 @@ export default function Change({ navigation }) {
           )}
         </View>
         <View>
-
           <TouchableOpacity disabled={checkValidpass || password != Confirm || password == '' || Confirm == ''}
             style={styles.button}
             onPress={() => navigation.navigate(NAVIGATION_SCREENS.LOGIN)} >
-            <Text style={styles.btntxt}>{BUTTONS.CHANGE}</Text>
+            <Text style={styles.btntxt}>{PLACEHOLDER.SUBMIT}</Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 }
-
 //stylesheet for changepassword screen
 const styles = StyleSheet.create({
   //overall

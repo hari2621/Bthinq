@@ -8,6 +8,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { StatusBar } from 'expo-status-bar';
 import {
    PLACEHOLDER,
    ERROR_MESSAGE,
@@ -27,10 +28,11 @@ export default function Signup({ navigation }) {
   const [checkValidnum, setNumCheck] = useState(false);
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setConfirmpass] = useState("");
+  const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
   //User name Validation
   const userName = (text) => {
     setName(text)
-    if (Regex.validateUserName(userName)) {
+    if (Regex.validateUserName(Name)) {
       setCheckValidateName(false);
     } else {
       setCheckValidateName(true);
@@ -47,13 +49,18 @@ export default function Signup({ navigation }) {
     };
   };
   //confirm password Validation
-  const setConfirm = (text) => {
-    setConfirmpass(text)
+  const setConfirm = (checkConfirm) => {
+    setConfirmpass(checkConfirm);
+    if (password == checkConfirm) {
+      setCheckValidConfirm(true);
+    } else {
+      setCheckValidConfirm(false);
+    }
   };
   //Email field
-  const checkEmail = (email) => {
-    setEmail(email)
-    if (Regex.validateEmail(email)) {
+  const checkEmail = (text) => {
+    setEmail(text)
+    if (Regex.validateEmail_Forgot(email)) {
       setCheckValidateEmail(false);
     } else {
       setCheckValidateEmail(true);
@@ -73,6 +80,10 @@ export default function Signup({ navigation }) {
       <ImageBackground 
       style={styles.backgroundImage} 
       source={require('../../../assets/Image/Image_signup.jpg')}>
+        <StatusBar
+                    translucent
+                    backgroundColor={COLOR.WHITE}
+                    barStyle={COLOR.LIGHT_CONTENT} />
         <View style={styles.contentView} >
           <View style={styles.titleTextView} >
             <Text style={styles.titleText}>{PAGE_CONTENT.APP_NAME}</Text>
@@ -112,11 +123,11 @@ export default function Signup({ navigation }) {
               placeholder={PLACEHOLDER.CONFIRM_PASSWORD} 
               secureTextEntry={true}
               placeholderTextColor={COLOR.WHITE}
-              onChangeText={(text) => setConfirm(text)}
+              onChangeText={(checkConfirm) => setConfirm(checkConfirm)}
                value={Confirm}
               underlineColorAndroid={COLOR.TRANSPARENT} />
           </View>
-          {password == Confirm ? (
+          {checkValidpConfirm? (
             <Text style={styles.errorMessage}></Text>
           ) : (
             <Text style={styles.errorMessage}>{ERROR_MESSAGE.CONFIRM_PASSWORD}</Text>
@@ -126,12 +137,12 @@ export default function Signup({ navigation }) {
               placeholder={PLACEHOLDER.EMAIL}
                placeholderTextColor={COLOR.WHITE} 
                value={email} 
-               onChangeText={(email) => checkEmail(email)}
+               onChangeText={(text) => checkEmail(text)}
               underlineColorAndroid={COLOR.TRANSPARENT}
             />
           </View>
           {checkValidEmail ? (
-            <Text style={styles.errorMessage}>{ERROR_MESSAGE.EMAIL}</Text>
+            <Text style={styles.errorMessage}>{ERROR_MESSAGE.EMAIL_INVALID}</Text>
           ) : (
             <Text style={styles.errorMessage}></Text>
           )}
@@ -162,7 +173,7 @@ export default function Signup({ navigation }) {
             <View style={styles.disabledButton}>
               <TouchableOpacity 
               disabled={Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName}
-                 onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
+                 onPress={() => navigation.replace(NAVIGATION_SCREENS.HOME_SCREEN)}>
                   <Text style={styles.createButtonText}>{PAGE_CONTENT.CREATE}</Text>
                 </TouchableOpacity>
               </View>
@@ -234,10 +245,9 @@ const styles = StyleSheet.create({
   },
   //Back to Login Text
   backToLoginButtonText: {
-    color: COLOR.WHITE,
     fontWeight: 'bold',
     size: 20,
-    color: COLOR.WHITE,
+    color: COLOR.BLACK,
     alignItems: 'center'
   },
   //Create button enabled
@@ -260,7 +270,7 @@ const styles = StyleSheet.create({
   },
   //Create button text
   createButtonText: {
-    color: COLOR.WHITE,
+    color: COLOR.BLACK,
     fontWeight: 'bold',
   },
   //Error msg style

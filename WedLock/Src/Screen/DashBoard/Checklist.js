@@ -4,7 +4,7 @@ import React from 'react';
 export default function Checklist() {
   return (
     <View style={Styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Checklist Soon...</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -15,6 +15,7 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    fontSize:20
   },
 });
 

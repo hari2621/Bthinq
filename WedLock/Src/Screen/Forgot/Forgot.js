@@ -13,17 +13,18 @@ import {
     COLOR,
     BACKGROUND_COLORS,
     PAGE_CONTENT,
-    PLACEHOLDER
-} from '../../../Utility/Constants'; 
+    PLACEHOLDER,
+    NAVIGATION_SCREENS
+} from '../../../Utility/Constants';
 import Regex from '../../../Utility/Validation';
 
 export default function Forgot({ navigation }) {
     const [email, setEmail] = useState("")
-    const [checkValidEmail, setCheckValidateEmail] = useState()
+    const [checkValidEmail, setCheckValidateEmail] = useState(false)
     // Email validation
     const checkEmail = validEmail => {
         setEmail(validEmail)
-        if (Regex.validateEmail(email)) {
+        if (Regex.validateEmail_Forgot(email)) {
             setCheckValidateEmail(false);
         } else {
             setCheckValidateEmail(true);
@@ -45,7 +46,7 @@ export default function Forgot({ navigation }) {
                 <StatusBar
                     translucent
                     backgroundColor={COLOR.WHITE}
-                    barStyle="light-content" />
+                    barStyle={COLOR.LIGHT_CONTENT} />
                 <View style={styles.main}>
                     <Text style={styles.Title}>{PAGE_CONTENT.APP_NAME}</Text>
                     <View style={styles.textInput}>

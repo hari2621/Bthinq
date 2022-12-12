@@ -49,8 +49,7 @@ export default function Home() {
           backgroundColor={BACKGROUND_COLORS.WHITE}
           barStyle={COLOR.DARK_CONTENT} />
         <SafeAreaView style={{ flex: 1 }}>
-
-          <SectionList
+         <SectionList
             contentContainerStyle={{ paddingHorizontal: 10 }}
             stickySectionHeadersEnabled={false}
             sections={SECTIONS}
@@ -79,7 +78,6 @@ export default function Home() {
     </View>
   );
 };
-
 const SECTIONS = [
   {
     title: HOME_SECTION_HEADER.ENGAGEMENT,
@@ -177,18 +175,17 @@ const SECTIONS = [
     data: [
       {
         key: '1',
-        text: 'Food Items',
+        text: HOME_SECTION_HEADER.FOOD,
         uri: DEMO_IMAGE.OTHERS1,
       },
       {
         key: '2',
-        text: 'Photography',
+        text: HOME_SECTION_HEADER.PHOTOGRAPHY,
         uri: DEMO_IMAGE.OTHERS2,
       },
     ],
   },
 ];
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -59,7 +59,8 @@ export default function Login({ navigation }) {
             maxLength={15}
             value={userName}
             onChangeText={userNameText => checkUsername(userNameText)}
-            placeholder={PAGE_CONTENT.USERNAME} placeholderTextColor={COLOR.BLACK} />
+            placeholder={PAGE_CONTENT.USERNAME}
+            placeholderTextColor={COLOR.BLACK} />
         </View>
         {checkvaildUsername ? (
           <Text style={styles.errorMessageText}>{ERROR_MESSAGE.USERNAME_ERROR}</Text>
@@ -86,13 +87,12 @@ export default function Login({ navigation }) {
             disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
             style={styles.loginButtonDisabled}
             onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
-
             <Text style={styles.buttonLabel}>{PAGE_CONTENT.LOGIN_TEXT}</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity
-           onPress={() => navigation.navigate(NAVIGATION_SCREENS.FORGOT_SCREEN)}>
+            onPress={() => navigation.navigate(NAVIGATION_SCREENS.FORGOT_SCREEN)}>
             <Text style={styles.forgotText}>{PAGE_CONTENT.FORGOT}</Text>
           </TouchableOpacity>
         </View>
@@ -102,12 +102,15 @@ export default function Login({ navigation }) {
             <Text style={styles.signUpText}>{PAGE_CONTENT.SIGNUP}</Text>
           </Pressable>
         </View>
-        <StatusBar style="auto" />
+        <StatusBar
+          translucent
+          backgroundColor={COLOR.WHITE}
+          barStyle={COLOR.LIGHT_CONTENT} />
       </View>
     </View>
   );
 }
-
+//parent Container
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -174,6 +177,7 @@ const styles = StyleSheet.create({
     alignSelf: 'baseline',
     color: COLOR.RED,
     fontSize: 15,
+    marginHorizontal: 8
   },
   //login Button View
   loginButtonview: {
