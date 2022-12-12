@@ -18,6 +18,7 @@ import {
    COLOR
    } from "../../../Utility/Constants";
 import Regex from "../../../Utility/Validation";
+
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
