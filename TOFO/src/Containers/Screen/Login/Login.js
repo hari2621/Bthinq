@@ -53,7 +53,7 @@ export default function Login({ navigation }) {
             <Text style={styles.tittleTextColor}>{PAGE_CONTENT.APP_NAME}
             </Text>{PAGE_CONTENT.TYPE}</Text>
         </View>
-        <View style={styles.inputBox}>
+        <View style={styles.inputBox_userName}>
           <TextInput
             style={styles.inputText}
             maxLength={15}
@@ -67,7 +67,7 @@ export default function Login({ navigation }) {
         ) : (
           null
         )}
-        <View style={styles.inputBox}>
+        <View style={styles.inputBox_password}>
           <TextInput
             secureTextEntry={true}
             style={styles.inputText}
@@ -82,7 +82,7 @@ export default function Login({ navigation }) {
         ) : (
           null
         )}
-        <View style={styles.loginButtonview}>
+        <View>
           <TouchableOpacity
             disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
             style={styles.loginButtonDisabled}
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.WHITE
   },
   backgroundImage: {
-    flex: 4,
+    flex:3,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   // InputBox container for all content
   inputBoxContainer: {
-    flex: 4,
+    flex:3,
     width: '80%',
     height: '100%',
     justifyContent: 'flex-start',
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   // tittle space
   titleView: {
-    marginVertical: 10
+    margin:15
   },
   //Title color and font Size
   titleText: {
@@ -155,29 +155,36 @@ const styles = StyleSheet.create({
   tittleTextColor: {
     color: COLOR.RED
   },
-
-  //InputBox for userName and password
-  inputBox: {
+  //InputBox for userName 
+  inputBox_userName: {
     width: '100%',
-    height: '10%',
     justifyContent: 'center',
     borderWidth: 1,
     borderRadius: 30,
     backgroundColor: COLOR.WHITE,
-    marginVertical: 5
+    alignContent:'space-between',
+  },
+  // //InputBox for password
+  inputBox_password: {
+    width: '100%',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 30,
+    backgroundColor: COLOR.WHITE,
+    margin:8
   },
   //input field Text
   inputText: {
     fontSize: 20,
     color: COLOR.BLACK,
-    marginHorizontal: 10
+    marginLeft:10
   },
   //error message field
   errorMessageText: {
     alignSelf: 'baseline',
     color: COLOR.RED,
     fontSize: 15,
-    marginHorizontal: 8
+    marginLeft:10
   },
   //login Button View
   loginButtonview: {
@@ -185,25 +192,16 @@ const styles = StyleSheet.create({
     height: '10%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 10
   },
   //Button disable for login
   loginButtonDisabled: {
-    width: '100%',
-    height: '100%',
+    width:300,
+    height:40,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLOR.ORANGE,
     borderRadius: 30,
-  },
-  //login button for  active
-  loginButtonActive: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLOR.ORANGE,
-    borderRadius: 50,
+    margin:10
   },
   //Text for login
   buttonLabel: {

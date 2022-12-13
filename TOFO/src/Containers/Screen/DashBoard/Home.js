@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: COLOR.BLACK,
     marginTop: 20,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   item: {
     margin: 10,

@@ -1,10 +1,11 @@
+import React from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Image,
-  ImageBackground
+ ImageBackground
 } from 'react-native';
 import {
   BACKGROUND_COLORS,

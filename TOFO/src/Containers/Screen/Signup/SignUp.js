@@ -85,10 +85,10 @@ export default function Signup({ navigation }) {
         <StatusBar
           translucent
           backgroundColor={COLOR.WHITE}
-          barStyle={COLOR.LIGHT_CONTENT} />
+          barStyle={COLOR.DARK_CONTENT} />
         <View style={styles.contentView} >
           <View style={styles.titleTextView} >
-            <Text style={styles.titleText}>{PAGE_CONTENT.APP_NAME}</Text>
+            <Text style={styles.titleText}>{PAGE_CONTENT.SIGNUP}</Text>
           </View>
           <View style={styles.inputTextBox}>
             <TextInput style={styles.inputText}
@@ -206,17 +206,16 @@ const styles = StyleSheet.create({
   //Style for text TOFO
   titleText: {
     fontSize: 30,
-    color: '#000000',
+    color:COLOR.BLACK,
+    fontWeight:'bold'
   },
   //Textbox View
   inputTextBox: {
     width: '80%',
-    height: '5%',
     borderRadius: 30,
     backgroundColor: BACKGROUND_COLORS.GREY,
     borderWidth: 1,
     justifyContent: 'center',
-    marginVertical: 5,
   },
   //Textbox input style
   inputText: {
@@ -283,10 +282,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
-
-
-
-
-
-
-

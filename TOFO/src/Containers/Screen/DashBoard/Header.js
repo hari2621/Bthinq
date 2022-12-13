@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Appbar } from 'react-native-paper';
 import {
   COLOR,
   PAGE_CONTENT,
-  TAB_NAME
 } from '../../Utility/Constants';
 
 const Head = () => (
@@ -17,10 +17,11 @@ const Head = () => (
     <Appbar.Content
       style={styles.headerTitleStyle}
       title={PAGE_CONTENT.APP_NAME} />
-    <Appbar.Action
-      style={styles.menubar}
-      icon={TAB_NAME.MENU}
-      onPress={() => { }} />
+      <TouchableOpacity>
+      <Image
+      source={require('../../../Assets/Images/menu.png')}
+      style={styles.menubar} />
+      </TouchableOpacity>    
   </Appbar.Header>
 );
 
@@ -28,11 +29,10 @@ export default Head;
 const styles = StyleSheet.create({
   // header background 
   headercolor: {
-    marginTop: 50,
     backgroundColor: COLOR.WHITE,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
+    height: 50,
   },
   // header title  
   headerTitleStyle: {
@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
   Logo: {
     alignItems: 'flex-start',
     height: 50,
-    width: 70
+    width: 80
   },
   // menu bar in header
   menubar: {
-    height: 50,
-    icon: 230,
-    width: 70
+    height: 30,
+    width: 30,
+    margin:10
   }
 });
 

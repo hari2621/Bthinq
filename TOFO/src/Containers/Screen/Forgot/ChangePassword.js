@@ -48,7 +48,7 @@ export default function Change({ navigation }) {
       </View>
       <StatusBar translucent
         backgroundColor={COLOR.WHITE}
-        barStyle={COLOR.LIGHT_CONTENT} />
+        barStyle={COLOR.DARK_CONTENT} />
       <View style={styles.main}>
         <Text style={styles.Title}>{PAGE_CONTENT.CHANGEPASSWORD_TITLE}</Text>
         <View style={styles.textInput}>
@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
   text: {
     marginHorizontal: 30,
     color: COLOR.BLACK,
-    fontWeight: 'bold',
     fontSize: 20
   },
   //Error Message
@@ -166,7 +165,6 @@ const styles = StyleSheet.create({
   textFaild1: {
     color: COLOR.RED,
   },
-
   //disable button
   button: {
     alignItems: 'center',

@@ -46,7 +46,7 @@ export default function Forgot({ navigation }) {
                 <StatusBar
                     translucent
                     backgroundColor={COLOR.WHITE}
-                    barStyle={COLOR.LIGHT_CONTENT} />
+                    barStyle={COLOR.DARK_CONTENT} />
                 <View style={styles.main}>
                     <Text style={styles.Title}>{PAGE_CONTENT.APP_NAME}</Text>
                     <View style={styles.textInput}>
@@ -115,10 +115,8 @@ const styles = StyleSheet.create({
     },
     //input-box text
     text: {
-
         color: COLOR.BLACK,
         textAlign: 'center',
-        marginVertical: 7,
         justifyContent: 'center',
         fontSize: 23
     },

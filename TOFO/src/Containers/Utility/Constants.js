@@ -2,7 +2,7 @@
 export const BACKGROUND_COLORS = {
     ORANGE: "orangered",
     PINK: "#FAAFBA",
-    GREY: "rgba(52,52, 52, 0.9)",
+    GREY: "rgba(52,52, 52, 0.6)",
     WHITE: "#FFFFFF",
     ORANGE_: "#F77D3B",
     BLACK: "#000000",
@@ -57,7 +57,7 @@ export const PAGE_CONTENT = {
 }
 //placeholder inputbox
 export const PLACEHOLDER = {
-    USERNAME: "User name",
+    USERNAME: "Username",
     PASSWORD: "Password",
     CONFIRM_PASSWORD: "Confirm Password",
     EMAIL: "Email",
