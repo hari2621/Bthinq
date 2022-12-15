@@ -3,10 +3,8 @@ import Checklist from '@/Containers/Screen/DashBoard/Checklist';
 import Home from '@/Containers/Screen/DashBoard/Home';
 import Profile from '@/Containers/Screen/DashBoard/Profile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { BACKGROUND_COLORS, TAB_NAME } from '../../src/Containers/Utility/Constants';
-import { Image, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native';
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigator() {
@@ -19,16 +17,15 @@ export default function BottomNavigator() {
         component={Home}
         tabBarOptions={{ showIcon: true }}
         options={{
+          tabBarLabel: 'Home',
           tabBarLabelStyle:
             { color: BACKGROUND_COLORS.BLACK, fontSize: 14 },
           tabBarStyle:
             { backgroundColor: BACKGROUND_COLORS.ORANGE_ },
           headerShown: false,
           tabBarIcon: (focused, tintColor) => (
-            <TouchableOpacity>
               <Image style={{ width: 30, height: 30 }}
                 source={require('../Assets/Images/home.png')} />
-            </TouchableOpacity>
           )
         }}
       />
@@ -43,10 +40,8 @@ export default function BottomNavigator() {
             { backgroundColor: BACKGROUND_COLORS.ORANGE_ },
           headerShown: false,
           tabBarIcon: (focused, tintColor) => (
-            <TouchableOpacity>
               <Image style={{ width: 30, height: 30 }}
                 source={require('../Assets/Images/bell.png')} />
-            </TouchableOpacity>
           ),
         }}
       />
@@ -61,10 +56,8 @@ export default function BottomNavigator() {
           tabBarStyle:
             { backgroundColor: BACKGROUND_COLORS.ORANGE_ },
           tabBarIcon: (focused, tintColor) => (
-            <TouchableOpacity>
               <Image style={{ width: 30, height: 30 }}
                 source={require('../Assets/Images/profile.png')} />
-            </TouchableOpacity>
           )
         }}
       />

@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
   inputBoxContainer: {
     flex:3,
     width: '80%',
-    height: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: COLOR.WHITE,
@@ -150,6 +149,7 @@ const styles = StyleSheet.create({
     color: COLOR.BLACK,
     fontSize: 24,
     fontWeight: 'bold',
+    fontFamily:''
   },
   // Color for  App Name
   tittleTextColor: {
