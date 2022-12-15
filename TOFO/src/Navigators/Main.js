@@ -8,14 +8,11 @@ import Change from '../Containers/Screen/Forgot/ChangePassword'
 import Signup from '../Containers/Screen/Signup/SignUp'
 import SplashScreen from 'react-native-splash-screen'
 
-
-
-
 // @refresh reset
 const MainNavigator = () => {
     const Stack = createStackNavigator()
     useEffect(() => {
-        setTimeout(() => SplashScreen.hide(),1000)
+        setTimeout(() =>SplashScreen.hide())
       }, [])
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} >     

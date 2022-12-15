@@ -18,6 +18,7 @@ import {
 import Regex from "../../Utility/Validation";
 
 export default function Login({ navigation }) {
+  //initializer
   const [userName, setUsername] = useState("");
   const [checkvaildUsername, setvaildUsername] = useState(false);
   const [Password, setPassword] = useState("");
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.WHITE
   },
   backgroundImage: {
-    flex:3,
+    flex: 3,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
   },
   // InputBox container for all content
   inputBoxContainer: {
-    flex:3,
+    flex: 3,
     width: '80%',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -142,14 +143,14 @@ const styles = StyleSheet.create({
   },
   // tittle space
   titleView: {
-    margin:15
+    margin: 15
   },
   //Title color and font Size
   titleText: {
     color: COLOR.BLACK,
     fontSize: 24,
     fontWeight: 'bold',
-    fontFamily:''
+    fontFamily: ''
   },
   // Color for  App Name
   tittleTextColor: {
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
     backgroundColor: COLOR.WHITE,
-    alignContent:'space-between',
+    alignContent: 'space-between',
   },
   // //InputBox for password
   inputBox_password: {
@@ -171,20 +172,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
     backgroundColor: COLOR.WHITE,
-    margin:8
+    margin: 8
   },
   //input field Text
   inputText: {
     fontSize: 20,
     color: COLOR.BLACK,
-    marginLeft:10
+    marginLeft: 10
   },
   //error message field
   errorMessageText: {
     alignSelf: 'baseline',
     color: COLOR.RED,
     fontSize: 15,
-    marginLeft:10
+    marginLeft: 10
   },
   //login Button View
   loginButtonview: {
@@ -195,13 +196,13 @@ const styles = StyleSheet.create({
   },
   //Button disable for login
   loginButtonDisabled: {
-    width:300,
-    height:40,
+    width: 300,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLOR.ORANGE,
     borderRadius: 30,
-    margin:10
+    margin: 10
   },
   //Text for login
   buttonLabel: {

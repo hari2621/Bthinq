@@ -7,19 +7,16 @@ import { navigationRef } from './utils'
 import MainNavigator from './Main'
 
 
-
-const Stack = createStackNavigator()
-
-// @refresh reset
 const ApplicationNavigator = () => {
+  //initializer
   const { Layout, darkMode, NavigationTheme } = useTheme()
+  const Stack = createStackNavigator()
   const { colors } = NavigationTheme
-
   return (
     <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
       <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
         <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
-        <MainNavigator/>
+        <MainNavigator />
       </NavigationContainer>
     </SafeAreaView>
   )

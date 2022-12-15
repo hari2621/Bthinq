@@ -20,6 +20,7 @@ import {
 import Regex from "../../Utility/Validation";
 
 export default function Signup({ navigation }) {
+  //initializer
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [checkValidEmail, setCheckValidateEmail] = useState(false);
@@ -206,8 +207,8 @@ const styles = StyleSheet.create({
   //Style for text TOFO
   titleText: {
     fontSize: 30,
-    color:COLOR.BLACK,
-    fontWeight:'bold'
+    color: COLOR.BLACK,
+    fontWeight: 'bold'
   },
   //Textbox View
   inputTextBox: {

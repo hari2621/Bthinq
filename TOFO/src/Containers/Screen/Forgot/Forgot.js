@@ -19,6 +19,7 @@ import {
 import Regex from '../../Utility/Validation';
 
 export default function Forgot({ navigation }) {
+    //initializer
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState(false)
     // Email validation
