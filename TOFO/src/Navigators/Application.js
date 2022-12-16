@@ -1,11 +1,10 @@
+import { useTheme } from '@/Hooks'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
-import { useTheme } from '@/Hooks'
-import { navigationRef } from './utils'
 import MainNavigator from './Main'
-
+import { navigationRef } from './utils'
 
 const ApplicationNavigator = () => {
   //initializer

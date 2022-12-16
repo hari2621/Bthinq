@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import {
+    ImageBackground,
+    StatusBar,
     StyleSheet,
     Text,
-    View,
     TextInput,
     TouchableOpacity,
-    ImageBackground,
-    StatusBar
+    View
 } from 'react-native';
 import {
-    ERROR_MESSAGE,
-    COLOR,
     BACKGROUND_COLORS,
+    COLOR, ERROR_MESSAGE,
+    NAVIGATION_SCREENS,
     PAGE_CONTENT,
-    PLACEHOLDER,
-    NAVIGATION_SCREENS
+    PLACEHOLDER
 } from '../../Utility/Constants';
 import Regex from '../../Utility/Validation';
 

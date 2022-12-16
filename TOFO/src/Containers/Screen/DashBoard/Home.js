@@ -1,23 +1,19 @@
 import React from 'react';
 import {
+  FlatList,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+  SectionList,
+  StatusBar,
   StyleSheet,
   Text,
-  View,
-  SectionList,
-  SafeAreaView,
-  Image,
-  FlatList,
-  ImageBackground,
-  StatusBar
+  View
 } from 'react-native';
-import Head from './Header';
 import {
-  COLOR,
-  HOME_SECTION_HEADER,
-  DEMO_IMAGE,
-  BACKGROUND_COLORS,
-  STYLE
+  BACKGROUND_COLORS, COLOR, DEMO_IMAGE, HOME_SECTION_HEADER, STYLE
 } from '../../Utility/Constants';
+import Head from './Header';
 
 const ListItem = ({ item }) => {
   return (
@@ -49,7 +45,7 @@ export default function Home() {
           backgroundColor={BACKGROUND_COLORS.WHITE}
           barStyle={COLOR.DARK_CONTENT} />
         <SafeAreaView style={{ flex: 1 }}>
-         <SectionList
+          <SectionList
             contentContainerStyle={{ paddingHorizontal: 10 }}
             stickySectionHeadersEnabled={false}
             sections={SECTIONS}

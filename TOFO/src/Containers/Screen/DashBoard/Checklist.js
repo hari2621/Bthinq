@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View,StatusBar } from 'react-native';
 import React from 'react';
-import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 export default function Checklist() {
   return (
     <View style={Styles.container}>

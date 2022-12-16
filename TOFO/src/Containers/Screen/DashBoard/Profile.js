@@ -1,16 +1,11 @@
 import React from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
   Image,
- ImageBackground
+  ImageBackground, StyleSheet,
+  Text, TouchableOpacity, View
 } from 'react-native';
 import {
-  BACKGROUND_COLORS,
-  PROFILE_FIELD,
-  NAVIGATION_SCREENS
+  BACKGROUND_COLORS, NAVIGATION_SCREENS, PROFILE_FIELD
 } from '../../Utility/Constants';
 
 export default function Profile({ navigation }) {

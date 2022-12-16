@@ -1,10 +1,10 @@
-import React from 'react';
 import Checklist from '@/Containers/Screen/DashBoard/Checklist';
 import Home from '@/Containers/Screen/DashBoard/Home';
 import Profile from '@/Containers/Screen/DashBoard/Profile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BACKGROUND_COLORS, TAB_NAME } from '../../src/Containers/Utility/Constants';
+import React from 'react';
 import { Image } from 'react-native';
+import { BACKGROUND_COLORS, TAB_NAME } from '../../src/Containers/Utility/Constants';
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigator() {
@@ -24,8 +24,8 @@ export default function BottomNavigator() {
             { backgroundColor: BACKGROUND_COLORS.ORANGE_ },
           headerShown: false,
           tabBarIcon: (focused, tintColor) => (
-              <Image style={{ width: 30, height: 30 }}
-                source={require('../Assets/Images/home.png')} />
+            <Image style={{ width: 30, height: 30 }}
+              source={require('../Assets/Images/home.png')} />
           )
         }}
       />
@@ -40,8 +40,8 @@ export default function BottomNavigator() {
             { backgroundColor: BACKGROUND_COLORS.ORANGE_ },
           headerShown: false,
           tabBarIcon: (focused, tintColor) => (
-              <Image style={{ width: 30, height: 30 }}
-                source={require('../Assets/Images/bell.png')} />
+            <Image style={{ width: 30, height: 30 }}
+              source={require('../Assets/Images/bell.png')} />
           ),
         }}
       />
@@ -56,8 +56,8 @@ export default function BottomNavigator() {
           tabBarStyle:
             { backgroundColor: BACKGROUND_COLORS.ORANGE_ },
           tabBarIcon: (focused, tintColor) => (
-              <Image style={{ width: 30, height: 30 }}
-                source={require('../Assets/Images/profile.png')} />
+            <Image style={{ width: 30, height: 30 }}
+              source={require('../Assets/Images/profile.png')} />
           )
         }}
       />

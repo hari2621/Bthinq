@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import {
   ImageBackground,
+  StatusBar,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
-  StyleSheet,
-  StatusBar
+  View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {
-  PLACEHOLDER,
-  ERROR_MESSAGE,
-  PAGE_CONTENT,
-  NAVIGATION_SCREENS,
   BACKGROUND_COLORS,
-  COLOR
+  COLOR, ERROR_MESSAGE, NAVIGATION_SCREENS, PAGE_CONTENT, PLACEHOLDER
 } from "../../Utility/Constants";
 import Regex from "../../Utility/Validation";
 

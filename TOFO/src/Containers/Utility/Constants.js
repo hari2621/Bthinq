@@ -72,7 +72,7 @@ export const NAVIGATION_SCREENS = {
     FORGOT_SCREEN: "Forgot",
     CHANGE_SCREEN: "ChangePassword",
     SIGN_UP: "SignUp",
-    SPLASH_SCREEN:"SplashScreen"
+    SPLASH_SCREEN: "StartupContainer"
 }
 //tab screen icon name
 export const TAB_NAME = {

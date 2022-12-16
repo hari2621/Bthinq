@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet} from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Appbar } from 'react-native-paper';
 import {
   COLOR,
-  PAGE_CONTENT,
+  PAGE_CONTENT
 } from '../../Utility/Constants';
 
 const Head = () => (
@@ -17,11 +17,11 @@ const Head = () => (
     <Appbar.Content
       style={styles.headerTitleStyle}
       title={PAGE_CONTENT.APP_NAME} />
-      <TouchableOpacity>
+    <TouchableOpacity>
       <Image
-      source={require('../../../Assets/Images/menu.png')}
-      style={styles.menubar} />
-      </TouchableOpacity>    
+        source={require('../../../Assets/Images/menu.png')}
+        style={styles.menubar} />
+    </TouchableOpacity>
   </Appbar.Header>
 );
 
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   menubar: {
     height: 30,
     width: 30,
-    margin:10
+    margin: 10
   }
 });
 
