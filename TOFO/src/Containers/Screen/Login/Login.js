@@ -13,6 +13,8 @@ import {
   COLOR, ERROR_MESSAGE, NAVIGATION_SCREENS, PAGE_CONTENT
 } from "../../Utility/Constants";
 import Regex from "../../Utility/Validation";
+import { globalstyles } from "../../CommonStyles/Styles";
+import { useCreatePostMutation } from "../../../Services/modules/LoginAction/LoginPostMethod";
 
 export default function Login({ navigation }) {
   //initializer
@@ -20,6 +22,20 @@ export default function Login({ navigation }) {
   const [checkvaildUsername, setvaildUsername] = useState(false);
   const [Password, setPassword] = useState("");
   const [checkvaildPassword, setvaildPassword] = useState(false);
+  //Post Api
+  let grantType={
+    UserName:userName,
+    Password:Password
+  };
+  const [CreatePost]=useCreatePostMutation(grantType);
+
+  const onSubmit=()=>{
+    CreatePost(grantType).then((response) => {
+console.log(response)
+    })
+  }
+  
+
   //password Validation
   const checkUserPassword = passwordText => {
     setPassword(passwordText);
@@ -40,7 +56,7 @@ export default function Login({ navigation }) {
     }
   }
   return (
-    <View style={styles.container}>
+    <View style={globalstyles.container}>
       <View style={styles.backgroundImage}>
         <ImageBackground style={styles.backgroundImageSize}
           source={require('../../../../src/Assets/Images/Image_login.png')} />
@@ -61,7 +77,7 @@ export default function Login({ navigation }) {
             placeholderTextColor={COLOR.BLACK} />
         </View>
         {checkvaildUsername ? (
-          <Text style={styles.errorMessageText}>{ERROR_MESSAGE.USERNAME_ERROR}</Text>
+          <Text style={globalstyles.errorMessageText}>{ERROR_MESSAGE.USERNAME_ERROR}</Text>
         ) : (
           null
         )}
@@ -76,7 +92,7 @@ export default function Login({ navigation }) {
             onChangeText={passwordText => checkUserPassword(passwordText)} />
         </View>
         {checkvaildPassword ? (
-          <Text style={styles.errorMessageText}>{ERROR_MESSAGE.PASSWORD}</Text>
+          <Text style={globalstyles.errorMessageText}>{ERROR_MESSAGE.PASSWORD}</Text>
         ) : (
           null
         )}
@@ -84,7 +100,7 @@ export default function Login({ navigation }) {
           <TouchableOpacity
             disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
             style={styles.loginButtonDisabled}
-            onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
+            onPress={() =>onSubmit()}>
             <Text style={styles.buttonLabel}>{PAGE_CONTENT.LOGIN_TEXT}</Text>
           </TouchableOpacity>
         </View>
@@ -110,14 +126,6 @@ export default function Login({ navigation }) {
 }
 //parent Container
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
-    backgroundColor: COLOR.WHITE
-  },
   backgroundImage: {
     flex: 3,
     width: '100%',
@@ -175,13 +183,6 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 20,
     color: COLOR.BLACK,
-    marginLeft: 10
-  },
-  //error message field
-  errorMessageText: {
-    alignSelf: 'baseline',
-    color: COLOR.RED,
-    fontSize: 15,
     marginLeft: 10
   },
   //login Button View

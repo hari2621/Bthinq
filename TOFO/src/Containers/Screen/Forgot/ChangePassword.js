@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { globalstyles } from "../../CommonStyles/Styles";
 import {
   BACKGROUND_COLORS,
   COLOR,
@@ -38,16 +39,14 @@ export default function Change({ navigation }) {
     }
   };
   return (
-    <View style={styles.change}>
-      <View style={styles.Logo}>
-        <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.background} />
-      </View>
+    <View style={globalstyles.container}>
+        <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.backgroundImage} />
       <StatusBar translucent
         backgroundColor={COLOR.WHITE}
         barStyle={COLOR.DARK_CONTENT} />
       <View style={styles.main}>
         <Text style={styles.Title}>{PAGE_CONTENT.CHANGEPASSWORD_TITLE}</Text>
-        <View style={styles.textInput}>
+        <View style={globalstyles.textInput}>
           <TextInput
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_NEWPASSWORD}
@@ -62,12 +61,12 @@ export default function Change({ navigation }) {
         </View>
         <View style={styles.errorMsg}>
           {checkValidpass ? (
-            <Text style={styles.textFaild1}>{ERROR_MESSAGE.PASSWORD_INVALID}</Text>
+            <Text style={globalstyles.errorMessageText}>{ERROR_MESSAGE.PASSWORD_INVALID}</Text>
           ) : (
             <Text style={styles.textFaild1}></Text>
           )}
         </View>
-        <View style={styles.textInput}>
+        <View style={globalstyles.textInput}>
           <TextInput
             style={styles.text}
             placeholder={ERROR_MESSAGE.ENTER_CONFIRMPASSWORD}
@@ -82,14 +81,14 @@ export default function Change({ navigation }) {
           {checkValidpConfirm ? (
             <Text style={styles.textFaild1}></Text>
           ) : (
-            <Text style={styles.textFaild1}>{ERROR_MESSAGE.PASSWORD_CONFIRM}</Text>
+            <Text style={globalstyles.errorMessageText}>{ERROR_MESSAGE.PASSWORD_CONFIRM}</Text>
           )}
         </View>
         <View>
           <TouchableOpacity disabled={checkValidpass || password != Confirm || password == '' || Confirm == ''}
             style={styles.button}
             onPress={() => navigation.navigate(NAVIGATION_SCREENS.LOGIN)} >
-            <Text style={styles.btntxt}>{PLACEHOLDER.SUBMIT}</Text>
+            <Text style={globalstyles.buttonText}>{PLACEHOLDER.SUBMIT}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -98,36 +97,23 @@ export default function Change({ navigation }) {
 }
 //stylesheet for changepassword screen
 const styles = StyleSheet.create({
-  //overall
-  change: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: BACKGROUND_COLORS.WHITE
-  },
-  //background
-  background: {
-    width: "100%",
-    height: "100%"
-  },
   //app content
   main: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 3,
+    flex:4,
     backgroundColor: BACKGROUND_COLORS.WHITE,
     width: '100%',
     height: '100%',
     marginBottom: 70
   },
   //appLogo
-  Logo: {
-    flex: 4,
+backgroundImage: {
+    flex:4,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BACKGROUND_COLORS.WHITE
   },
   //Display text
   Title: {
@@ -135,17 +121,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginVertical: 25,
     color: COLOR.BLACK
-  },
-  //(New Password & Confirm)
-  //input-box
-  textInput: {
-    justifyContent: "center",
-    height: 50,
-    backgroundColor: BACKGROUND_COLORS.WHITE,
-    borderRadius: 100,
-    width: "90%",
-    borderColor: COLOR.BLACK,
-    borderWidth: 1,
   },
   //input-box text
   text: {
@@ -171,11 +146,4 @@ const styles = StyleSheet.create({
     borderRadius: 30
   },
   //Enable & disable button
-  btntxt: {
-    color: COLOR.WHITE,
-    fontWeight: 'bold',
-    padding: 10,
-    textAlign: 'center',
-    fontSize: 25
-  },
 })

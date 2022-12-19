@@ -1,3 +1,5 @@
 export const Config = {
-  API_URL: 'https://jsonplaceholder.typicode.com/',
+  API_URL: 'http://localhost:44312/api/',
+
 }
+export const CODE_KEY='Basic RGhhc2FuOkRoYXNhbkAyMzQ=';

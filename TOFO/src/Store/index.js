@@ -14,10 +14,12 @@ import {
 
 import { api } from '@/Services/api'
 import theme from './Theme'
+import { LoginPostMethod } from '../Services/modules/LoginAction/LoginPostMethod'
 
 const reducers = combineReducers({
   theme,
   api: api.reducer,
+  [LoginPostMethod.reducer]:LoginPostMethod.reducer
 })
 
 const persistConfig = {
@@ -35,7 +37,8 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(api.middleware)
+    }).concat(
+      LoginPostMethod.middleware)//concat login
 
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
       const createDebugger = require('redux-flipper').default

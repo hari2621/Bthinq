@@ -9,6 +9,7 @@ import {
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { globalstyles } from "../../CommonStyles/Styles";
 import {
   BACKGROUND_COLORS,
   COLOR, ERROR_MESSAGE, NAVIGATION_SCREENS, PAGE_CONTENT, PLACEHOLDER
@@ -75,7 +76,7 @@ export default function Signup({ navigation }) {
   };
   //rendering path
   return (
-    <View >
+    <View style={globalstyles.container}>
       <ImageBackground
         style={styles.backgroundImage}
         source={require('../../../../src/Assets/Images/Image_signup.jpg')}>
