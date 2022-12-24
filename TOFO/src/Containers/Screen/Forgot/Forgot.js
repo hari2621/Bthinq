@@ -6,7 +6,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View
+    View, Alert, Dimensions
 } from 'react-native';
 import { useForgotPostMutation } from '../../../Services/modules/LoginAction/LoginPostMethod';
 import { globalstyles } from '../../CommonStyles/Styles';
@@ -21,7 +21,7 @@ import Regex from '../../Utility/Validation';
 
 export default function Forgot({ navigation }) {
 
-    
+
     //initializer
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState(false)
@@ -34,38 +34,39 @@ export default function Forgot({ navigation }) {
             setCheckValidateEmail(true);
         }
     };
-    const changePassword = () => {
-        const checkPassword = checkEmail(email);
-        if (!checkPassword) {
-            navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN);
-        } else {
-            alert(checkPassword);
-        }
-    };
+    // const changePassword = () => {
+    //     const checkPassword = checkEmail(email);
+    //     if (!checkPassword) {
+    //         navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN);
+    //     } else {
+    //         alert(checkPassword);
+    //     }
+
     let forgotType = {
-        Email:email,
-      };
-      const [ForgotPost] = useForgotPostMutation(forgotType);
-      const onSubmit = () => {
+        Email: email,
+    };
+    const [ForgotPost] = useForgotPostMutation(forgotType);
+    const onSubmit = () => {
         ForgotPost(forgotType).then((response) => {
-          console.log(response);    
-       if (response.data != undefined) {
-             if (response.data.Response_code===800){
-                alert('Enter valid email')
-              }
-              else if(response.data.Response_code===200){
-                alert("verified")
-                navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN)
-              }
-            
-          }
-          else{
-            alert("Internet connection Faild")
-          }
-         
+            console.log(response);
+            let hk = forgotType.Email;
+            console.log(hk);
+            if (response.data != undefined) {
+                if (response.data.Response_code === 800) {
+                    Alert.alert("Invalid", 'Please enter valid email', [{ text: "Ok" }])
+                }
+                else if (response.data.Response_code === 200) {
+                    Alert.alert("Verified", 'Click ok to Login',
+                        [{ text: "Ok", onPress: () => navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN) }])
+                }
+            }
+            else {
+                alert("Internet connection Faild")
+            }
+
         })
-      }
-    
+    }
+
     return (
         <View style={globalstyles.container}>
             <View style={styles.forgot}>
@@ -132,9 +133,9 @@ const styles = StyleSheet.create({
     Title: {
         fontSize: 40,
         color: COLOR.ORANGERED,
-        margin:20
+        margin: 20
     },
-    
+
     //input-box text
     text: {
         color: COLOR.BLACK,
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         fontSize: 23
     },
-  
+
     //disabled button
     button: {
         height: 60,

@@ -16,6 +16,7 @@ import {
 } from '../../Utility/Constants';
 import Regex from '../../Utility/Validation';
 
+
 export default function Change({ navigation }) {
   const [password, setPassword] = useState("")
   const [checkValidpass, setCheckValidPass] = useState(false);
@@ -40,33 +41,32 @@ export default function Change({ navigation }) {
     }
   };
   let changeType = {
-    User_Password:password,
-    Confirm_Password:Confirm,
+    User_Password: password,
+    Confirm_Password: Confirm,
   };
   const [ChangePost] = useChangePostMutation(changeType);
   const onSubmit = () => {
     ChangePost(changeType).then((response) => {
-      console.log(response);    
+      console.log(response);
       if (response.data != undefined) {
-        if (response.data.Response_code===700){
+        if (response.data.Response_code === 700) {
           alert('Enter Password and confirm password')
         }
-        else if(response.data.Response_code===200){
+        else if (response.data.Response_code === 200) {
           alert("Password Change Sucessfully")
           navigation.navigate(NAVIGATION_SCREENS.LOGIN)
         }
-        
       }
-      else{
+      else {
         alert("Internet connection Faild")
       }
-     
+
     })
   }
 
   return (
     <View style={globalstyles.container}>
-        <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.backgroundImage} />
+      <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.backgroundImage} />
       <StatusBar translucent
         backgroundColor={COLOR.WHITE}
         barStyle={COLOR.DARK_CONTENT} />
@@ -127,15 +127,15 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex:4,
+    flex: 4,
     backgroundColor: BACKGROUND_COLORS.WHITE,
     width: '100%',
     height: '100%',
     marginBottom: 70
   },
   //appLogo
-backgroundImage: {
-    flex:4,
+  backgroundImage: {
+    flex: 4,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
