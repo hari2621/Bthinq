@@ -1,31 +1,73 @@
-import {api} from '../../api';
-import {CODE_KEY, Config} from '../../../Config/index';
-import { LoginUrl, URL } from '../../../Containers/Utility/Url';
+import { api } from '../../api';
+import { ChangeUrl, ForgotUrl, LoginUrl,SignUpUrl } from '../../../Containers/Utility/Url';
 
-export const LoginPostMethod=api.injectEndpoints({ 
-    reducerPath:'LoginPostMethod',
-    endpoints:(builder)=>({
-        CreatePost:builder.mutation({
-            query:(grantType)=>{
-               let params={
-                "Password": 'Hari@2621',
-                "UserName": 'Hari@2622',
-               }
+export const LoginPostMethod = api.injectEndpoints({
+    reducerPath: 'LogInPostMethod',
+    endpoints: (builder) => ({
+        CreatePost: builder.mutation({
+            query: (grantType) => {
+
                 console.log(grantType)
+                return {
+                    url: LoginUrl,
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': '*/*',
+                    },
+                    body: JSON.stringify(grantType),
+
+                }
+            }
+        }),
+        SignUpPost:builder.mutation({
+            query:(postType)=>{            
+                console.log(postType)
                 return{
-                    url:LoginUrl,
+                    url:SignUpUrl,
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
                         'Accept':'*/*',
                     },
-                    body:params
+                    body:JSON.stringify(postType),
 
                 }
             }
-        })
+        }),
+        ForgotPost:builder.mutation({
+            query:(forgotType)=>{            
+                console.log(forgotType)
+                return{
+                    url:ForgotUrl,
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Accept':'*/*',
+                    },
+                    body:JSON.stringify(forgotType),
+
+                }
+            }
+        }),
+        ChangePost:builder.mutation({
+            query:(changeType)=>{            
+                console.log(changeType)
+                return{
+                    url:ChangeUrl,
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Accept':'*/*',
+                    },
+                    body:JSON.stringify(changeType),
+
+                }
+            }
+        }),
 
 
-    })
+    }),
+
 })
-export const{useCreatePostMutation}=LoginPostMethod
+export const { useCreatePostMutation,useSignUpPostMutation,useForgotPostMutation,useChangePostMutation} = LoginPostMethod

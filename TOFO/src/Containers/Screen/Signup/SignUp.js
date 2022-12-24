@@ -1,3 +1,4 @@
+import { number } from "prop-types";
 import React, { useState } from "react";
 import {
   ImageBackground,
@@ -6,9 +7,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useSignUpPostMutation } from "../../../Services/modules/LoginAction/LoginPostMethod";
 import { globalstyles } from "../../CommonStyles/Styles";
 import {
   BACKGROUND_COLORS,
@@ -28,6 +31,40 @@ export default function Signup({ navigation }) {
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setConfirmpass] = useState("");
   const [checkValidpConfirm, setCheckValidConfirm] = useState(true)
+  //Post Api
+  let postType = {
+    UserName:Name,
+    User_Password:password,
+    Confirm_Password:Confirm,
+    Email:email,
+    Mobile_No:Number,
+  };
+  const [SignUpPost] = useSignUpPostMutation(postType);
+
+  const onSubmit = () => {
+    SignUpPost(postType).then((response) => {
+      console.log(response);  
+     if (response.data != undefined) {     
+     if (response.data.Response_code===500) {
+      Alert.alert("Username is already exists","Try a different one..",[{text:"ok"}])
+      }
+      else if (response.data.Response_code===800) {
+        Alert.alert("Email is already exists","Try a different one..",[{text:"ok"}])
+      }
+      else if (response.data.Response_code===1000) {
+        Alert.alert("Invalid","password must be same",[{text:"ok"}])
+      }
+      else if (response.data.Response_code===200) {
+        Alert.alert("LoginSucessfull","Your UserName Is: " +postType.UserName +"\n"+"Your Password Is: "+postType.User_Password,
+        [{text:"Click ok to continue ",onPress:()=>navigation.navigate(NAVIGATION_SCREENS.LOGIN)}])
+      }    
+    }
+    else {
+      alert('check your Internet Connection')     
+   }
+      
+    })
+  }
   //User name Validation
   const userName = (text) => {
     setName(text)
@@ -170,10 +207,10 @@ export default function Signup({ navigation }) {
                   <Icon name={PAGE_CONTENT.DOUBLE_LEFT} />{PAGE_CONTENT.BACK_TO_LOGIN}</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.disabledButton}>
+            <View style={styles.backToLoginButton}>
               <TouchableOpacity
-                disabled={Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName}
-                onPress={() => navigation.replace(NAVIGATION_SCREENS.HOME_SCREEN)}>
+              disabled={Name == '' || password == '' || email == '' || Number == '' || password != Confirm || checkValidpass || checkValidnum || checkValidEmail || checkValidName}
+                onPress={() => onSubmit()}>
                 <Text style={styles.createButtonText}>{PAGE_CONTENT.CREATE}</Text>
               </TouchableOpacity>
             </View>

@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { useForgotPostMutation } from '../../../Services/modules/LoginAction/LoginPostMethod';
 import { globalstyles } from '../../CommonStyles/Styles';
 import {
     BACKGROUND_COLORS,
@@ -19,6 +20,8 @@ import {
 import Regex from '../../Utility/Validation';
 
 export default function Forgot({ navigation }) {
+
+    
     //initializer
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState(false)
@@ -39,6 +42,30 @@ export default function Forgot({ navigation }) {
             alert(checkPassword);
         }
     };
+    let forgotType = {
+        Email:email,
+      };
+      const [ForgotPost] = useForgotPostMutation(forgotType);
+      const onSubmit = () => {
+        ForgotPost(forgotType).then((response) => {
+          console.log(response);    
+       if (response.data != undefined) {
+             if (response.data.Response_code===800){
+                alert('Enter valid email')
+              }
+              else if(response.data.Response_code===200){
+                alert("verified")
+                navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN)
+              }
+            
+          }
+          else{
+            alert("Internet connection Faild")
+          }
+         
+        })
+      }
+    
     return (
         <View style={globalstyles.container}>
             <View style={styles.forgot}>
@@ -69,7 +96,7 @@ export default function Forgot({ navigation }) {
                         <View>
                             <TouchableOpacity disabled={email == "" || checkValidEmail == true}
                                 style={styles.button}
-                                onPress={changePassword}>
+                                onPress={() => onSubmit()}>
                                 <Text style={globalstyles.buttonText}>{PLACEHOLDER.NEXT_BUTTON}</Text>
                             </TouchableOpacity>
                         </View>

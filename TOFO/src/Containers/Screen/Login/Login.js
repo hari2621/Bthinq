@@ -7,7 +7,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Alert,
 } from "react-native";
 import {
   COLOR, ERROR_MESSAGE, NAVIGATION_SCREENS, PAGE_CONTENT
@@ -23,18 +24,30 @@ export default function Login({ navigation }) {
   const [Password, setPassword] = useState("");
   const [checkvaildPassword, setvaildPassword] = useState(false);
   //Post Api
-  let grantType={
-    UserName:userName,
-    Password:Password
+  let grantType = {
+    UserName: userName,
+    Password: Password
   };
-  const [CreatePost]=useCreatePostMutation(grantType);
-
-  const onSubmit=()=>{
+  const [CreatePost] = useCreatePostMutation(grantType);
+  const onSubmit = () => {
     CreatePost(grantType).then((response) => {
-console.log(response)
+      console.log(response);    
+      if (response.data != undefined) {
+        if (response.data.Response_code===200) {
+          Alert.alert("LoginSucessfull",'Click Ok To Continue',
+          [{text:"Ok",onPress:()=>navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}])
+          
+        }
+        else {
+          Alert.alert("Inavlid ",'Please enter valid username and Password',[{text:"Ok"}])
+      }
+      }
+      else{
+        Alert.alert("Notfound","Internet connection Faild",[{text:"ok"}])
+      }
+     
     })
   }
-  
 
   //password Validation
   const checkUserPassword = passwordText => {
@@ -98,9 +111,9 @@ console.log(response)
         )}
         <View>
           <TouchableOpacity
-            disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
+             disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
             style={styles.loginButtonDisabled}
-            onPress={() =>onSubmit()}>
+            onPress={() => onSubmit()}>
             <Text style={styles.buttonLabel}>{PAGE_CONTENT.LOGIN_TEXT}</Text>
           </TouchableOpacity>
         </View>
@@ -235,7 +248,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
 });
-
 
 
 

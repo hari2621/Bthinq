@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { useChangePostMutation } from "../../../Services/modules/LoginAction/LoginPostMethod";
 import { globalstyles } from "../../CommonStyles/Styles";
 import {
   BACKGROUND_COLORS,
@@ -38,6 +39,31 @@ export default function Change({ navigation }) {
       setCheckValidConfirm(false);
     }
   };
+  let changeType = {
+    User_Password:password,
+    Confirm_Password:Confirm,
+  };
+  const [ChangePost] = useChangePostMutation(changeType);
+  const onSubmit = () => {
+    ChangePost(changeType).then((response) => {
+      console.log(response);    
+      if (response.data != undefined) {
+        if (response.data.Response_code===700){
+          alert('Enter Password and confirm password')
+        }
+        else if(response.data.Response_code===200){
+          alert("Password Change Sucessfully")
+          navigation.navigate(NAVIGATION_SCREENS.LOGIN)
+        }
+        
+      }
+      else{
+        alert("Internet connection Faild")
+      }
+     
+    })
+  }
+
   return (
     <View style={globalstyles.container}>
         <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.backgroundImage} />
@@ -87,7 +113,7 @@ export default function Change({ navigation }) {
         <View>
           <TouchableOpacity disabled={checkValidpass || password != Confirm || password == '' || Confirm == ''}
             style={styles.button}
-            onPress={() => navigation.navigate(NAVIGATION_SCREENS.LOGIN)} >
+            onPress={() => onSubmit()} >
             <Text style={globalstyles.buttonText}>{PLACEHOLDER.SUBMIT}</Text>
           </TouchableOpacity>
         </View>
