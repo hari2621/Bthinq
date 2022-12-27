@@ -24,8 +24,6 @@ export const LoginPostMethod=api.injectEndpoints({
                 }
             }
         })
-
-
     })
 })
 export const{useCreatePostMutation}=LoginPostMethod

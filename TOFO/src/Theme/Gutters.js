@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-
 /**
  * Generate Styles depending on MetricsSizes vars availabled at ./Theme/Variables
  * Styles are like :
@@ -12,7 +11,6 @@ import { StyleSheet } from 'react-native'
  * <op>: can be ['Margin', 'Padding']
  * <value>: is the value of the <size>
  */
-
 /**
  *
  * @param Theme can be spread like {Colors, NavigationColors, Gutters, Layout, Common, ...args}
@@ -20,49 +18,62 @@ import { StyleSheet } from 'react-native'
  */
 export default function ({ MetricsSizes }) {
   return StyleSheet.create({
-    ...Object.entries(MetricsSizes).reduce(
-      (acc, [key, value]) => ({
-        ...acc,
-        /* Margins */
-        [`${key}BMargin`]: {
-          marginBottom: value,
+    container:{ 
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      width: '100%',
+  },
+  textInput: {
+    justifyContent: "center",
+    borderRadius:30,
+    width: 300,
+    borderWidth:1,
+},
+        forgot: {
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1
         },
-        [`${key}TMargin`]: {
-          marginTop: value,
+        //background
+        forgotBackground: {
+          width: "100%",
+          height: "100%"
         },
-        [`${key}RMargin`]: {
-          marginRight: value,
+        //app content
+        forgotMain: {
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: '60%',
+          flex: 4,
         },
-        [`${key}LMargin`]: {
-          marginLeft: value,
+        //appTitle
+        forgotTitle: {
+          margin: 20
         },
-        [`${key}VMargin`]: {
-          marginVertical: value,
+        //input-box text
+        forgotText: {
+          textAlign: 'center',
+          justifyContent: 'center',
         },
-        [`${key}HMargin`]: {
-          marginHorizontal: value,
+        //disabled button
+        forgotButton: {
+          height: 60,
+          width: 300,
+          margin: 50,
+          borderRadius: 30,
         },
-        /* Paddings */
-        [`${key}BPadding`]: {
-          paddingBottom: value,
+        //Enable button
+        buttonText: {
+          height: 50,
+          marginVertical: 40,
+          width: 300,
+          borderRadius: 30,
+          alignItems: 'center',
+          justifyContent: 'center'
         },
-        [`${key}TPadding`]: {
-          paddingTop: value,
-        },
-        [`${key}RPadding`]: {
-          paddingRight: value,
-        },
-        [`${key}LPadding`]: {
-          paddingLeft: value,
-        },
-        [`${key}VPadding`]: {
-          paddingVertical: value,
-        },
-        [`${key}HPadding`]: {
-          paddingHorizontal: value,
-        },
-      }),
-      {},
-    ),
   })
 }

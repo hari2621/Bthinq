@@ -3,6 +3,7 @@ import { Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Appbar } from 'react-native-paper';
 import {
+  BACKGROUND_COLORS,
   COLOR,
   PAGE_CONTENT
 } from '../../Utility/Constants';
@@ -29,7 +30,7 @@ export default Head;
 const styles = StyleSheet.create({
   // header background 
   headercolor: {
-    backgroundColor: COLOR.WHITE,
+    backgroundColor: BACKGROUND_COLORS.WHITE,
     alignItems: 'center',
     justifyContent: 'center',
     height: 50,

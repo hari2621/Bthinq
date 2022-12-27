@@ -17,7 +17,7 @@ const ApplicationNavigator = () => {
         <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
         <MainNavigator />
       </NavigationContainer>
-    </SafeAreaView>
+    </SafeAreaView>  
   )
 }
 

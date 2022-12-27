@@ -8,19 +8,16 @@
 /**
  * Colors
  */
-export const Colors = {
+export const COLOR = {
   // Example colors:
-  transparent: 'rgba(0,0,0,0)',
-  inputBackground: '#FFFFFF',
-  white: '#ffffff',
-  text: '#212529',
-  primary: '#E14032',
-  success: '#28a745',
-  error: '#dc3545',
+    BLACK: "#000000",
+    ORANGE: "#DF6229",
+    WHITE: "#FFFFFF",
+    LIGHT_ORANGE: "#F77D3B",
 }
 
 export const NavigationColors = {
-  primary: Colors.primary,
+  primary: COLOR.primary,
 }
 
 /**
@@ -47,7 +44,7 @@ export const MetricsSizes = {
 }
 
 export default {
-  Colors,
+  COLOR,
   NavigationColors,
   FontSize,
   MetricsSizes,

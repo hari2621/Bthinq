@@ -14,7 +14,6 @@ import {
 } from "../../Utility/Constants";
 import Regex from "../../Utility/Validation";
 import { globalstyles } from "../../CommonStyles/Styles";
-import { useCreatePostMutation } from "../../../Services/modules/LoginAction/LoginPostMethod";
 
 export default function Login({ navigation }) {
   //initializer
@@ -27,15 +26,6 @@ export default function Login({ navigation }) {
     UserName:userName,
     Password:Password
   };
-  const [CreatePost]=useCreatePostMutation(grantType);
-
-  const onSubmit=()=>{
-    CreatePost(grantType).then((response) => {
-console.log(response)
-    })
-  }
-  
-
   //password Validation
   const checkUserPassword = passwordText => {
     setPassword(passwordText);
@@ -100,7 +90,7 @@ console.log(response)
           <TouchableOpacity
             disabled={userName == '' || Password == '' || checkvaildUsername == true || checkvaildPassword == true}
             style={styles.loginButtonDisabled}
-            onPress={() =>onSubmit()}>
+            onPress={() => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN)}>
             <Text style={styles.buttonLabel}>{PAGE_CONTENT.LOGIN_TEXT}</Text>
           </TouchableOpacity>
         </View>

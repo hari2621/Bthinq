@@ -2,7 +2,6 @@ import React from 'react';
 import {
   FlatList,
   Image,
-  ImageBackground,
   SafeAreaView,
   SectionList,
   StatusBar,
@@ -15,9 +14,9 @@ import {
 } from '../../Utility/Constants';
 import Head from './Header';
 
-const ListItem = ({ item }) => {
+const ListItem = ({ item }) => { 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <View style={styles.item}>
         <Image
           source={{
@@ -36,10 +35,6 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Head />
-      <ImageBackground
-        source={require("../../../../src/Assets/Images/Home_bg.png")}
-        resizeMode={STYLE.RECOVERSIZE_MODE}
-        style={styles.backgroundimage}>
         <StatusBar
           translucent
           backgroundColor={BACKGROUND_COLORS.WHITE}
@@ -70,7 +65,7 @@ export default function Home() {
             }}
           />
         </SafeAreaView>
-      </ImageBackground>
+
     </View>
   );
 };

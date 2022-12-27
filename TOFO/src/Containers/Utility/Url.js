@@ -1,1 +1,1 @@
-export const LoginUrl= 'SignUp/login';
+export const LoginUrl= 'Login/UserLogform';

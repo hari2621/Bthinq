@@ -10,44 +10,13 @@ import { StyleSheet } from 'react-native'
  */
 export default function ({ FontSize, Colors }) {
   return StyleSheet.create({
-    textSmall: {
-      fontSize: FontSize.small,
-      color: Colors.text,
-    },
-    textRegular: {
-      fontSize: FontSize.regular,
-      color: Colors.text,
-    },
-    textLarge: {
-      fontSize: FontSize.large,
-      color: Colors.text,
-    },
-    titleSmall: {
-      fontSize: FontSize.small * 2,
-      fontWeight: 'bold',
-      color: Colors.text,
-    },
-    titleRegular: {
-      fontSize: FontSize.regular * 2,
-      fontWeight: 'bold',
-      color: Colors.text,
-    },
-    titleLarge: {
-      fontSize: FontSize.large * 2,
-      fontWeight: 'bold',
-      color: Colors.text,
-    },
-    textCenter: {
-      textAlign: 'center',
-    },
-    textJustify: {
-      textAlign: 'justify',
-    },
-    textLeft: {
-      textAlign: 'left',
-    },
-    textRight: {
-      textAlign: 'right',
-    },
+  //appTitle
+  forgotTitle: {
+    fontSize: 40,
+},
+ //input-box text
+ forgotText: {
+  fontSize: 23
+},
   })
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import {
     ImageBackground,
     StatusBar,
@@ -6,7 +6,8 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View
+    View,
+    Appearance
 } from 'react-native';
 import { globalstyles } from '../../CommonStyles/Styles';
 import {
@@ -17,11 +18,14 @@ import {
     PLACEHOLDER
 } from '../../Utility/Constants';
 import Regex from '../../Utility/Validation';
+import { useTheme } from '@/Hooks';
+import { setDefaultTheme } from '@/Store/Theme';
 
 export default function Forgot({ navigation }) {
     //initializer
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState(false)
+    const { Common, Fonts, Gutters } = useTheme()
     // Email validation
     const checkEmail = validEmail => {
         setEmail(validEmail)
@@ -31,6 +35,7 @@ export default function Forgot({ navigation }) {
             setCheckValidateEmail(true);
         }
     };
+    //Password validation
     const changePassword = () => {
         const checkPassword = checkEmail(email);
         if (!checkPassword) {
@@ -39,20 +44,32 @@ export default function Forgot({ navigation }) {
             alert(checkPassword);
         }
     };
+    //Themes
+    const init = async () => {
+        const colorScheme = Appearance.getColorScheme();
+        if (colorScheme === 'dark') {
+            await setDefaultTheme({ darkMode: true });
+        } else {
+            await setDefaultTheme({ theme: 'default', darkMode: null });
+        }
+    }
+    useEffect(() => {
+        init()
+    })
     return (
-        <View style={globalstyles.container}>
-            <View style={styles.forgot}>
+        <View style={[Common.container,Gutters.container]}>
+            <View style={[Gutters.Forgot]}>
                 <ImageBackground
                     source={require('../../../../src/Assets/Images/Image_F.jpg')}
-                    style={styles.background}>
+                    style={[Gutters.forgotBackground]}>
                     <StatusBar
                         translucent
                         backgroundColor={COLOR.WHITE}
                         barStyle={COLOR.DARK_CONTENT} />
-                    <View style={styles.main}>
-                        <Text style={styles.Title}>{PAGE_CONTENT.APP_NAME}</Text>
-                        <View style={globalstyles.textInput}>
-                            <TextInput style={styles.text}
+                    <View style={[Gutters.forgotMain]}>
+                        <Text style={[Common.forgotTitle, Gutters.forgotTitle, Fonts.forgotTitle]}>{PAGE_CONTENT.APP_NAME}</Text>
+                        <View style={[Common.textInput,Gutters.textInput]}>
+                            <TextInput style={[Common.forgotText, Gutters.forgotText, Fonts.forgotText]}
                                 placeholder={PLACEHOLDER.EMAIL}
                                 placeholderTextColor={COLOR.BLACK}
                                 value={email}
@@ -68,9 +85,9 @@ export default function Forgot({ navigation }) {
                         </View>
                         <View>
                             <TouchableOpacity disabled={email == "" || checkValidEmail == true}
-                                style={styles.button}
+                                style={[Common.forgotButton, Gutters.forgotButton]}
                                 onPress={changePassword}>
-                                <Text style={globalstyles.buttonText}>{PLACEHOLDER.NEXT_BUTTON}</Text>
+                                <Text style={[Common.buttonText,Gutters.buttonText]}>{PLACEHOLDER.NEXT_BUTTON}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -79,59 +96,3 @@ export default function Forgot({ navigation }) {
         </View>
     );
 }
-//stylesheet for forgot screen
-const styles = StyleSheet.create({
-    //overall
-    forgot: {
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1
-    },
-    //background
-    background: {
-        width: "100%",
-        height: "100%"
-    },
-    //app content
-    main: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '60%',
-        flex: 4,
-    },
-    //appTitle
-    Title: {
-        fontSize: 40,
-        color: COLOR.ORANGERED,
-        margin:20
-    },
-    
-    //input-box text
-    text: {
-        color: COLOR.BLACK,
-        textAlign: 'center',
-        justifyContent: 'center',
-        fontSize: 23
-    },
-  
-    //disabled button
-    button: {
-        height: 60,
-        backgroundColor: COLOR.ORANGERED,
-        width: 300,
-        margin: 50,
-        borderRadius: 30,
-    },
-    //Enable button
-    button2: {
-        height: 50,
-        marginVertical: 40,
-        backgroundColor: COLOR.ORANGERED,
-        width: 300,
-        borderRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-});
