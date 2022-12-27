@@ -7,13 +7,15 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Alert,
 } from "react-native";
 import {
   COLOR, ERROR_MESSAGE, NAVIGATION_SCREENS, PAGE_CONTENT
 } from "../../Utility/Constants";
 import Regex from "../../Utility/Validation";
 import { globalstyles } from "../../CommonStyles/Styles";
+// import { useCreatePostMutation } from "../../../Services/modules/LoginAction/LoginPostMethod";
 
 export default function Login({ navigation }) {
   //initializer
@@ -26,6 +28,32 @@ export default function Login({ navigation }) {
     UserName:userName,
     Password:Password
   };
+  // //Post Api
+  // let grantType = {
+  //   UserName: userName,
+  //   Password: Password
+  // };
+  // const [CreatePost] = useCreatePostMutation(grantType);
+  // const onSubmit = () => {
+  //   CreatePost(grantType).then((response) => {
+  //     console.log(response);
+  //     if (response.data != undefined) {
+  //       if (response.data.Response_code === 200) {
+  //         Alert.alert("LoginSucessfull", 'Click Ok To Continue',
+  //           [{ text: "Ok", onPress: () => navigation.navigate(NAVIGATION_SCREENS.HOME_SCREEN) }])
+
+  //       }
+  //       else {
+  //         Alert.alert("Inavlid ", 'Please enter valid username and Password', [{ text: "Ok" }])
+  //       }
+  //     }
+  //     else {
+  //       Alert.alert("Internet connection Failed"," ",[{ text: "ok" }])
+  //     }
+
+  //   })
+  // }
+
   //password Validation
   const checkUserPassword = passwordText => {
     setPassword(passwordText);
@@ -225,7 +253,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
 });
-
 
 
 

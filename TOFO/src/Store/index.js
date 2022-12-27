@@ -14,12 +14,14 @@ import {
 
 import { api } from '@/Services/api'
 import theme from './Theme'
-import { LoginPostMethod } from '../Services/modules/LoginAction/LoginPostMethod'
+// import { LoginPostMethod, SignUpPostMethod } from '../Services/modules/LoginAction/LoginPostMethod'
+
 
 const reducers = combineReducers({
   theme,
   api: api.reducer,
-  [LoginPostMethod.reducer]:LoginPostMethod.reducer
+  // [LoginPostMethod.reducerPath]:LoginPostMethod.reducer,
+  //[SignUpPostMethod.reducerPath]:SignUpPostMethod.reducer
 })
 
 const persistConfig = {
@@ -38,7 +40,10 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
-      LoginPostMethod.middleware)//concat login
+      api.middleware
+      // LoginPostMethod.middleware,
+    // SignUpPostMethod.middleware
+      )//concat login
 
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
       const createDebugger = require('redux-flipper').default

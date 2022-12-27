@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+// import { useChangePostMutation } from "../../../Services/modules/LoginAction/LoginPostMethod";
 import { globalstyles } from "../../CommonStyles/Styles";
 import {
   BACKGROUND_COLORS,
@@ -15,7 +16,8 @@ import {
 } from '../../Utility/Constants';
 import Regex from '../../Utility/Validation';
 
-export default function Change({ navigation }) {
+export default function Change({ navigation}) {
+  // console.log(route.params)
   const [password, setPassword] = useState("")
   const [checkValidpass, setCheckValidPass] = useState(false);
   const [Confirm, setPass] = useState("");
@@ -38,9 +40,34 @@ export default function Change({ navigation }) {
       setCheckValidConfirm(false);
     }
   };
+  // let changeType = {
+    
+  //   User_Password: password,
+  //   Confirm_Password: Confirm,
+  // };
+  // const [ChangePost] = useChangePostMutation(changeType);
+  // const onSubmit = () => {
+  //   ChangePost(changeType).then((response) => {
+  //     console.log(response);
+  //     if (response.data != undefined) {
+  //       if (response.data.Response_code === 700) {
+  //         alert('Enter Password and confirm password')
+  //       }
+  //       else if (response.data.Response_code === 200) {
+  //         alert("Password Change Sucessfully")
+  //         navigation.navigate(NAVIGATION_SCREENS.LOGIN)
+  //       }
+  //     }
+  //     else {
+  //       alert("Internet connection Faild")
+  //     }
+
+  //   })
+  // }
+
   return (
     <View style={globalstyles.container}>
-        <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.backgroundImage} />
+      <ImageBackground source={require('../../../../src/Assets/Images/Image_csp.jpg')} style={styles.backgroundImage} />
       <StatusBar translucent
         backgroundColor={COLOR.WHITE}
         barStyle={COLOR.DARK_CONTENT} />
@@ -87,7 +114,7 @@ export default function Change({ navigation }) {
         <View>
           <TouchableOpacity disabled={checkValidpass || password != Confirm || password == '' || Confirm == ''}
             style={styles.button}
-            onPress={() => navigation.navigate(NAVIGATION_SCREENS.LOGIN)} >
+            onPress={() =>navigation.navigate(NAVIGATION_SCREENS.LOGIN)} >
             <Text style={globalstyles.buttonText}>{PLACEHOLDER.SUBMIT}</Text>
           </TouchableOpacity>
         </View>
@@ -101,15 +128,15 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex:4,
+    flex: 4,
     backgroundColor: BACKGROUND_COLORS.WHITE,
     width: '100%',
     height: '100%',
     marginBottom: 70
   },
   //appLogo
-backgroundImage: {
-    flex:4,
+  backgroundImage: {
+    flex: 4,
     width: '100%',
     height: '100%',
     justifyContent: 'center',

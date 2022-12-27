@@ -8,7 +8,10 @@ import {
     TouchableOpacity,
     View,
     Appearance
+    Alert,
+     Dimensions
 } from 'react-native';
+// import { useForgotPostMutation } from '../../../Services/modules/LoginAction/LoginPostMethod';
 import { globalstyles } from '../../CommonStyles/Styles';
 import {
     BACKGROUND_COLORS,
@@ -56,6 +59,36 @@ export default function Forgot({ navigation }) {
     useEffect(() => {
         init()
     })
+    }
+
+    // let forgotType = {
+    //     Email:"hari23@gmail.com",
+    // };
+    // const [ForgotPost] = useForgotPostMutation(forgotType);
+    // const onSubmit = () => {
+    //     navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN,{'Email':"hari23@gmail.com"})
+
+
+    // ForgotPost(forgotType).then((response) => {
+    //     console.log(response);
+    //     let hk = forgotType.Email;
+    //     console.log(hk);
+    //     if (response.data != undefined) {
+    //         if (response.data.Response_code === 800) {
+    //             Alert.alert("Invalid", 'Please enter valid email', [{ text: "Ok" }])
+    //         }
+    //         else if (response.data.Response_code === 200) {
+    //             Alert.alert("Verified", 'Click ok to Login',
+    //                 [{ text: "Ok", onPress: () => navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN,{Email:hk}) }])
+    //         }
+    //     }
+    //     else {
+    //         alert("Internet connection Faild")
+    //     }
+
+    // })
+    // }
+
     return (
         <View style={[Common.container,Gutters.container]}>
             <View style={[Gutters.Forgot]}>
@@ -88,6 +121,9 @@ export default function Forgot({ navigation }) {
                                 style={[Common.forgotButton, Gutters.forgotButton]}
                                 onPress={changePassword}>
                                 <Text style={[Common.buttonText,Gutters.buttonText]}>{PLACEHOLDER.NEXT_BUTTON}</Text>
+                                {/* style={styles.button}
+                                onPress={() => changePassword()}>
+                                <Text style={globalstyles.buttonText}>{PLACEHOLDER.NEXT_BUTTON}</Text> */}
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -95,4 +131,60 @@ export default function Forgot({ navigation }) {
             </View>
         </View>
     );
-}
+
+//stylesheet for forgot screen
+const styles = StyleSheet.create({
+    //overall
+    forgot: {
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1
+    },
+    //background
+    background: {
+        width: "100%",
+        height: "100%"
+    },
+    //app content
+    main: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '60%',
+        flex: 4,
+    },
+    //appTitle
+    Title: {
+        fontSize: 40,
+        color: COLOR.ORANGERED,
+        margin: 20
+    },
+
+    //input-box text
+    text: {
+        color: COLOR.BLACK,
+        textAlign: 'center',
+        justifyContent: 'center',
+        fontSize: 23
+    },
+
+    //disabled button
+    button: {
+        height: 60,
+        backgroundColor: COLOR.ORANGERED,
+        width: 300,
+        margin: 50,
+        borderRadius: 30,
+    },
+    //Enable button
+    button2: {
+        height: 50,
+        marginVertical: 40,
+        backgroundColor: COLOR.ORANGERED,
+        width: 300,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+});
