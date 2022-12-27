@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     View, Alert, Dimensions
 } from 'react-native';
-import { useForgotPostMutation } from '../../../Services/modules/LoginAction/LoginPostMethod';
+// import { useForgotPostMutation } from '../../../Services/modules/LoginAction/LoginPostMethod';
 import { globalstyles } from '../../CommonStyles/Styles';
 import {
     BACKGROUND_COLORS,
@@ -20,8 +20,6 @@ import {
 import Regex from '../../Utility/Validation';
 
 export default function Forgot({ navigation }) {
-
-
     //initializer
     const [email, setEmail] = useState("")
     const [checkValidEmail, setCheckValidateEmail] = useState(false)
@@ -34,38 +32,42 @@ export default function Forgot({ navigation }) {
             setCheckValidateEmail(true);
         }
     };
-    // const changePassword = () => {
-    //     const checkPassword = checkEmail(email);
-    //     if (!checkPassword) {
-    //         navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN);
-    //     } else {
-    //         alert(checkPassword);
+    const changePassword = () => {
+        const checkPassword = checkEmail(email);
+        if (!checkPassword) {
+            navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN);
+        } else {
+            alert(checkPassword);
+        }
+    }
+
+    // let forgotType = {
+    //     Email:"hari23@gmail.com",
+    // };
+    // const [ForgotPost] = useForgotPostMutation(forgotType);
+    // const onSubmit = () => {
+    //     navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN,{'Email':"hari23@gmail.com"})
+
+
+    // ForgotPost(forgotType).then((response) => {
+    //     console.log(response);
+    //     let hk = forgotType.Email;
+    //     console.log(hk);
+    //     if (response.data != undefined) {
+    //         if (response.data.Response_code === 800) {
+    //             Alert.alert("Invalid", 'Please enter valid email', [{ text: "Ok" }])
+    //         }
+    //         else if (response.data.Response_code === 200) {
+    //             Alert.alert("Verified", 'Click ok to Login',
+    //                 [{ text: "Ok", onPress: () => navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN,{Email:hk}) }])
+    //         }
+    //     }
+    //     else {
+    //         alert("Internet connection Faild")
     //     }
 
-    let forgotType = {
-        Email: email,
-    };
-    const [ForgotPost] = useForgotPostMutation(forgotType);
-    const onSubmit = () => {
-        ForgotPost(forgotType).then((response) => {
-            console.log(response);
-            let hk = forgotType.Email;
-            console.log(hk);
-            if (response.data != undefined) {
-                if (response.data.Response_code === 800) {
-                    Alert.alert("Invalid", 'Please enter valid email', [{ text: "Ok" }])
-                }
-                else if (response.data.Response_code === 200) {
-                    Alert.alert("Verified", 'Click ok to Login',
-                        [{ text: "Ok", onPress: () => navigation.navigate(NAVIGATION_SCREENS.CHANGE_SCREEN) }])
-                }
-            }
-            else {
-                alert("Internet connection Faild")
-            }
-
-        })
-    }
+    // })
+    // }
 
     return (
         <View style={globalstyles.container}>
@@ -97,7 +99,7 @@ export default function Forgot({ navigation }) {
                         <View>
                             <TouchableOpacity disabled={email == "" || checkValidEmail == true}
                                 style={styles.button}
-                                onPress={() => onSubmit()}>
+                                onPress={() => changePassword()}>
                                 <Text style={globalstyles.buttonText}>{PLACEHOLDER.NEXT_BUTTON}</Text>
                             </TouchableOpacity>
                         </View>

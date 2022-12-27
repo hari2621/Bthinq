@@ -14,13 +14,13 @@ import {
 
 import { api } from '@/Services/api'
 import theme from './Theme'
-import { LoginPostMethod, SignUpPostMethod } from '../Services/modules/LoginAction/LoginPostMethod'
+// import { LoginPostMethod, SignUpPostMethod } from '../Services/modules/LoginAction/LoginPostMethod'
 
 
 const reducers = combineReducers({
   theme,
   api: api.reducer,
-  [LoginPostMethod.reducerPath]:LoginPostMethod.reducer,
+  // [LoginPostMethod.reducerPath]:LoginPostMethod.reducer,
   //[SignUpPostMethod.reducerPath]:SignUpPostMethod.reducer
 })
 
@@ -40,7 +40,8 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
-      LoginPostMethod.middleware,
+      api.middleware
+      // LoginPostMethod.middleware,
     // SignUpPostMethod.middleware
       )//concat login
 

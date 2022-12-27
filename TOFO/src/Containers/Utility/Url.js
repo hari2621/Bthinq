@@ -1,4 +1,4 @@
-export const LoginUrl= 'SignUp/login';
-export const SignUpUrl= 'SignUp/signup';
-export const ChangeUrl= 'SignUp/changePassword';
-export const ForgotUrl= 'SignUp/Forgot';
+// export const LoginUrl= 'SignUp/login';
+// export const SignUpUrl= 'SignUp/signup';
+// export const ChangeUrl= 'SignUp/changePassword';
+// export const ForgotUrl= 'SignUp/Forgot';
